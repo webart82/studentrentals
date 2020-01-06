@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">studentrentals</string>
+
+    <!--BottomNavigation Menu items -->
+    <string name="menu_home">Home</string>
+    <string name="menu_list">List</string>
+    <string name="menu_profile">Profile</string>
+    
+    <!--Activity life circles -->
+    <string name="on_create">On Create</string>
+    <string name="on_create_view">On create view</string>
+    <string name="on_start">On start</string>
+    <string name="on_stop">On stop</string>
+    <string name="on_destroy">On Destroy</string>
+    <string name="on_resume">On Resume</string>
+    <string name="on_restart">On Restart</string>
 </resources>
