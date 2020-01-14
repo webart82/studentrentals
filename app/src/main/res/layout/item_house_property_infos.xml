@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/items_text"
+    android:background="@android:color/transparent">
+
+    <TextView
+        android:id="@+id/house_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@android:color/white"
+        android:text="@string/sample_name"
+        android:textStyle="bold"
+        android:textSize="21sp"
+        >
+
+    </TextView>
+    <TextView
+        android:id="@+id/house_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@android:color/white"
+        android:text="@string/sample_price"
+        android:textStyle="bold"
+        android:textSize="21sp"
+        >
+
+    </TextView>
+    <TextView
+        android:id="@+id/house_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/house_name"
+        android:drawableStart="@drawable/map_marker"
+        android:drawableTint="@android:color/white"
+        android:textColor="@android:color/white"
+        android:gravity="center_vertical"
+        android:text="@string/clintion_villa"
+        tools:targetApi="23"
+        >
+
+    </TextView>
+    <TextView
+        android:id="@+id/house_reviews"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/house_price"
+        android:drawableStart="@drawable/star"
+        android:textColor="@android:color/white"
+        android:gravity="center_vertical"
+        android:text="@string/_4_4m_reviews"
+        >
+
+    </TextView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

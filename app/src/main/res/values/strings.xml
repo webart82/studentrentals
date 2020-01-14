@@ -5,13 +5,55 @@
     <string name="menu_home">Home</string>
     <string name="menu_list">List</string>
     <string name="menu_profile">Profile</string>
-    
+
     <!--Activity life circles -->
-    <string name="on_create">On Create</string>
-    <string name="on_create_view">On create view</string>
-    <string name="on_start">On start</string>
+    <string name="clintion_villa">Clintion Villa</string>
+    <string name="_4_4m_reviews">4.4M Reviews</string>
+    <string name="sample_price">$ 3,500.00</string>
+    <string name="sample_name">Clintion Villa</string>
+
+    <!--TODO: Activity/Fragment lifecycle properties-->
+    <string name="on_attach">On Attach</string>
+    <string name="on_create">On create</string>
+    <string name="on_create_view">On Create View</string>
+    <string name="on_activity_created">On Activity Created</string>
+    <string name="on_start">On Start</string>
+    <string name="on_resume">On Resume</string>
     <string name="on_stop">On stop</string>
     <string name="on_destroy">On Destroy</string>
-    <string name="on_resume">On Resume</string>
     <string name="on_restart">On Restart</string>
+    <string name="on_pause">On pause</string>
+    <string name="on_destroy_view">On destroy view</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="james_minner">James Minner</string>
+    <string name="property_owner">Property owner</string>
+    <string name="kitchens">3 Kitchens</string>
+    <string name="bathrooms">4 Bathrooms</string>
+    <string name="dinings">3 Dinings</string>
+    <string name="bedrooms">4 Bedrooms</string>
+    <string name="descriptions">Descriptions:</string>
+
+    <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</string>
+    <string name="photos">Photos</string>
+    <string name="extra_const">Extra Cost\'s</string>
+    <string name="table_layout_electriciy">Electricity</string>
+    <string name="table_amount_electricity">$ 3.50</string>
+    <string name="table_layout_water">Water</string>
+    <string name="table_water">$ 23.00</string>
+    <string name="table_layout_security">Security</string>
+    <string name="table_amount_security">$ 120.00</string>
+    <string name="table_layout_dust">Takataka</string>
+    <string name="table_layout_rental_cost">Rental Cost\'s</string>
+    <string name="table_amount_rental">$ 3,500.00</string>
+    <string name="table_layout_const_name">Name</string>
+    <string name="table_amount">Amount</string>
+    <string name="table_payment_method">Methods/T &amp; C</string>
+    <string name="table_method_bank">Bank</string>
+    <string name="table_method_cash">Cash</string>
+    <string name="table_method_mobile">Mobile</string>
+
+
 </resources>
