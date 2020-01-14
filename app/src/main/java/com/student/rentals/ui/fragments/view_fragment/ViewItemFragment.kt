@@ -6,12 +6,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.request.RequestOptions
 import com.student.Utils.GlideApp
+import com.student.Utils.TermsAndConditionsDialog
 import com.student.rentals.R
 import kotlinx.android.synthetic.main.fragment_view_item.*
+import kotlinx.android.synthetic.main.item_property_extra_costs.*
 import kotlinx.android.synthetic.main.item_property_owner.*
+import kotlinx.android.synthetic.main.terms_and_condition.*
 
 
 /**
@@ -49,6 +53,12 @@ class ViewItemFragment : Fragment() {
             .load("https://kprofiles.com/wp-content/uploads/2019/12/WhatsApp-Image-2019-12-03-at-4.13.01-PM-799x800.jpeg")
             .apply(RequestOptions.circleCropTransform())
             .into(property_owner_dp)
+
+        table_method_bank.setOnClickListener({
+            val dialog = TermsAndConditionsDialog(context!!)
+            dialog.show()
+
+        })
 
 
     }

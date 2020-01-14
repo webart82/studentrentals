@@ -58,6 +58,7 @@
                 android:textAlignment="center" />
 
             <TextView
+                android:id="@+id/table_method_bank"
                 android:gravity="end"
                 android:padding="3dip"
                 android:text="@string/table_method_bank"
