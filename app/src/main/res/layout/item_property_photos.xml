@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:id="@+id/property_items"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="horizontal"
+        android:weightSum="4">
+
+        <ImageView
+            android:id="@+id/property_items_image_1"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:padding="@dimen/action_padding"
+            android:drawableTop="@drawable/bed_king_outline"
+            android:layout_weight="1"
+            android:scaleType="centerCrop"
+            android:src="@drawable/photo">
+
+        </ImageView>
+        <ImageView
+            android:id="@+id/property_items_image_2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:padding="@dimen/action_padding"
+            android:drawableTop="@drawable/bed_king_outline"
+            android:layout_weight="1"
+            android:scaleType="centerCrop"
+            android:src="@drawable/photo">
+
+        </ImageView>
+        <ImageView
+            android:id="@+id/property_items_image_3"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:padding="@dimen/action_padding"
+            android:drawableTop="@drawable/bed_king_outline"
+            android:layout_weight="1"
+            android:scaleType="centerCrop"
+            android:src="@drawable/photo">
+
+        </ImageView>
+        <ImageView
+            android:id="@+id/property_items_image_4"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:padding="@dimen/action_padding"
+            android:drawableTop="@drawable/bed_king_outline"
+            android:layout_weight="1"
+            android:scaleType="centerCrop"
+            android:src="@drawable/photo">
+
+        </ImageView>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

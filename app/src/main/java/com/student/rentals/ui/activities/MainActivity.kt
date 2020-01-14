@@ -63,7 +63,7 @@ class MainActivity : AppBaseActivity() {
     private fun loadFragment(fragment: Fragment) { // load fragment
         val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.frame_container, fragment)
-        transaction.addToBackStack(null)
+       // transaction.addToBackStack(null)
         transaction.commit()
     }
 

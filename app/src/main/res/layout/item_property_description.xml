@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent">
+
+    <LinearLayout
+        android:id="@+id/property_items"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="horizontal"
+        android:weightSum="4">
+
+        <TextView
+
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/action_padding"
+            android:drawableTop="@drawable/bed_king_outline"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textSize="12sp"
+            android:text="@string/bedrooms">
+
+        </TextView>
+        <TextView
+
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/action_padding"
+            android:drawableTop="@drawable/shower"
+            android:layout_weight="1"
+            android:text="@string/bathrooms"
+            android:gravity="center_horizontal"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textSize="12sp">
+
+        </TextView>
+        <TextView
+
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/action_padding"
+            android:drawableTop="@drawable/stove"
+            android:layout_weight="1"
+            android:text="@string/kitchens"
+
+            android:gravity="center_horizontal"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textSize="12sp">
+
+        </TextView>
+        <TextView
+
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/action_padding"
+            android:drawableTop="@drawable/room_service"
+            android:layout_weight="1"
+            android:text="@string/dinings"
+            android:gravity="center_horizontal"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textSize="12sp">
+
+        </TextView>
+
+
+    </LinearLayout>
+    <TextView
+        android:id="@+id/desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/property_items"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/descriptions"
+        android:padding="@dimen/action_padding"
+        android:textStyle="bold">
+
+    </TextView>
+    <TextView
+        android:id="@+id/property_descprition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/desc"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/lorem"
+        android:padding="@dimen/action_padding"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small">
+
+    </TextView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

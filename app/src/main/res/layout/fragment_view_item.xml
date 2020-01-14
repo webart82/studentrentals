@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/property_image"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:src="@drawable/photo"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </ImageView>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="20dp"
+            app:layout_constraintTop_toTopOf="@id/property_image"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="330dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginBottom="-20dp"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <include
+                    layout="@layout/item_property_owner"/>
+                <include layout="@layout/item_property_description"/>
+                <TextView
+                    android:id="@+id/photos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/property_descprition"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:text="@string/photos"
+                    android:padding="@dimen/action_padding"
+                    android:textStyle="bold"
+                    >
+
+                </TextView>
+                <include
+                    layout="@layout/item_property_photos"/>
+                <include
+                    layout="@layout/item_property_extra_costs"/>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+</ScrollView>
