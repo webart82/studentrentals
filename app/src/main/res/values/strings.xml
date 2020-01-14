@@ -54,6 +54,8 @@
     <string name="table_method_bank">Bank</string>
     <string name="table_method_cash">Cash</string>
     <string name="table_method_mobile">Mobile</string>
+    <string name="terms_and_conditions">Terms and Conditions</string>
+    <string name="terms_of_service"> 1. Terms</string>
 
 
 </resources>
