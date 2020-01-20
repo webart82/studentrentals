@@ -39,8 +39,8 @@ class LandLoardsListAdapter(
 
 
     override fun onBindViewHolder(holder:  LandLoardsViewHolder, position: Int) {
-        holder?.tvAnimalType?.text = items.get(position)
-        var url = "https://d3mqmy22owj503.cloudfront.net/00/500800/images/site_graphics/slider"+position % 5 +".jpg"
+        holder?.tvAnimalType?.text = "Keyle Thompson"
+        var url = "https://i.pinimg.com/originals/be/ac/96/beac96b8e13d2198fd4bb1d5ef56cdcf.jpg"
 
 
 
