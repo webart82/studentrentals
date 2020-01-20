@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.student.rentals.R
 import com.student.rentals.ui.Adapters.LandLoardsListAdapter
+import com.student.rentals.ui.activities.LandLoadProfileActivity
 import com.student.rentals.ui.activities.ViewPropertyActivity
 import kotlinx.android.synthetic.main.list_fragment.*
 
@@ -49,7 +50,7 @@ class ListItemsFragment : Fragment() {
 
     }
     fun openActivity(view: View, category: String){
-        startActivity(Intent(context, ViewPropertyActivity::class.java))
+        startActivity(Intent(context, LandLoadProfileActivity::class.java))
     }
 
 }
