@@ -1,21 +1,21 @@
 package com.student.rentals.ui.fragments.view_fragment
 
 
+import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.Button
+import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.request.RequestOptions
 import com.student.Utils.GlideApp
 import com.student.Utils.TermsAndConditionsDialog
 import com.student.rentals.R
-import kotlinx.android.synthetic.main.fragment_view_item.*
+import com.student.rentals.ui.Adapters.RoomsListAdapter
+import kotlinx.android.synthetic.main.item_property_description.*
 import kotlinx.android.synthetic.main.item_property_extra_costs.*
 import kotlinx.android.synthetic.main.item_property_owner.*
-import kotlinx.android.synthetic.main.terms_and_condition.*
+import kotlinx.android.synthetic.main.item_property_rooms.*
 
 
 /**
@@ -58,6 +58,20 @@ class ViewItemFragment : Fragment() {
             val dialog = TermsAndConditionsDialog(context!!)
             dialog.show()
 
+        })
+        property_bedrooms.setOnClickListener({
+            val dialog = Dialog(context!!)
+            val houses: ArrayList<String> = ArrayList()
+            for (i in 0..10){
+                houses.add("House: " +i)
+            }
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+            dialog.setContentView(R.layout.item_property_rooms)
+            dialog.recycler_rooms_images.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            dialog.recycler_rooms_images.adapter = RoomsListAdapter(houses, requireContext(), onItemClick = { view, catgory -> Unit})
+
+            dialog.show()
+            dialog.window?.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT)
         })
 
 
