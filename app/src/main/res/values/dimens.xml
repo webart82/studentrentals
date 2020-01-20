@@ -5,4 +5,5 @@
     <dimen name="dp_15">15dp</dimen>
     <dimen name="action_padding">5dp</dimen>
     <dimen name="dp_12">12dp</dimen>
+    <dimen name="dp_4">4dp</dimen>
 </resources>
