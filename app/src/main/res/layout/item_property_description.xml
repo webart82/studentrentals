@@ -16,7 +16,7 @@
         android:weightSum="4">
 
         <TextView
-
+            android:id="@+id/property_bedrooms"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:padding="@dimen/action_padding"
