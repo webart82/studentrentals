@@ -15,6 +15,7 @@ import com.student.rentals.ui.Adapters.RoomsListAdapter
 import kotlinx.android.synthetic.main.item_property_description.*
 import kotlinx.android.synthetic.main.item_property_extra_costs.*
 import kotlinx.android.synthetic.main.item_property_owner.*
+import kotlinx.android.synthetic.main.item_property_owner_profile.*
 import kotlinx.android.synthetic.main.item_property_rooms.*
 
 
@@ -54,12 +55,25 @@ class ViewItemFragment : Fragment() {
             .apply(RequestOptions.circleCropTransform())
             .into(property_owner_dp)
 
-        table_method_bank.setOnClickListener({
+        table_method_bank.setOnClickListener(){
             val dialog = TermsAndConditionsDialog(context!!)
             dialog.show()
 
-        })
-        property_bedrooms.setOnClickListener({
+        }
+        property_owner_dp.setOnClickListener(){
+            val dialog = Dialog(context!!)
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+            dialog.setContentView(R.layout.item_property_owner_profile)
+            GlideApp
+                .with(context!!)
+                .load("https://kprofiles.com/wp-content/uploads/2019/12/WhatsApp-Image-2019-12-03-at-4.13.01-PM-799x800.jpeg")
+                .apply(RequestOptions.circleCropTransform())
+                .into(dialog.profile_image)
+            dialog.show()
+            dialog.window?.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT)
+
+        }
+        property_bedrooms.setOnClickListener(){
             val dialog = Dialog(context!!)
             val houses: ArrayList<String> = ArrayList()
             for (i in 0..10){
@@ -72,7 +86,7 @@ class ViewItemFragment : Fragment() {
 
             dialog.show()
             dialog.window?.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT)
-        })
+        }
 
 
     }
