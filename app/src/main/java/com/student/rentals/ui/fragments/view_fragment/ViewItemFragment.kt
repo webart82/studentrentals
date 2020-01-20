@@ -4,6 +4,7 @@ package com.student.rentals.ui.fragments.view_fragment
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -114,7 +115,20 @@ class ViewItemFragment : Fragment() {
                     Log.d(TAG, "Scroll is at TOP")
                 }
             }
+        property_owner_action_call.setOnClickListener(){
+            val intent = Intent(Intent.ACTION_DIAL)
+            intent.data = Uri.parse("tel:0987654321")
+            startActivity(intent)
+        }
+        property_owner_action_message.setOnClickListener()
+        {
+            val smsIntent = Intent(Intent.ACTION_VIEW)
+            smsIntent.type = "vnd.android-dir/mms-sms"
+            smsIntent.putExtra("address", "12125551212")
+            smsIntent.putExtra("sms_body", "Body of Message")
+            startActivity(smsIntent)
 
+        }
 
 
     }
