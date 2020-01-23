@@ -1,10 +1,8 @@
 package com.student.rentals.ui.activities
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
-import androidx.fragment.app.ListFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.student.rentals.R
 import com.student.rentals.ui.AppBaseActivity
@@ -15,7 +13,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppBaseActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
