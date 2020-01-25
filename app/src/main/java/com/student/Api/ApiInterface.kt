@@ -1,6 +1,7 @@
 package com.student.Api
 
 import androidx.lifecycle.LiveData
+import com.student.Models.RoomData
 import com.student.Models.LoginData
 import com.student.Models.UserData
 import retrofit2.Call
@@ -15,6 +16,9 @@ interface ApiInterface {
 
     @GET("users/{id}")
     fun getUser(): Call<String>
+
+    @GET( "apartment/list")
+    fun getAllRooms(): Call<List<RoomData>>
 
     @POST("")
     fun postForLogin(@Body loginData: LoginData):Call<UserData>
