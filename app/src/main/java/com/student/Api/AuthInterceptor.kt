@@ -11,7 +11,6 @@ class AuthInterceptor() : Interceptor {
                 .header("MOBILE_APP_KEY", "APARTMENTMOBILEAPP")
                 .addHeader("Content-Type","application/json")
                 .addHeader("Accept", "application/json")
-
                 .build()
         )
     }
