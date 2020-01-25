@@ -40,7 +40,7 @@
         <activity
             android:name=".ui.activities.MapViewActivity"
             android:label="@string/title_activity_map_view" />
-        <activity android:name=".ui.activities.SignUpActivity" />
+        <activity android:name=".ui.activities.SignUp.view.SignUpActivity" />
         <activity android:name=".ui.activities.MainActivity" />
         <activity android:name=".ui.activities.ViewPropertyActivity" />
         <activity android:name=".ui.activities.LandLoadProfileActivity" />

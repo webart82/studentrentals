@@ -1,18 +1,13 @@
-package com.student.rentals.ui.Adapters
+package com.student.rentals.ui.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.student.Utils.GlideApp
-import com.student.Utils.GlideRequest
 import com.student.rentals.R
-import kotlinx.android.synthetic.main.item_house_property.view.*
-import kotlinx.android.synthetic.main.item_house_property_infos.view.*
 import kotlinx.android.synthetic.main.item_landloard_list_item.view.*
 
 

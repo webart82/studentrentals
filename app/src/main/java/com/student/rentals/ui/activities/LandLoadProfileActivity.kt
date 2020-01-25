@@ -1,5 +1,6 @@
 package com.student.rentals.ui.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -21,19 +22,20 @@ class LandLoadProfileActivity : AppCompatActivity() {
 
         }
         setContentView(R.layout.activity_land_loard_profile)
+        setupToolbar(resources.getString(R.string.profile_toolbar))
     }
 
     /** Make activity visible to the user
      * Prepare the app to enter foreground and become interactive
      * **/
     override fun onStart() {
-        //loadFragment(ViewItemFragment())
         super.onStart()
     }
 
     /** It comes to the foreground
      * The app is now interactive to user **/
     override fun onResume() {
+        super.onResume()
         //setupToolbar()
         var url = "https://i.pinimg.com/originals/be/ac/96/beac96b8e13d2198fd4bb1d5ef56cdcf.jpg"
 
@@ -45,7 +47,8 @@ class LandLoadProfileActivity : AppCompatActivity() {
             .apply(RequestOptions.circleCropTransform())
             .placeholder(R.drawable.photo)
             .into(profile_image)
-        super.onResume()
+        profile_edit.setOnClickListener {
+        }
     }
 
     /** User is leaving us **/
@@ -78,8 +81,8 @@ class LandLoadProfileActivity : AppCompatActivity() {
         transaction.addToBackStack(null)
         transaction.commit()
     }
-    private fun setupToolbar(){
-        item_toolbar.title = getString(R.string.app_name)
+    private fun setupToolbar(tool_bar_tile: String?){
+        item_toolbar.title = tool_bar_tile
         setSupportActionBar(item_toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)

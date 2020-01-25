@@ -1,4 +1,4 @@
-package com.student.rentals.ui.activities
+package com.student.rentals.ui.activities.SignUp.view
 
 import android.content.Intent
 import android.os.Bundle
