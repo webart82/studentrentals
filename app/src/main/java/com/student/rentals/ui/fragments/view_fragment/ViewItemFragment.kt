@@ -14,7 +14,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.student.Utils.GlideApp
 import com.student.Utils.TermsAndConditionsDialog
 import com.student.rentals.R
-import com.student.rentals.ui.Adapters.RoomsListAdapter
+import com.student.rentals.ui.adapters.RoomsListAdapter
 import com.student.rentals.ui.activities.LandLoadProfileActivity
 import kotlinx.android.synthetic.main.fragment_view_item.*
 import kotlinx.android.synthetic.main.item_property_description.*

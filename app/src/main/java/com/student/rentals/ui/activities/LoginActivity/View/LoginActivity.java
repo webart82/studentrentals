@@ -1,7 +1,6 @@
 package com.student.rentals.ui.activities.LoginActivity.View;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
@@ -13,6 +12,7 @@ import com.student.Models.LoginData;
 import com.student.rentals.R;
 import com.student.rentals.ui.activities.LoginActivity.ViewModel.LoginViewModel;
 import com.student.rentals.ui.activities.MainActivity;
+import com.student.rentals.ui.activities.SignUp.view.SignUpActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,7 +24,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText email;
     @BindView(R.id.input_password)
     EditText password;
-    private LoginViewModel viewModel;
+     LoginViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,12 +35,17 @@ public class LoginActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
+    @OnClick(R.id.link_signup)
+    public void signup(){
+        startNewIntent(new Intent(getBaseContext(), SignUpActivity.class));
+    }
 
     @OnClick(R.id.btn_login)
         public void login(){
         if (isLogginSuccess(new LoginData(email.getText().toString().trim(), password.getText().toString().trim()))){
             startNewIntent(new Intent(getBaseContext(), MainActivity.class));
         }
+        Log.d(TAG, "Try to login");
 
     }
 
