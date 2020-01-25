@@ -36,9 +36,7 @@ class HomeFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
-        viewModel.uiState.observe(this, Observer {
-            val dataset = it ?: return@Observer
-        })
+
         createHouses()
         createList()
     }
