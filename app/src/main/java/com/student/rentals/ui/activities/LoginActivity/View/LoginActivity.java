@@ -42,10 +42,8 @@ public class LoginActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_login)
         public void login(){
-        if (isLogginSuccess(new LoginData(email.getText().toString().trim(), password.getText().toString().trim()))){
-            startNewIntent(new Intent(getBaseContext(), MainActivity.class));
-        }
-        Log.d(TAG, "Try to login");
+        isLogginSuccess(new LoginData(email.getText().toString().trim(), password.getText().toString().trim()));
+
 
     }
 
@@ -97,11 +95,9 @@ public class LoginActivity extends AppCompatActivity {
         Log.d(TAG, getResources().getString(R.string.on_destroy));
     }
 
-    private boolean isLogginSuccess(LoginData loginData){
-        viewModel.loginWithCredentials(loginData).observe(this, userData -> {
+    private void isLogginSuccess(LoginData loginData){
+        viewModel.loginWithCredentials(loginData);
 
-        });
-        return true;
     }
     private void startNewIntent(Intent intent){
         startActivity(intent);
