@@ -20,7 +20,7 @@ interface ApiInterface {
     @GET( "apartment/list")
     fun getAllRooms(): Call<List<RoomData>>
 
-    @POST("")
+    @POST("auth/login")
     fun postForLogin(@Body loginData: LoginData):Call<UserData>
 
 

@@ -1,0 +1,6 @@
+<component name="CopyrightManager">
+  <copyright>
+    <option name="notice" value="/** &#10;* Copyright (c) &amp;#36;today.year. &#10;* This file was created by &amp;#36;{USER} on &amp;#36;{DATE}&#10;* You are not allowed to copy it or use it in another project &#10;* Without permission from creator&#10;**/" />
+    <option name="myName" value="copyright" />
+  </copyright>
+</component>

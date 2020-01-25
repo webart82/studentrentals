@@ -17,9 +17,6 @@ public class ApiClient {
     private static Retrofit retrofit;
     private static OkHttpClient client;
     public static String BASE_URL = Constants.INSTANCE.getBASE_URL();
-
-
-
     public static Retrofit getInstance() {
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -28,8 +25,8 @@ public class ApiClient {
 
         if (retrofit == null) {
             OkHttpClient client = new OkHttpClient.Builder()
-                    //.addNetworkInterceptor(new StethoInterceptor())
                     .addInterceptor(logging)
+                    .addInterceptor(new AuthInterceptor())
                     .build();
 
             retrofit = new Retrofit.Builder().baseUrl(BASE_URL)
