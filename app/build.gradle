@@ -66,4 +66,7 @@ dependencies {
     // or Koin for view model features
     implementation "org.koin:koin-android-viewmodel:$koin_version"
     implementation "androidx.fragment:fragment-ktx:1.2.0"
+
+    //Chrome customTabs
+    implementation 'androidx.browser:browser:1.2.0'
 }
