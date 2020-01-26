@@ -4,30 +4,62 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.student.Utils.Constants;
 import com.student.rentals.R;
 
+import java.util.ArrayList;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MediaContentsActivity extends AppCompatActivity {
 
     private static final String TAG = "MediaContentsActivity";
+    @BindView(R.id.lnrImages)
+    LinearLayout lnrImages;
+    private ArrayList<String> imagesPathList;
+    private Bitmap yourbitmap;
+    private Bitmap resized;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_media_contents);
+        ButterKnife.bind(this);
 
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(intent, Constants.INSTANCE.getSINGLE_IMAGE());
+        Intent intent = new Intent(this,CustomPhotoGalleryActivity.class);
+        startActivityForResult(intent,Constants.INSTANCE.getPICK_IMAGE_MULTIPLE());
     }
 
     @Override
     protected void onActivityResult(final int requestCode, final int resultCode, @Nullable final Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            if(requestCode == Constants.INSTANCE.getPICK_IMAGE_MULTIPLE()){
+                imagesPathList = new ArrayList<String>();
+                String[] imagesPath = data.getStringExtra("data").split("\\|");
+                try{
+                    lnrImages.removeAllViews();
+                }catch (Throwable e){
+                    e.printStackTrace();
+                }
+                for (int i=0;i<imagesPath.length;i++){
+                    imagesPathList.add(imagesPath[i]);
+                    yourbitmap = BitmapFactory.decodeFile(imagesPath[i]);
+                    ImageView imageView = new ImageView(this);
+                    imageView.setImageBitmap(yourbitmap);
+                    imageView.setAdjustViewBounds(true);
+                    lnrImages.addView(imageView);
+                }
+            }
+        }
     }
 
     /**
