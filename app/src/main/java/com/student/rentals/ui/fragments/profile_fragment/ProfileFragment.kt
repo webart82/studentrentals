@@ -1,16 +1,20 @@
 package com.student.rentals.ui.fragments.profile_fragment
 
-import androidx.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
+import butterknife.ButterKnife
+import butterknife.OnClick
 import com.bumptech.glide.request.RequestOptions
 import com.student.Utils.GlideApp
-
 import com.student.rentals.R
+import com.student.rentals.ui.activities.mediacontents.view.MediaContentsActivity
 import kotlinx.android.synthetic.main.item_property_owner_profile.*
+
 
 class ProfileFragment : Fragment() {
 
@@ -21,10 +25,11 @@ class ProfileFragment : Fragment() {
     private lateinit var viewModel: ProfileViewModel
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.profile_fragment, container, false)
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val view = inflater.inflate(R.layout.profile_fragment, container, false)
+        ButterKnife.bind(this,view)
+
+        return view
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -40,6 +45,11 @@ class ProfileFragment : Fragment() {
             .apply(RequestOptions.circleCropTransform())
             .placeholder(R.drawable.photo)
             .into(profile_image)
+    }
+
+    @OnClick(R.id.profile_upload)
+    fun uploadImages(){
+        startActivity(Intent(context, MediaContentsActivity::class.java))
     }
 
 }

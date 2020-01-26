@@ -8,6 +8,12 @@
         <item name="colorAccent">@color/primaryDarkColor</item>
     </style>
 
+    <style name="SplashTheme" parent="@style/Theme.MaterialComponents.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_background</item>
+        <item name="colorPrimary">@android:color/white</item>
+        <item name="colorPrimaryDark">@android:color/white</item>
+    </style>
+
 
     <style name="AppTheme.PopupOverlay" >
         <!-- Customize your theme here. -->
