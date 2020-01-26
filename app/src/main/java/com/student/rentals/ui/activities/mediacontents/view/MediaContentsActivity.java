@@ -1,22 +1,34 @@
 package com.student.rentals.ui.activities.mediacontents.view;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.student.Utils.Constants;
 import com.student.rentals.R;
 
 public class MediaContentsActivity extends AppCompatActivity {
+
     private static final String TAG = "MediaContentsActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_media_contents);
+
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent, Constants.INSTANCE.getSINGLE_IMAGE());
     }
 
-
+    @Override
+    protected void onActivityResult(final int requestCode, final int resultCode, @Nullable final Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 
     /**
      * Make activity visible to the user

@@ -13,6 +13,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.student.Utils.GlideApp
 import com.student.rentals.R
 import com.student.rentals.ui.activities.mediacontents.view.MediaContentsActivity
+import kotlinx.android.synthetic.main.activity_land_loard_profile.*
 import kotlinx.android.synthetic.main.item_property_owner_profile.*
 
 
