@@ -67,6 +67,19 @@ class ViewItemFragment : Fragment() {
             dialog.show()
 
         }
+        property_owner_dp.setOnClickListener(){
+            val dialog = Dialog(context!!)
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+            dialog.setContentView(R.layout.item_property_owner_profile)
+            GlideApp
+                .with(context!!)
+                .load("https://kprofiles.com/wp-content/uploads/2019/12/WhatsApp-Image-2019-12-03-at-4.13.01-PM-799x800.jpeg")
+                .apply(RequestOptions.circleCropTransform())
+                .into(dialog.profile_image)
+            dialog.show()
+            dialog.window?.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT)
+
+        }
         property_bedrooms.setOnClickListener(){
             val dialog = Dialog(context!!)
             val houses: ArrayList<String> = ArrayList()
@@ -81,6 +94,7 @@ class ViewItemFragment : Fragment() {
             dialog.show()
             dialog.window?.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT)
         }
+
         property_owner_dp.setOnClickListener(){
             val dialog = Dialog(context!!)
 

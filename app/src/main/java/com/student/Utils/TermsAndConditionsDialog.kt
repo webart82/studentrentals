@@ -22,4 +22,12 @@ class TermsAndConditionsDialog(context: Context):AlertDialog(context) {
         val window = this.window
         window?.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT)
     }
+
+    override fun onStart() {
+        super.onStart()
+    }
+
+    override fun onStop() {
+        super.onStop()
+    }
 }
