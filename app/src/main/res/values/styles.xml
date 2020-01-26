@@ -22,4 +22,13 @@
         <item name="colorPrimaryDark">@color/primaryDarkColor</item>
         <item name="colorAccent">@color/primaryDarkColor</item>
     </style>
+
+    <style name="ToolBarTheme">
+        <item name="android:background">@color/secondaryTextColor</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/secondaryTextColor</item>
+        <item name="android:minHeight">?attr/actionBarSize</item>
+        <item name="android:layout_alignParentStart">true</item>
+        <item name="android:layout_alignParentTop">true</item>
+    </style>
 </resources>

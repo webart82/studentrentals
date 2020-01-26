@@ -13,7 +13,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:orientation="horizontal"
-        android:weightSum="4">
+        android:weightSum="5">
 
         <TextView
             android:id="@+id/property_bedrooms"
@@ -25,6 +25,7 @@
             android:gravity="center_horizontal"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textSize="12sp"
+            android:background="@drawable/rectangular_text_bg"
             android:text="@string/bedrooms">
 
         </TextView>
@@ -38,6 +39,7 @@
             android:text="@string/bathrooms"
             android:gravity="center_horizontal"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:background="@drawable/rectangular_text_bg"
             android:textSize="12sp">
 
         </TextView>
@@ -49,9 +51,9 @@
             android:drawableTop="@drawable/stove"
             android:layout_weight="1"
             android:text="@string/kitchens"
-
             android:gravity="center_horizontal"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:background="@drawable/rectangular_text_bg"
             android:textSize="12sp">
 
         </TextView>
@@ -65,6 +67,21 @@
             android:text="@string/dinings"
             android:gravity="center_horizontal"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:background="@drawable/rectangular_text_bg"
+            android:textSize="12sp">
+
+        </TextView>
+        <TextView
+
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/action_padding"
+            android:drawableTop="@drawable/home_group"
+            android:layout_weight="1"
+            android:text="Tenants"
+            android:gravity="center_horizontal"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:background="@drawable/rectangular_text_bg"
             android:textSize="12sp">
 
         </TextView>

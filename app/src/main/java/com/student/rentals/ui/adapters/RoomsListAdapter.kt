@@ -1,4 +1,4 @@
-package com.student.rentals.ui.Adapters
+package com.student.rentals.ui.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -10,7 +10,6 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.student.Utils.GlideApp
 import com.student.rentals.R
-import kotlinx.android.synthetic.main.fragment_view_item.view.*
 import kotlinx.android.synthetic.main.item_property_room_images.view.*
 
 
@@ -33,7 +32,8 @@ class RoomsListAdapter(
     override fun onBindViewHolder(holder: ImagesViewHolder, position: Int) {
         holder?.room_size?.text = items.get(position)
         var requestOptions = RequestOptions()
-        requestOptions = requestOptions.transforms(CenterCrop(), RoundedCorners(1))
+        requestOptions = requestOptions
+            .transform(CenterCrop(), RoundedCorners(1))
         var url = "https://d3mqmy22owj503.cloudfront.net/00/500800/images/site_graphics/slider2.jpg"
 
 
@@ -43,7 +43,6 @@ class RoomsListAdapter(
             .load(url)
             .error(R.drawable.photo)
             .placeholder(R.drawable.photo)
-
             .apply(requestOptions)
             .into(holder?.room_image)
     }
@@ -53,5 +52,6 @@ class RoomsListAdapter(
         val room_name = view.property_room_name
 
     }
+
 }
 

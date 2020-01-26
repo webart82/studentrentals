@@ -6,8 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.request.RequestOptions
+import com.student.Utils.GlideApp
 
 import com.student.rentals.R
+import kotlinx.android.synthetic.main.item_property_owner_profile.*
 
 class ProfileFragment : Fragment() {
 
@@ -27,7 +30,16 @@ class ProfileFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(ProfileViewModel::class.java)
-        // TODO: Use the ViewModel
+        var url = "https://i.pinimg.com/originals/be/ac/96/beac96b8e13d2198fd4bb1d5ef56cdcf.jpg"
+
+
+
+        GlideApp
+            .with(this)
+            .load(url)
+            .apply(RequestOptions.circleCropTransform())
+            .placeholder(R.drawable.photo)
+            .into(profile_image)
     }
 
 }

@@ -24,7 +24,7 @@ class ViewPropertyActivity : AppCompatActivity() {
      * Prepare the app to enter foreground and become interactive
      * **/
     override fun onStart() {
-        loadFragment(ViewItemFragment())
+
         super.onStart()
     }
 
@@ -32,6 +32,7 @@ class ViewPropertyActivity : AppCompatActivity() {
      * The app is now interactive to user **/
     override fun onResume() {
         setupToolbar()
+        loadFragment(ViewItemFragment())
         super.onResume()
     }
 
