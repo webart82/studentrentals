@@ -1,6 +1,7 @@
 package com.student.rentals.ui.activities.LoginActivity.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
@@ -9,6 +10,8 @@ import android.util.Log;
 import android.widget.EditText;
 
 import com.student.Models.LoginData;
+import com.student.Models.UserData;
+import com.student.Utils.SharedPreferencesManager;
 import com.student.rentals.R;
 import com.student.rentals.ui.activities.LoginActivity.ViewModel.LoginViewModel;
 import com.student.rentals.ui.activities.MainActivity;
@@ -20,6 +23,7 @@ import butterknife.OnClick;
 
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
+    private SharedPreferencesManager preferencesManager;
     @BindView(R.id.input_email)
     EditText email;
     @BindView(R.id.input_password)
@@ -31,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Log.d(TAG, getResources().getString(R.string.on_create));
         viewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
+        preferencesManager = new SharedPreferencesManager(this);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
     }
@@ -95,8 +100,28 @@ public class LoginActivity extends AppCompatActivity {
         Log.d(TAG, getResources().getString(R.string.on_destroy));
     }
 
+    /**
+     * Call this function with @param loginData
+     * **/
     private void isLogginSuccess(LoginData loginData){
-        viewModel.loginWithCredentials(loginData);
+        viewModel.loginWithCredentials(loginData).observe(this, new Observer<UserData>() {
+
+                /**
+                 * Called when the data is changed.
+                 *
+                 * @param userData The new data
+                 */
+                @Override
+                public void onChanged(UserData userData) {
+                    if (userData.getAccessToken()!=null){
+                        preferencesManager.put(SharedPreferencesManager.Key.IS_USER_LOGGED_IN, true);
+                        preferencesManager.put(SharedPreferencesManager.Key.ACCESS_TOKEN_ID,userData.getAccessToken());
+
+                        startNewIntent(new Intent(getBaseContext(),MainActivity.class));
+                    }
+                }
+
+        });
 
     }
     private void startNewIntent(Intent intent){

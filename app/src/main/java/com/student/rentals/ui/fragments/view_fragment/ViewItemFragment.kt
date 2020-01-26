@@ -16,11 +16,15 @@ import com.student.Utils.TermsAndConditionsDialog
 import com.student.rentals.R
 import com.student.rentals.ui.adapters.RoomsListAdapter
 import com.student.rentals.ui.activities.LandLoadProfileActivity
+import kotlinx.android.synthetic.main.activity_land_loard_profile.*
+import kotlinx.android.synthetic.main.activity_land_loard_profile.profile_image
 import kotlinx.android.synthetic.main.fragment_view_item.*
+import kotlinx.android.synthetic.main.item_landloard_list_item.*
 import kotlinx.android.synthetic.main.item_property_description.*
 import kotlinx.android.synthetic.main.item_property_extra_costs.*
 import kotlinx.android.synthetic.main.item_property_owner.*
 import kotlinx.android.synthetic.main.item_property_owner_profile.*
+import kotlinx.android.synthetic.main.item_property_popup_profile.*
 import kotlinx.android.synthetic.main.item_property_rooms.*
 
 
@@ -99,7 +103,7 @@ class ViewItemFragment : Fragment() {
             val dialog = Dialog(context!!)
 
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-            dialog.setContentView(R.layout.item_property_owner_profile)
+            dialog.setContentView(R.layout.item_property_popup_profile)
             var url = "https://i.pinimg.com/originals/be/ac/96/beac96b8e13d2198fd4bb1d5ef56cdcf.jpg"
 
 
@@ -110,7 +114,7 @@ class ViewItemFragment : Fragment() {
                 .apply(RequestOptions.circleCropTransform())
                 .placeholder(R.drawable.photo)
                 .into(dialog.profile_image)
-            dialog.odp_view_profile.setOnClickListener{
+            dialog.popup_profile_edit.setOnClickListener{
                 openActivity()
             }
 
