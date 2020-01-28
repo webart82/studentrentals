@@ -10,12 +10,15 @@ import com.student.rentals.ui.fragments.home_fragment.HomeFragment
 import com.student.rentals.ui.fragments.list_fragment.ListItemsFragment
 import com.student.rentals.ui.fragments.profile_fragment.ProfileFragment
 import kotlinx.android.synthetic.main.activity_main.*
+import timber.log.Timber
 
 
 class MainActivity : AppBaseActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         if(savedInstanceState==null){
             loadFragment(HomeFragment())
         }
@@ -24,18 +27,22 @@ class MainActivity : AppBaseActivity() {
 
     override fun onStart() {
         super.onStart()
+        Timber.d(resources.getString(R.string.on_start))
     }
 
     override fun onStop() {
         super.onStop()
+        Timber.d(resources.getString(R.string.on_stop))
     }
 
     override fun onRestart() {
         super.onRestart()
+        Timber.d(resources.getString(R.string.on_restart))
     }
 
     override fun onResume() {
         super.onResume()
+        Timber.d(resources.getString(R.string.on_resume))
     }
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener {
         menuItem ->

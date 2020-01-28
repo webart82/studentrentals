@@ -30,7 +30,7 @@
     </style>
 
     <style name="ToolBarTheme">
-        <item name="android:background">@color/secondaryTextColor</item>
+        <item name="android:background">@color/secondaryColor</item>
         <item name="android:gravity">center</item>
         <item name="android:textColor">@color/secondaryTextColor</item>
         <item name="android:minHeight">?attr/actionBarSize</item>
