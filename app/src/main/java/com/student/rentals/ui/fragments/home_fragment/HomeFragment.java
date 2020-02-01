@@ -16,7 +16,9 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.student.models.RoomData;
+import com.student.models.mApartmentData;
+import com.student.models.pAData;
+import com.student.models.pApartmentData;
 import com.student.rentals.R;
 import com.student.rentals.ui.adapters.HouseListAdapter;
 import com.student.rentals.ui.activities.ViewPropertyActivity;
@@ -58,28 +60,21 @@ public class HomeFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable final Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        viewModel.getRoomsList().observe(getViewLifecycleOwner(), new Observer<List<RoomData>>() {
+        viewModel.getRoomsList().observe(getViewLifecycleOwner(), new Observer<pApartmentData>() {
             @Override
-            public void onChanged(List<RoomData> roomData) {
-                Log.d(TAG, roomData.toString());
+            public void onChanged(pApartmentData pApartmentData) {
+                createList(pApartmentData.getData());
             }
         });
-        createHouses();
 
     }
 
-    private void createList() {
+    private void createList(List<pAData> apartmentData) {
         house_list.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter.addItems(houses);
+        adapter.addItems(apartmentData);
         house_list.setAdapter(adapter);
     }
 
-    private void createHouses() {
-        for (int i = 0; i < 10; i++) {
-            houses.add(i, "House: " + i);
-        }
-        createList();
-    }
 
     private void openActivity(View view, String string) {
         startActivity(new Intent(getContext(), ViewPropertyActivity.class));

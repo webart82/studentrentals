@@ -1,10 +1,7 @@
 package com.student.Api
 
 import androidx.lifecycle.LiveData
-import com.student.models.RoomData
-import com.student.models.LoginData
-import com.student.models.ProfileData
-import com.student.models.mLoginUserData
+import com.student.models.*
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -19,8 +16,8 @@ interface ApiInterface {
     @GET("users/{id}")
     fun getUser(): Call<String>
 
-    @GET( "apartment/list")
-    fun getAllRooms(): Call<List<RoomData>>
+    @GET( "apartments")
+    fun getAllApartments(): Call<pApartmentData>
 
     @GET("/apartment/users/{id}")
     fun getLoggedInUserProfile(@Path("id") userId:Int): Call<ProfileData>

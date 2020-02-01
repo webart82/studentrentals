@@ -22,6 +22,9 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.student.Utils.GlideApp;
+import com.student.models.mApartmentData;
+import com.student.models.pAData;
+import com.student.models.pApartmentData;
 import com.student.rentals.R;
 import com.student.rentals.R.drawable;
 import com.student.rentals.ui.activities.ViewPropertyActivity;
@@ -36,31 +39,38 @@ public class HouseListAdapter extends RecyclerView.Adapter<HouseListAdapter.View
 
     private final LayoutInflater layoutInflater;
     private final Context context;
-    private List<String> roomDataList;
+    private List<pAData> aData;
 
     public HouseListAdapter(Context context) {
         layoutInflater = LayoutInflater.from(context);
         this.context = context;
     }
+
     @NonNull
     @Override
     public HouseListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new HouseListAdapter.ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_house_property, parent, false)); }
+        return new HouseListAdapter.ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_house_property, parent, false));
+    }
 
     @Override
     public void onBindViewHolder(@NonNull HouseListAdapter.ViewHolder holder, int position) {
-        final String title = this.roomDataList.get(position);
-        holder.houseName.setText(this.roomDataList.get(position));
+        final pAData apartment = aData.get(position);
+        holder.houseName.setText(apartment.getApartmentName());
+        holder.houseLocation.setText(apartment.getLocation());
+        holder.housePrice.setText(apartment.getAmount());
+
+
+
+
+
         final RequestOptions requestOptions = new RequestOptions();
         requestOptions.transform(new CenterCrop(), new RoundedCorners(16));
-        final String url = "https://d3mqmy22owj503.cloudfront.net/00/500800/images/site_graphics/slider" + this.getImageAtposition(position) + ".jpg";
-
+        final String url = apartment.getThumbNail();
         GlideApp
                 .with(this.context)
                 .load(url)
                 .error(drawable.photo)
                 .placeholder(drawable.photo)
-
                 .apply(requestOptions)
                 .into(holder.houseImage);
 
@@ -68,11 +78,11 @@ public class HouseListAdapter extends RecyclerView.Adapter<HouseListAdapter.View
 
     @Override
     public int getItemCount() {
-        return roomDataList.size();
+        return aData.size();
     }
 
-    public void addItems(List<String> roomDataList) {
-        this.roomDataList = roomDataList;
+    public void addItems(List<pAData> aData) {
+        this.aData = aData;
         notifyDataSetChanged();
     }
 
@@ -83,6 +93,9 @@ public class HouseListAdapter extends RecyclerView.Adapter<HouseListAdapter.View
         TextView houseName;
         @BindView(R.id.house_image)
         ImageView houseImage;
+        @BindView(R.id.house_price)
+        TextView housePrice;
+
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -99,7 +112,7 @@ public class HouseListAdapter extends RecyclerView.Adapter<HouseListAdapter.View
                     startIntent(new Intent(context, ViewPropertyActivity.class));
                     break;
                 case R.id.house_location:
-                  startCustomTabIntent("http://maps.google.com/maps?saddr=-6.715698,39.219768&daddr=-6.7422793,39.1952295");
+                    startCustomTabIntent("http://maps.google.com/maps?saddr=-6.715698,39.219768&daddr=-6.7422793,39.1952295");
                     break;
             }
         }
@@ -114,30 +127,23 @@ public class HouseListAdapter extends RecyclerView.Adapter<HouseListAdapter.View
             context.startActivity(intent);
         }
     }
-    private Integer getImageAtposition(final Integer pos){
-        if (pos%10!=0 || pos%10>5){
-            return pos;
-        }else
-            return 1;
 
-    }
-    private void startCustomTabIntent(final String url){
+
+    private void startCustomTabIntent(final String url) {
         String PACKAGE_NAME = "com.android.chrome";
         final Builder builder = new CustomTabsIntent.Builder();
         builder.setToolbarColor(context.getResources().getColor(R.color.primaryColor));
         builder.setShowTitle(true);
 
 
-
         final CustomTabsIntent customTabsIntent = builder.build();
 
 
-
-        List<ResolveInfo>  resolveInfoList =  context.getPackageManager().queryIntentActivities(customTabsIntent.intent,PackageManager.MATCH_DEFAULT_ONLY);
-        for (ResolveInfo resolveInfo: resolveInfoList ){
+        List<ResolveInfo> resolveInfoList = context.getPackageManager().queryIntentActivities(customTabsIntent.intent, PackageManager.MATCH_DEFAULT_ONLY);
+        for (ResolveInfo resolveInfo : resolveInfoList) {
             String packageName = resolveInfo.activityInfo.packageName;
             Log.d(TAG, packageName);
-            if (TextUtils.equals(packageName, PACKAGE_NAME)){
+            if (TextUtils.equals(packageName, PACKAGE_NAME)) {
                 customTabsIntent.intent.setPackage(PACKAGE_NAME);
             }
         }
