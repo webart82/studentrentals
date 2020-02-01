@@ -23,7 +23,7 @@
             app:srcCompat="@drawable/nav_menu_header_bg" />
 
         <ImageView
-            android:id="@+id/profile_image"
+            android:id="@+id/popup_profile_image"
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_below="@+id/header_cover_image"

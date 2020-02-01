@@ -9,8 +9,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
 
-import com.student.Models.LoginData;
-import com.student.Models.UserData;
+import com.student.models.LoginData;
+import com.student.models.mLoginUserData;
 import com.student.Utils.SharedPreferencesManager;
 import com.student.rentals.R;
 import com.student.rentals.ui.activities.LoginActivity.ViewModel.LoginViewModel;
@@ -104,22 +104,27 @@ public class LoginActivity extends AppCompatActivity {
      * Call this function with @param loginData
      * **/
     private void isLogginSuccess(LoginData loginData){
-        viewModel.loginWithCredentials(loginData).observe(this, new Observer<UserData>() {
+        viewModel.loginWithCredentials(loginData).observe(this, new Observer<mLoginUserData>() {
 
                 /**
                  * Called when the data is changed.
                  *
-                 * @param userData The new data
+                 * @param mLoginUserData The new data
                  */
                 @Override
-                public void onChanged(UserData userData) {
-                    if (userData.getAccessToken()!=null){
-                        preferencesManager.put(SharedPreferencesManager.Key.IS_USER_LOGGED_IN, true);
-                        preferencesManager.put(SharedPreferencesManager.Key.ACCESS_TOKEN_ID,userData.getAccessToken());
+                public void onChanged(mLoginUserData mLoginUserData) {
+                  if (mLoginUserData != null){
+                      preferencesManager.put(SharedPreferencesManager.Key.ACCESS_TOKEN_ID, mLoginUserData.getAccessToken());
+                      preferencesManager.put(SharedPreferencesManager.Key.LOGGED_IN_USERID, mLoginUserData.getUId());
+                      preferencesManager.put(SharedPreferencesManager.Key.LOGGED_IN_USEREMAIL, mLoginUserData.getMail());
+                      preferencesManager.put(SharedPreferencesManager.Key.IS_USER_LOGGED_IN, true);
+                      startNewIntent(new Intent(getBaseContext(), MainActivity.class));
+                  }
+                  else {
 
-                        startNewIntent(new Intent(getBaseContext(),MainActivity.class));
+                  }
                     }
-                }
+
 
         });
 

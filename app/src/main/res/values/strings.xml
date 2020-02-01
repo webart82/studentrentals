@@ -24,6 +24,7 @@
     <string name="on_restart">On Restart</string>
     <string name="on_pause">On pause</string>
     <string name="on_destroy_view">On destroy view</string>
+    <string name="on_detach">On Detach</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->

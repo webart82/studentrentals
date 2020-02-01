@@ -16,7 +16,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.student.Models.RoomData;
+import com.student.models.RoomData;
 import com.student.rentals.R;
 import com.student.rentals.ui.adapters.HouseListAdapter;
 import com.student.rentals.ui.activities.ViewPropertyActivity;

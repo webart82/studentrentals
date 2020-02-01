@@ -8,8 +8,8 @@ import androidx.lifecycle.ViewModel;
 
 import com.student.Api.ApiClient;
 import com.student.Api.ApiInterface;
-import com.student.Models.LoginData;
-import com.student.Models.UserData;
+import com.student.models.LoginData;
+import com.student.models.mLoginUserData;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -20,14 +20,14 @@ public class LoginViewModel extends ViewModel {
     /**
      * this is the data that we will fetch asynchronously
      **/
-    private MutableLiveData<UserData> responseList = new MutableLiveData<UserData>();
+    private MutableLiveData<mLoginUserData> responseList = new MutableLiveData<mLoginUserData>();
     ApiInterface apiInterface = ApiClient.getInstance().create(ApiInterface.class);
 
-    public MutableLiveData<UserData> getResponseList() {
+    public MutableLiveData<mLoginUserData> getResponseList() {
         return this.responseList;
     }
 
-    public void setResponseList(final MutableLiveData<UserData> responseList) {
+    public void setResponseList(final MutableLiveData<mLoginUserData> responseList) {
         this.responseList = responseList;
     }
 
@@ -36,7 +36,7 @@ public class LoginViewModel extends ViewModel {
      * we will call this method to get the data
      **/
 
-    public LiveData<UserData> loginWithCredentials(LoginData loginData) {
+    public LiveData<mLoginUserData> loginWithCredentials(LoginData loginData) {
 
         /**
          * we will load it asynchronously from server in this method
@@ -54,16 +54,16 @@ public class LoginViewModel extends ViewModel {
     private void loadDatas(LoginData loginData) {
 
         Log.d(TAG, "Try to login with info: " + loginData.toString());
-        Call<UserData> call = apiInterface.postForLogin(loginData);
-        call.enqueue(new Callback<UserData>() {
+        Call<mLoginUserData> call = apiInterface.postForLogin(loginData);
+        call.enqueue(new Callback<mLoginUserData>() {
             @Override
-            public void onResponse(Call<UserData> call, retrofit2.Response<UserData> response) {
+            public void onResponse(Call<mLoginUserData> call, retrofit2.Response<mLoginUserData> response) {
                 responseList.setValue(response.body());
-                Log.d(TAG, response.toString());
+
             }
 
             @Override
-            public void onFailure(Call<UserData> call, Throwable t) {
+            public void onFailure(Call<mLoginUserData> call, Throwable t) {
 
             }
         });
