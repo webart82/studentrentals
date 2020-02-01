@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.student.Api.ApiClient;
 import com.student.Api.ApiInterface;
-import com.student.Models.RoomData;
+import com.student.models.RoomData;
 
 import java.util.List;
 
@@ -14,14 +14,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 
 public class HomeViewModel extends ViewModel {
-
-    public MutableLiveData<List<RoomData>> getDataList() {
-        return this.dataList;
-    }
-
-    public void setDataList(final MutableLiveData<List<RoomData>> dataList) {
-        this.dataList = dataList;
-    }
 
     /**
      * this is the data that we will fetch asynchronously

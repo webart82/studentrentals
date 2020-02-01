@@ -1,4 +1,4 @@
-package com.student.Models
+package com.student.models
 
 data class LoginData(
     var email: String?,

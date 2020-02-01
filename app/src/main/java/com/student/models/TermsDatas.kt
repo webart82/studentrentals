@@ -1,6 +1,4 @@
-package com.student.Models
-
-import android.accounts.AuthenticatorDescription
+package com.student.models
 
 data class TermsDatas(
     var title: String?,

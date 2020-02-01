@@ -9,23 +9,21 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.request.RequestOptions
+import com.student.Utils.CustomDialogFragment
 import com.student.Utils.GlideApp
 import com.student.Utils.TermsAndConditionsDialog
 import com.student.rentals.R
-import com.student.rentals.ui.adapters.RoomsListAdapter
 import com.student.rentals.ui.activities.LandLoadProfileActivity
-import kotlinx.android.synthetic.main.activity_land_loard_profile.*
-import kotlinx.android.synthetic.main.activity_land_loard_profile.profile_image
+import com.student.rentals.ui.adapters.RoomsListAdapter
 import kotlinx.android.synthetic.main.fragment_view_item.*
-import kotlinx.android.synthetic.main.item_landloard_list_item.*
 import kotlinx.android.synthetic.main.item_property_description.*
 import kotlinx.android.synthetic.main.item_property_extra_costs.*
 import kotlinx.android.synthetic.main.item_property_owner.*
-import kotlinx.android.synthetic.main.item_property_owner_profile.*
-import kotlinx.android.synthetic.main.item_property_popup_profile.*
 import kotlinx.android.synthetic.main.item_property_rooms.*
+import timber.log.Timber
 
 
 /**
@@ -33,10 +31,13 @@ import kotlinx.android.synthetic.main.item_property_rooms.*
  */
 class ViewItemFragment : Fragment() {
     /**Fragment is attached to the host Activity**/
+    private var viewModel: ViewItemViewModel? = null
+    //private val sharedPreferences: SharedPreferencesManager = SharedPreferencesManager(get)
 
     val TAG = "ViewItemFragment"
     override fun onAttach(context: Context) {
         super.onAttach(context)
+        viewModel = ViewModelProvider(this).get(ViewItemViewModel::class.java)
     }
 
     /**A new fragment instance initializes, happen soon after being attached to the host**/
@@ -71,19 +72,7 @@ class ViewItemFragment : Fragment() {
             dialog.show()
 
         }
-        property_owner_dp.setOnClickListener(){
-            val dialog = Dialog(context!!)
-            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-            dialog.setContentView(R.layout.item_property_owner_profile)
-            GlideApp
-                .with(context!!)
-                .load("https://kprofiles.com/wp-content/uploads/2019/12/WhatsApp-Image-2019-12-03-at-4.13.01-PM-799x800.jpeg")
-                .apply(RequestOptions.circleCropTransform())
-                .into(dialog.profile_image)
-            dialog.show()
-            dialog.window?.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT)
 
-        }
         property_bedrooms.setOnClickListener(){
             val dialog = Dialog(context!!)
             val houses: ArrayList<String> = ArrayList()
@@ -99,27 +88,37 @@ class ViewItemFragment : Fragment() {
             dialog.window?.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT)
         }
 
+        /** Call Property owner/ broker **/
         property_owner_dp.setOnClickListener(){
-            val dialog = Dialog(context!!)
-
-            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-            dialog.setContentView(R.layout.item_property_popup_profile)
-            var url = "https://i.pinimg.com/originals/be/ac/96/beac96b8e13d2198fd4bb1d5ef56cdcf.jpg"
+            var dialog = CustomDialogFragment()
 
 
-
-            GlideApp
-                .with(this)
-                .load(url)
-                .apply(RequestOptions.circleCropTransform())
-                .placeholder(R.drawable.photo)
-                .into(dialog.profile_image)
-            dialog.popup_profile_edit.setOnClickListener{
-                openActivity()
-            }
-
-            dialog.show()
-            dialog.window?.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT)
+//            val dialog = Dialog(context!!)
+//
+//            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+//            dialog.setContentView(R.layout.item_property_popup_profile)
+//            var url = "https://i.pinimg.com/originals/be/ac/96/beac96b8e13d2198fd4bb1d5ef56cdcf.jpg"
+//            viewModel?.getProfileData(1)?.observe(viewLifecycleOwner, Observer{ user ->
+//                Timber.d(user.toString())
+//
+//            })
+//
+//
+//
+//
+//
+//            GlideApp
+//                .with(this)
+//                .load(url)
+//                .apply(RequestOptions.circleCropTransform())
+//                .placeholder(R.drawable.photo)
+//                .into(dialog.popup_profile_image)
+//            dialog.popup_profile_edit.setOnClickListener{
+//                openActivity()
+//            }
+//
+//            dialog.show()
+//            dialog.window?.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT)
 
 
         }
@@ -158,16 +157,19 @@ class ViewItemFragment : Fragment() {
     /** **/
     override fun onStart() {
         super.onStart()
+        Timber.d(resources.getString(R.string.on_start))
     }
 
     /** **/
     override fun onResume() {
         super.onResume()
+        Timber.d(resources.getString(R.string.on_resume))
     }
 
     /** **/
     override fun onPause() {
         super.onPause()
+        Timber.d(resources.getString(R.string.on_pause))
     }
 
     /** Fragment is Active **/
@@ -175,21 +177,25 @@ class ViewItemFragment : Fragment() {
     /** **/
     override fun onStop() {
         super.onStop()
+        Timber.d(resources.getString(R.string.on_stop))
     }
 
     /** **/
     override fun onDestroyView() {
         super.onDestroyView()
+        Timber.d(resources.getString(R.string.on_destroy_view))
     }
 
     /** **/
     override fun onDestroy() {
         super.onDestroy()
+        Timber.d(resources.getString(R.string.on_destroy))
     }
 
     /** **/
     override fun onDetach() {
         super.onDetach()
+        Timber.d(resources.getString(R.string.on_detach))
     }
 
     /** Fragment is Destroyed **/
