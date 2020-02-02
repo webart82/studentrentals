@@ -22,7 +22,7 @@ class LandLoadProfileActivity : AppCompatActivity() {
 
         }
         setContentView(R.layout.activity_land_loard_profile)
-        setupToolbar(resources.getString(R.string.profile_toolbar))
+        //setupToolbar(resources.getString(R.string.profile_toolbar))
     }
 
     /** Make activity visible to the user

@@ -10,9 +10,10 @@
 
     <ImageView
         android:id="@+id/landloard_profile_image"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
         android:padding="4dp"
+        android:scaleType="centerCrop"
         android:src="@drawable/photo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -30,13 +31,23 @@
         app:layout_constraintTop_toTopOf="@id/landloard_profile_image">
 
         <TextView
-            android:id="@+id/landloard_profile_name"
+            android:id="@+id/landloard_profile_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:singleLine="true"
             android:text="Kenneth Tyson"
             android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
             android:textStyle="bold">
+
+        </TextView>
+        <TextView
+            android:id="@+id/landloard_profile_fullname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="Kenneth Tyson"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textStyle="italic">
 
         </TextView>
 
@@ -54,17 +65,15 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/landloard_profile_since"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawableStart="@drawable/star_outline"
         android:gravity="center_vertical"
-        android:padding="@dimen/dp_4"
-        android:text="3.5K"
         app:layout_constraintEnd_toEndOf="parent"
-        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+       android:textAppearance="@style/TextAppearance.AppCompat.Small"
         app:layout_constraintTop_toBottomOf="@id/landloard_profile_list">
-
     </TextView>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

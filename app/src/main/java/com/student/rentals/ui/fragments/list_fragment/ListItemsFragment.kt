@@ -1,55 +1,58 @@
 package com.student.rentals.ui.fragments.list_fragment
 
 import android.content.Intent
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-
+import androidx.recyclerview.widget.RecyclerView
+import com.student.models.dUserData
+import com.student.models.mUsers
 import com.student.rentals.R
-import com.student.rentals.ui.adapters.LandLoardsListAdapter
 import com.student.rentals.ui.activities.LandLoadProfileActivity
+import com.student.rentals.ui.adapters.LandLoardsListAdapter
 import kotlinx.android.synthetic.main.list_fragment.*
 
 class ListItemsFragment : Fragment() {
     val landloards: ArrayList<String> = ArrayList()
-
+    private val model: ListItemsViewModel by activityViewModels()
     companion object {
         fun newInstance() = ListItemsFragment()
     }
 
-    private lateinit var itemsViewModel: ListItemsViewModel
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
         return inflater.inflate(R.layout.list_fragment, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        model.getUsersList()!!.observe(viewLifecycleOwner, Observer{mUsers ->
+            createList(mUsers!!.data)
+        })
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        itemsViewModel = ViewModelProviders.of(this).get(ListItemsViewModel::class.java)
 
-        createList()
-        createHouses()
     }
 
-    fun createList(){
+    fun createList(data: List<dUserData>){
         recycler_landloards.layoutManager = LinearLayoutManager(context)
-        recycler_landloards.adapter = LandLoardsListAdapter(landloards, requireContext(), onItemClick = { view, catgory -> openActivity(view, catgory)})
-    }
-    fun createHouses(){
-        for (i in 0..10){
-            landloards.add("House: " +i)
-        }
+        var landLoardsListAdapter: LandLoardsListAdapter
+        landLoardsListAdapter = LandLoardsListAdapter(data, requireContext(),  null)
 
+        recycler_landloards.adapter = landLoardsListAdapter
     }
-    fun openActivity(view: View, category: String){
+
+    fun openActivity(): ((View, dUserData) -> Unit)? {
         startActivity(Intent(context, LandLoadProfileActivity::class.java))
+        return null
     }
 
 }
