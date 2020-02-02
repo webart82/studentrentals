@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel;
 import com.student.Api.ApiClient;
 import com.student.Api.ApiInterface;
 import com.student.models.ProfileData;
+import com.student.models.dUserData;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -23,14 +24,14 @@ public class ViewItemViewModel extends ViewModel {
     /**
      * this is the data that we will fetch asynchronously
      **/
-    private MutableLiveData<ProfileData> profileDataMutableLiveData = new MutableLiveData<>();
+    private MutableLiveData<dUserData> profileDataMutableLiveData = new MutableLiveData<>();
     ApiInterface apiInterface = ApiClient.getInstance().create(ApiInterface.class);
 
     /**
      * we will call this method to get the data
      **/
 
-    public LiveData<ProfileData> getProfileData(int id) {
+    public LiveData<dUserData> getProfileData(String id) {
         //if the list is null
         if (profileDataMutableLiveData == null) {
 
@@ -49,17 +50,17 @@ public class ViewItemViewModel extends ViewModel {
     /**
      * This method is using Retrofit to get the JSON data from URL
      **/
-    private void loadDatas(int id) {
+    private void loadDatas(String id) {
 
-        Call<ProfileData> call = apiInterface.getLoggedInUserProfile(id);
-        call.enqueue(new Callback<ProfileData>() {
+        Call<dUserData> call = apiInterface.getLoggedInUserProfile(id);
+        call.enqueue(new Callback<dUserData>() {
             @Override
-            public void onResponse(Call<ProfileData> call, retrofit2.Response<ProfileData> response) {
+            public void onResponse(Call<dUserData> call, retrofit2.Response<dUserData> response) {
                 profileDataMutableLiveData.setValue(response.body());
             }
 
             @Override
-            public void onFailure(Call<ProfileData> call, Throwable t) {
+            public void onFailure(Call<dUserData> call, Throwable t) {
 
             }
         });
