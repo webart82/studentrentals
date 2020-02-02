@@ -22,8 +22,8 @@ interface ApiInterface {
     @GET("users")
     fun getAllUsers():Call<mUsers>
 
-    @GET("/apartment/users/{id}")
-    fun getLoggedInUserProfile(@Path("id") userId:Int): Call<ProfileData>
+    @GET("users/{id}")
+    fun getLoggedInUserProfile(@Path("id") userId:String): Call<dUserData>
 
     @POST("auth/login")
     fun postForLogin(@Body loginData: LoginData):Call<mLoginUserData>
