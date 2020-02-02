@@ -28,6 +28,9 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
 }
 
 dependencies {
@@ -70,4 +73,5 @@ dependencies {
     //Chrome customTabs
     implementation 'androidx.browser:browser:1.2.0'
     implementation 'com.jakewharton.timber:timber:4.7.1'
+
 }
