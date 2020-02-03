@@ -5,32 +5,39 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.browser.customtabs.CustomTabsIntent;
-import androidx.browser.customtabs.CustomTabsIntent.Builder;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView.Adapter;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.transition.DrawableCrossFadeFactory;
+import com.student.Utils.Constants;
 import com.student.Utils.GlideApp;
-import com.student.models.mApartmentData;
-import com.student.models.pAData;
-import com.student.models.pApartmentData;
+import com.student.models.ApartmentData;
 import com.student.rentals.R;
-import com.student.rentals.R.drawable;
+import com.student.rentals.R.color;
+import com.student.rentals.R.id;
+import com.student.rentals.R.layout;
+import com.student.rentals.databinding.ActivityViewPropertyBinding;
 import com.student.rentals.ui.activities.ViewPropertyActivity;
+import com.student.rentals.ui.adapters.HouseListAdapter.ViewHolder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -38,47 +45,43 @@ import butterknife.ButterKnife;
 
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 
-public class HouseListAdapter extends RecyclerView.Adapter<HouseListAdapter.ViewHolder> {
+public class HouseListAdapter extends Adapter<ViewHolder> {
     private static final String TAG = "HouseListAdapter";
 
     private final LayoutInflater layoutInflater;
-    private final Context context;
-    private List<pAData> aData;
+     final Context context;
+    private List<ApartmentData> aData = new ArrayList<>();
 
-    public HouseListAdapter(Context context) {
-        layoutInflater = LayoutInflater.from(context);
+
+    public HouseListAdapter(final Context context) {
+        this.layoutInflater = LayoutInflater.from(context);
         this.context = context;
     }
 
     @NonNull
     @Override
-    public HouseListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new HouseListAdapter.ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_house_property, parent, false));
+    public ViewHolder onCreateViewHolder(@NonNull final ViewGroup parent, final int viewType) {
+        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(layout.item_house_property, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull HouseListAdapter.ViewHolder holder, int position) {
-        final pAData apartment = aData.get(position);
+    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
+        ApartmentData apartment = this.aData.get(position);
         holder.houseName.setText(apartment.getApartmentName());
         holder.houseLocation.setText(apartment.getLocation());
         holder.housePrice.setText(apartment.getAmount());
-
-
-
-
-
-        final RequestOptions requestOptions = new RequestOptions();
+        RequestOptions requestOptions = new RequestOptions();
         requestOptions.transform(new CenterCrop(), new RoundedCorners(16));
-        final String url = apartment.getThumbNail();
+        String url = apartment.getThumbNail();
 
 
         GlideApp
-                .with(this.context)
+                .with(context)
                 .load(url)
                 .transition(withCrossFade(new DrawableCrossFadeFactory.Builder().setCrossFadeEnabled(true).build()))
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .error(drawable.photo)
-                .placeholder(drawable.photo)
+                .error(R.drawable.photo)
+                .placeholder(R.drawable.photo)
                 .apply(requestOptions)
                 .into(holder.houseImage);
 
@@ -86,40 +89,49 @@ public class HouseListAdapter extends RecyclerView.Adapter<HouseListAdapter.View
 
     @Override
     public int getItemCount() {
-        return aData.size();
+        return this.aData.size();
     }
 
-    public void addItems(List<pAData> aData) {
+    public void addItems(final List<ApartmentData> aData) {
         this.aData = aData;
-        notifyDataSetChanged();
+        this.notifyDataSetChanged();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
-        @BindView(R.id.house_location)
+    class ViewHolder extends RecyclerView.ViewHolder implements OnClickListener, OnLongClickListener {
+        @BindView(id.house_location)
         TextView houseLocation;
-        @BindView(R.id.house_name)
+        @BindView(id.house_name)
         TextView houseName;
-        @BindView(R.id.house_image)
+        @BindView(id.house_image)
         ImageView houseImage;
-        @BindView(R.id.house_price)
+        @BindView(id.house_price)
         TextView housePrice;
 
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(final View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
             itemView.setOnLongClickListener(this::onLongClick);
-            houseImage.setOnClickListener(this::onClick);
-            houseLocation.setOnClickListener(this::onClick);
+            this.houseImage.setOnClickListener(this::onClick);
+            this.houseLocation.setOnClickListener(this::onClick);
         }
 
         @Override
-        public void onClick(View v) {
+        public void onClick(final View v) {
+            final int adapterPosition = this.getAdapterPosition();
             switch (v.getId()) {
-                case R.id.house_image:
-                    startIntent(new Intent(context, ViewPropertyActivity.class));
+                case id.house_image:
+                    //startIntent(new Intent(context, ViewPropertyActivity.class));
+
+                    final Intent parcelIntent = new Intent(HouseListAdapter.this.context, ViewPropertyActivity.class);
+
+                    Bundle bundle = new Bundle();
+                    bundle.putParcelable(Constants.INSTANCE.getPARCEL_KEY(),aData.get(adapterPosition));
+                    parcelIntent.putExtra(Constants.INSTANCE.getPARCEL_BUNDLE(), bundle);
+                    parcelIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    HouseListAdapter.this.context.startActivity(parcelIntent);
                     break;
-                case R.id.house_location:
+                case id.house_location:
                     startCustomTabIntent("http://maps.google.com/maps?saddr=-6.715698,39.219768&daddr=-6.7422793,39.1952295");
                     break;
             }
@@ -127,34 +139,32 @@ public class HouseListAdapter extends RecyclerView.Adapter<HouseListAdapter.View
 
 
         @Override
-        public boolean onLongClick(View v) {
+        public boolean onLongClick(final View v) {
             return false;
         }
 
-        private void startIntent(Intent intent) {
-            context.startActivity(intent);
-        }
+
     }
 
 
-    private void startCustomTabIntent(final String url) {
-        String PACKAGE_NAME = "com.android.chrome";
-        final Builder builder = new CustomTabsIntent.Builder();
-        builder.setToolbarColor(context.getResources().getColor(R.color.primaryColor));
+    private void startCustomTabIntent(String url) {
+        final String PACKAGE_NAME = "com.android.chrome";
+        CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+        builder.setToolbarColor(this.context.getResources().getColor(color.primaryColor));
         builder.setShowTitle(true);
 
 
-        final CustomTabsIntent customTabsIntent = builder.build();
+        CustomTabsIntent customTabsIntent = builder.build();
 
 
-        List<ResolveInfo> resolveInfoList = context.getPackageManager().queryIntentActivities(customTabsIntent.intent, PackageManager.MATCH_DEFAULT_ONLY);
-        for (ResolveInfo resolveInfo : resolveInfoList) {
-            String packageName = resolveInfo.activityInfo.packageName;
-            Log.d(TAG, packageName);
+        final List<ResolveInfo> resolveInfoList = this.context.getPackageManager().queryIntentActivities(customTabsIntent.intent, PackageManager.MATCH_DEFAULT_ONLY);
+        for (final ResolveInfo resolveInfo : resolveInfoList) {
+            final String packageName = resolveInfo.activityInfo.packageName;
+            Log.d(HouseListAdapter.TAG, packageName);
             if (TextUtils.equals(packageName, PACKAGE_NAME)) {
                 customTabsIntent.intent.setPackage(PACKAGE_NAME);
             }
         }
-        customTabsIntent.launchUrl(context, Uri.parse(url));
+        customTabsIntent.launchUrl(this.context, Uri.parse(url));
     }
 }

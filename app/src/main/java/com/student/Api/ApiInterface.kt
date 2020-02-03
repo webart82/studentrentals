@@ -16,7 +16,7 @@ interface ApiInterface {
     @GET("users/{id}")
     fun getUser(): Call<String>
 
-    @GET( "apartments")
+    @GET( "apartments/all")
     fun getAllApartments(): Call<pApartmentData>
 
     @GET("users")

@@ -39,8 +39,8 @@ class LandLoardsListAdapter(
 
 
     override fun onBindViewHolder(holder:  LandLoardsViewHolder, position: Int) {
-        val data = aData?.get(position)
-        holder.u_name?.text = data?.userName
+        val data = aData.get(position)
+        holder.u_name?.text = data.userName
         holder.u_description?.text = data.about
         holder.u_date_since?.text = "Since :"+ data.createdDate
         holder.u_fullname?.text = data.fullName
