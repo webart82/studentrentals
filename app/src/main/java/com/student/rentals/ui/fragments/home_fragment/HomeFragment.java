@@ -1,9 +1,6 @@
 package com.student.rentals.ui.fragments.home_fragment;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,14 +13,11 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.student.models.mApartmentData;
-import com.student.models.pAData;
+import com.student.models.ApartmentData;
 import com.student.models.pApartmentData;
 import com.student.rentals.R;
 import com.student.rentals.ui.adapters.HouseListAdapter;
-import com.student.rentals.ui.activities.ViewPropertyActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -34,7 +28,6 @@ public class HomeFragment extends Fragment {
     private View view;
     @BindView(R.id.house_list)
     RecyclerView house_list;
-    private ArrayList<String> houses = new ArrayList<>();
     private HomeViewModel viewModel;
     private HouseListAdapter adapter;
 
@@ -68,15 +61,10 @@ public class HomeFragment extends Fragment {
 
     }
 
-    private void createList(List<pAData> apartmentData) {
+    private void createList(List<ApartmentData> apartmentData) {
         house_list.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter.addItems(apartmentData);
         house_list.setAdapter(adapter);
     }
 
-
-    private void openActivity(View view, String string) {
-        startActivity(new Intent(getContext(), ViewPropertyActivity.class));
-        return;
-    }
 }

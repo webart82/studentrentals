@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="productData"
+            type="com.student.models.ApartmentData" />
+    </data>
+
 <ScrollView
     android:id="@+id/item_property_scrollview"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:fillViewport="true">
@@ -16,7 +24,6 @@
             android:id="@+id/property_image"
             android:layout_width="match_parent"
             android:layout_height="350dp"
-            android:src="@drawable/photo"
             android:scaleType="centerCrop"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -38,7 +45,8 @@
                 android:orientation="vertical">
                 <include
                     layout="@layout/item_property_owner"/>
-                <include layout="@layout/item_property_description"/>
+                <include layout="@layout/item_property_description"
+                    bind:productData="@{productData}"/>
                 <TextView
                     android:id="@+id/photos"
                     android:layout_width="wrap_content"
@@ -61,8 +69,5 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-
-
-
 </ScrollView>
+</layout>
