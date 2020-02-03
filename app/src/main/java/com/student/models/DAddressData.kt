@@ -6,10 +6,14 @@ package com.student.models
  * You are not allowed to copy it or use it in another project
  * Without permission from creator
  **/
-data class mAddressData(
+data class DAddressData(
     var _id: String?,
     var createdDate: String?,
     var lineOne: String?,
+    var lineTwo: String?,
+    var homeNumber: String?,
+    var city: String?,
+    var postalCode: String?,
     var state: String?,
     var email: String?
 

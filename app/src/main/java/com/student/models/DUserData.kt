@@ -7,9 +7,9 @@ package com.student.models
  * Without permission from creator
  **/
 
-data class dUserData(
+data class DUserData(
 
-    var address: List<mAddressData>,
+    var addresses: DAddressData?,
     var _id: String?,
     var createdDate: String?,
     var userName: String?,

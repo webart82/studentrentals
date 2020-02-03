@@ -18,9 +18,11 @@ import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.browser.customtabs.CustomTabsIntent.Builder;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.transition.DrawableCrossFadeFactory;
 import com.student.Utils.GlideApp;
 import com.student.models.mApartmentData;
 import com.student.models.pAData;
@@ -33,6 +35,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 
 public class HouseListAdapter extends RecyclerView.Adapter<HouseListAdapter.ViewHolder> {
     private static final String TAG = "HouseListAdapter";
@@ -66,9 +70,13 @@ public class HouseListAdapter extends RecyclerView.Adapter<HouseListAdapter.View
         final RequestOptions requestOptions = new RequestOptions();
         requestOptions.transform(new CenterCrop(), new RoundedCorners(16));
         final String url = apartment.getThumbNail();
+
+
         GlideApp
                 .with(this.context)
                 .load(url)
+                .transition(withCrossFade(new DrawableCrossFadeFactory.Builder().setCrossFadeEnabled(true).build()))
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .error(drawable.photo)
                 .placeholder(drawable.photo)
                 .apply(requestOptions)

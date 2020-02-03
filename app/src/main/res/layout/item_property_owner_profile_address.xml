@@ -4,8 +4,8 @@
     <data>
 
         <variable
-            name="userData"
-            type="com.student.models.DUserData" />
+            name="userAddress"
+            type="com.student.models.DAddressData" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -25,14 +25,15 @@
 
                 <TextView
                     android:padding="3dip"
-                    android:text="@string/firstname"
+                    android:text="@string/line_one"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_marginStart="@dimen/dp_15"
                     android:gravity="start"
                     android:padding="3dip"
-                    android:text="@{userData.firstName, default=@string/ipsum}"
+                    android:textStyle="italic"
+                    android:text="@{userAddress.lineOne, default=@string/ipsum}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small" />
             </TableRow>
 
@@ -40,14 +41,14 @@
 
                 <TextView
                     android:padding="3dip"
-                    android:text="@string/lastname"
+                    android:text="@string/phone2"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_marginStart="@dimen/dp_15"
                     android:gravity="start"
                     android:padding="3dip"
-                    android:text="@{userData.lastName, default=@string/ipsum}"
+                    android:text="@{userAddress.lineTwo, default=@string/ipsum}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small" />
             </TableRow>
 
@@ -55,15 +56,31 @@
 
                 <TextView
                     android:padding="3dip"
-                    android:text="@string/fullname"
+                    android:text="@string/home_number"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_marginStart="@dimen/dp_15"
                     android:gravity="start"
                     android:padding="3dip"
-                    android:text="@{userData.fullName, default=@string/ipsum}"
+                    android:text="@{userAddress.homeNumber, default=@string/ipsum}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:padding="3dip"
+                    android:text="@string/postal_code"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_marginStart="@dimen/dp_15"
+                    android:gravity="start"
+                    android:padding="3dip"
+                    android:text="@{userAddress.postalCode, default=@string/ipsum}"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
             </TableRow>
 
             <TableRow>
@@ -72,48 +89,16 @@
                     android:padding="3dip"
                     android:text="@string/email"
                     android:textStyle="bold" />
-
                 <TextView
                     android:layout_marginStart="@dimen/dp_15"
                     android:gravity="start"
                     android:padding="3dip"
-                    android:text="@{userData.email, default=@string/ipsum}"
+                    android:text="@{userAddress.email, default=@string/ipsum}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
             </TableRow>
 
-            <TableRow>
 
-                <TextView
-                    android:padding="3dip"
-                    android:text="@string/about"
-                    android:textStyle="bold" />
-            </TableRow>
-
-
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dp_15"
-                android:gravity="start"
-                android:padding="3dip"
-                android:text="@{userData.about, default=@string/lorem}"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small" />
-
-
-            <TableRow>
-
-                <TextView
-                    android:padding="3dip"
-                    android:text="@string/lastupdated"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_marginStart="@dimen/dp_15"
-                    android:gravity="start"
-                    android:padding="3dip"
-                    android:text="@{userData.createdDate, default=@string/ipsum}"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Small" />
-            </TableRow>
         </TableLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -6,8 +6,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.student.Api.ApiClient;
 import com.student.Api.ApiInterface;
-import com.student.models.ProfileData;
-import com.student.models.dUserData;
+import com.student.models.DUserData;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -24,14 +23,14 @@ public class ViewItemViewModel extends ViewModel {
     /**
      * this is the data that we will fetch asynchronously
      **/
-    private MutableLiveData<dUserData> profileDataMutableLiveData = new MutableLiveData<>();
+    private MutableLiveData<DUserData> profileDataMutableLiveData = new MutableLiveData<>();
     ApiInterface apiInterface = ApiClient.getInstance().create(ApiInterface.class);
 
     /**
      * we will call this method to get the data
      **/
 
-    public LiveData<dUserData> getProfileData(String id) {
+    public LiveData<DUserData> getProfileData(String id) {
         //if the list is null
         if (profileDataMutableLiveData == null) {
 
@@ -52,15 +51,15 @@ public class ViewItemViewModel extends ViewModel {
      **/
     private void loadDatas(String id) {
 
-        Call<dUserData> call = apiInterface.getLoggedInUserProfile(id);
-        call.enqueue(new Callback<dUserData>() {
+        Call<DUserData> call = apiInterface.getLoggedInUserProfile(id);
+        call.enqueue(new Callback<DUserData>() {
             @Override
-            public void onResponse(Call<dUserData> call, retrofit2.Response<dUserData> response) {
+            public void onResponse(Call<DUserData> call, retrofit2.Response<DUserData> response) {
                 profileDataMutableLiveData.setValue(response.body());
             }
 
             @Override
-            public void onFailure(Call<dUserData> call, Throwable t) {
+            public void onFailure(Call<DUserData> call, Throwable t) {
 
             }
         });

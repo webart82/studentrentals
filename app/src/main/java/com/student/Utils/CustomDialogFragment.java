@@ -13,9 +13,7 @@ import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.bumptech.glide.load.engine.Resource;
-import com.student.models.ProfileData;
-import com.student.models.dUserData;
+import com.student.models.DUserData;
 import com.student.rentals.R;
 import com.student.rentals.ui.fragments.view_fragment.ViewItemViewModel;
 
@@ -73,9 +71,9 @@ public class CustomDialogFragment extends DialogFragment {
     public void onResume() {
         super.onResume();
         Timber.d(resources.getString(R.string.on_resume));
-        viewModel.getProfileData("").observe(getViewLifecycleOwner(), new Observer<dUserData>() {
+        viewModel.getProfileData("").observe(getViewLifecycleOwner(), new Observer<DUserData>() {
             @Override
-            public void onChanged(dUserData profileData) {
+            public void onChanged(DUserData profileData) {
                 Timber.d(profileData.toString());
             }
         });

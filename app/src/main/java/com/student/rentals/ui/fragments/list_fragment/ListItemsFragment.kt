@@ -9,9 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.student.models.dUserData
-import com.student.models.mUsers
+import com.student.models.DUserData
 import com.student.rentals.R
 import com.student.rentals.ui.activities.LandLoadProfileActivity
 import com.student.rentals.ui.adapters.LandLoardsListAdapter
@@ -26,7 +24,6 @@ class ListItemsFragment : Fragment() {
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
         return inflater.inflate(R.layout.list_fragment, container, false)
     }
 
@@ -42,15 +39,12 @@ class ListItemsFragment : Fragment() {
 
     }
 
-    fun createList(data: List<dUserData>){
+    fun createList(data: List<DUserData>){
         recycler_landloards.layoutManager = LinearLayoutManager(context)
-        var landLoardsListAdapter: LandLoardsListAdapter
-        landLoardsListAdapter = LandLoardsListAdapter(data, requireContext(),  null)
-
-        recycler_landloards.adapter = landLoardsListAdapter
+        recycler_landloards.adapter =  LandLoardsListAdapter(data, requireContext(),  null)
     }
 
-    fun openActivity(): ((View, dUserData) -> Unit)? {
+    fun openActivity(): ((View, DUserData) -> Unit)? {
         startActivity(Intent(context, LandLoadProfileActivity::class.java))
         return null
     }
