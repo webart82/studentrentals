@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="userData"
+            type="com.student.models.DUserData"/>
+    </data>
+
+<ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.fragments.profile_fragment.ProfileFragment">
 
     <include
-        layout="@layout/activity_land_loard_profile"/>
+        layout="@layout/activity_land_loard_profile"
+        bind:userData="@{userData}"/>
 
-</FrameLayout>
+</ScrollView>
+</layout>

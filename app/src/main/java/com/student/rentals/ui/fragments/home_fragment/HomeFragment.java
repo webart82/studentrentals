@@ -42,14 +42,6 @@ public class HomeFragment extends Fragment {
     }
 
     @Override
-    public void onAttach(@NonNull final Context context) {
-        super.onAttach(context);
-        viewModel = new ViewModelProvider(this).get(HomeViewModel.class);
-
-
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.home_fragment, container, false);
         adapter = new HouseListAdapter(getActivity());
@@ -58,14 +50,21 @@ public class HomeFragment extends Fragment {
     }
 
     @Override
-    public void onActivityCreated(@Nullable final Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        viewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         viewModel.getRoomsList().observe(getViewLifecycleOwner(), new Observer<pApartmentData>() {
             @Override
             public void onChanged(pApartmentData pApartmentData) {
                 createList(pApartmentData.getData());
             }
         });
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable final Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
 
     }
 

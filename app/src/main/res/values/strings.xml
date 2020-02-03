@@ -26,6 +26,8 @@
     <string name="on_destroy_view">On destroy view</string>
     <string name="on_detach">On Detach</string>
 
+    <string name="ipsum">Ipsum Ipsum</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -59,6 +61,16 @@
     <string name="terms_of_service"> 1. Terms</string>
     <string name="title_activity_map_view">Map</string>
     <string name="profile_toolbar">Profile</string>
+    <string name="firstname">FirstName:</string>
+    <string name="lastname">LastName:</string>
+    <string name="fullname">FullName:</string>
+    <string name="email">Email:</string>
+    <string name="about">About:</string>
+    <string name="lastupdated">Last Updated:</string>
+    <string name="line_one">Phone1:</string>
+    <string name="phone2">Phone2:</string>
+    <string name="home_number">Home Number:</string>
+    <string name="postal_code">Postal Code</string>
 
 
 </resources>

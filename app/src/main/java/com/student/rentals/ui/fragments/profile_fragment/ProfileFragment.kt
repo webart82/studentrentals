@@ -5,65 +5,67 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import butterknife.ButterKnife
 import butterknife.OnClick
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
+import com.bumptech.glide.request.transition.DrawableCrossFadeFactory
 import com.student.Utils.Constants
 import com.student.Utils.GlideApp
 import com.student.Utils.SharedPreferencesManager
-import com.student.models.dUserData
+import com.student.models.DUserData
 import com.student.rentals.R
+import com.student.rentals.databinding.ProfileFragmentBinding
 import com.student.rentals.ui.activities.mediacontents.view.MediaContentsActivity
 import kotlinx.android.synthetic.main.activity_land_loard_profile.*
-import kotlinx.android.synthetic.main.item_property_owner_profile.*
-import timber.log.Timber
+import kotlinx.android.synthetic.main.item_property_owner_profile.view.*
+import kotlin.properties.Delegates
 
 
 class ProfileFragment : Fragment() {
     companion object {
         fun newInstance() = ProfileFragment()
     }
-
-    private lateinit var viewModel: ProfileViewModel
     private val model: ProfileViewModel by activityViewModels()
+    private lateinit var binding: ProfileFragmentBinding
+    private lateinit var sharedPreferencesManager: SharedPreferencesManager
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.profile_fragment, container, false)
-        ButterKnife.bind(this,view)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        return view
+        binding = ProfileFragmentBinding.inflate(inflater, container, false)
+        sharedPreferencesManager = SharedPreferencesManager(activity)
+        ButterKnife.bind(this, binding.root)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        model.getProfileData(SharedPreferencesManager(activity).getString(SharedPreferencesManager.Key.LOGGED_IN_USERID).toString().trim())!!.observe(viewLifecycleOwner, Observer{ mUsers ->
-            updateUI(mUsers!!)
-        })
+
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        var url = "https://i.pinimg.com/originals/be/ac/96/beac96b8e13d2198fd4bb1d5ef56cdcf.jpg"
-
-
-
-
+        model.getProfileData(sharedPreferencesManager.getString(SharedPreferencesManager.Key.LOGGED_IN_USERID).toString().trim())!!.observe(
+            viewLifecycleOwner,
+            Observer { mUsers ->
+                updateUI(mUsers?.thumbNail)
+                binding.userData = mUsers
+                binding.userData!!.addresses = mUsers?.addresses
+            })
     }
 
-    @OnClick(R.id.profile_upload)
-    fun uploadImages(){
-        startActivity(Intent(context, MediaContentsActivity::class.java))
-    }
-    fun updateUI(userData: dUserData){
-     name.text = userData.fullName
+    fun updateUI(dp: String?) {
+        val factory = DrawableCrossFadeFactory.Builder().setCrossFadeEnabled(true).build()
         GlideApp
             .with(this)
-            .load(Constants.IMAGE_BASE_URL + userData.thumbNail)
+            .load(Constants.IMAGE_BASE_URL + dp)
+            .transition(DrawableTransitionOptions.withCrossFade(factory))
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
             .apply(RequestOptions.circleCropTransform())
             .placeholder(R.drawable.photo)
             .into(profile_image)

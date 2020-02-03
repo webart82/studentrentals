@@ -11,15 +11,15 @@ import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.transition.DrawableCrossFadeFactory
 import com.student.Utils.Constants
 import com.student.Utils.GlideApp
-import com.student.models.dUserData
+import com.student.models.DUserData
 import com.student.rentals.R
 import kotlinx.android.synthetic.main.item_landloard_list_item.view.*
 
 
 class LandLoardsListAdapter(
-    private val aData: List<dUserData>,
+    private val aData: List<DUserData>,
     private val context: Context,
-    val onItemClick: ((View, dUserData) -> Unit)? = null) : RecyclerView.Adapter< LandLoardsViewHolder>() {
+    val onItemClick: ((View, DUserData) -> Unit)? = null) : RecyclerView.Adapter< LandLoardsViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):  LandLoardsViewHolder {
         return  LandLoardsViewHolder(

@@ -10,5 +10,5 @@ package com.student.models
 data class mUsers(
     var status:String?,
     var message:String?,
-    var data: List<dUserData>
+    var data: List<DUserData>
 )
