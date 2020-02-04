@@ -20,7 +20,7 @@ data class ApartmentData(
     var thumbNail: String?,
     var _id: String?,
     var location: String?,
-    var ownersInfo: String?,
+    var ownersInfo: DUserData?,
     var apartmentName: String?,
     var roomImages:  ArrayList<String>?,
     var rooms: List<mRoomData>?,
