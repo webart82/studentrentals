@@ -3,6 +3,9 @@
     xmlns:bind="http://schemas.android.com/tools">
 
     <data>
+        <variable
+            name="ownerData"
+            type="com.student.models.DUserData" />
 
         <variable
             name="productData"
@@ -44,7 +47,8 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <include
-                    layout="@layout/item_property_owner"/>
+                    layout="@layout/item_property_owner"
+                    bind:ownerData="@{ownerData}"/>
                 <include layout="@layout/item_property_description"
                     bind:productData="@{productData}"/>
                 <TextView
