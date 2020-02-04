@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:bind="http://schemas.android.com/apk/res-auto"
-
-   >
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <variable
+            name="ownerData"
+            type="com.student.models.DUserData" />
 
         <variable
             name="productData"
@@ -45,7 +46,8 @@
 
         <include
             layout="@layout/fragment_view_item"
-            bind:productData="@{productData}"/>
+            bind:productData="@{productData}"
+            bind:ownerData="@{ownerData}"/>
 
     </FrameLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
