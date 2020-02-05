@@ -2,6 +2,7 @@ package com.student.models
 
 import android.accounts.AuthenticatorDescription
 import android.os.Parcelable
+import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 /**
@@ -12,7 +13,10 @@ import kotlinx.android.parcel.Parcelize
  **/
 @Parcelize
 data class mTerms(
-    var title:String?,
-    var description: String?,
-    var _id: String?
+    @SerializedName("title")
+    val title:String? = null,
+    @SerializedName("descriptions")
+    val description: String? = null,
+    @SerializedName("_id")
+    var Id: String?= null
 ):Parcelable

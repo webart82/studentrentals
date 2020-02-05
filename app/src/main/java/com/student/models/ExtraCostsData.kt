@@ -1,6 +1,7 @@
 package com.student.models
 
 import android.os.Parcelable
+import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 /**
@@ -11,9 +12,9 @@ import kotlinx.android.parcel.Parcelize
  **/
 @Parcelize
 data class ExtraCostsData(
-    var name:String?,
-    var amount: Int?,
-    var paymentType: String?,
-    var terms: List<mTerms>?
+    @SerializedName("name") val name: String? = null,
+    @SerializedName("amount") val amount: String? = null,
+    @SerializedName("paymentType") val paymentType: String? = null,
+    @SerializedName("termsAndConditions") var terms: List<mTerms>?=null
 
-):Parcelable
+) : Parcelable

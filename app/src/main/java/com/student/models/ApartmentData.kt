@@ -24,5 +24,5 @@ data class ApartmentData(
     var apartmentName: String?,
     var roomImages:  ArrayList<String>?,
     var rooms: List<RoomData>?,
-    var extraCosts: List<ExtraCostsData>?
+    var extraCosts: List<ExtraCostsData>
 ):Parcelable

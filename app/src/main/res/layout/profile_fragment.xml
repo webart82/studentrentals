@@ -6,6 +6,9 @@
     <data>
 
         <variable
+            name="addressData"
+            type="com.student.models.DAddressData"/>
+        <variable
             name="userData"
             type="com.student.models.DUserData"/>
     </data>
@@ -17,7 +20,8 @@
 
     <include
         layout="@layout/activity_land_loard_profile"
-        bind:userData="@{userData}"/>
+        bind:userData="@{userData}"
+        bind:addressData="@{addressData}"/>
 
 </ScrollView>
 </layout>
