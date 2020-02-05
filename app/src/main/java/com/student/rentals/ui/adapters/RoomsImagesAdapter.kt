@@ -9,31 +9,28 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.student.Utils.GlideApp
-import com.student.models.RoomData
 import com.student.rentals.R
-import kotlinx.android.synthetic.main.item_property_room_content.view.*
 import kotlinx.android.synthetic.main.item_property_room_images.view.*
 
 
-class RoomsListAdapter(
-    private val items: List<RoomData>?,
+class RoomsImagesAdapter(
+    private val items: ArrayList<String>,
     private val context: Context,
     val onItemClick: ((View, String) -> Unit)? = null
-) : RecyclerView.Adapter<RoomsListAdapter.ImagesViewHolder>() {
+) : RecyclerView.Adapter<RoomsImagesAdapter.ImagesViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImagesViewHolder {
         return ImagesViewHolder(
-            LayoutInflater.from(context).inflate(R.layout.item_property_room_content, parent, false)
+            LayoutInflater.from(context).inflate(R.layout.item_property_room_images, parent, false)
         )
     }
 
     override fun getItemCount(): Int {
-        return  items!!.size
+        return  items.size
     }
 
     override fun onBindViewHolder(holder: ImagesViewHolder, position: Int) {
-        val roomData = items?.get(position)
-        holder?.room_name?.text = roomData?.total.toString() + " " +  roomData?.name
+        holder?.room_size?.text = items.get(position)
         var requestOptions = RequestOptions()
         requestOptions = requestOptions
             .transform(CenterCrop(), RoundedCorners(1))
@@ -41,17 +38,18 @@ class RoomsListAdapter(
 
 
 
-       /* GlideApp
+        GlideApp
             .with(context)
             .load(url)
             .error(R.drawable.photo)
             .placeholder(R.drawable.photo)
             .apply(requestOptions)
-            .into(holder?.room_image)*/
+            .into(holder?.room_image)
     }
     class ImagesViewHolder(view: View): RecyclerView.ViewHolder(view){
-
-        val room_name = view.property_bedrooms_content_title
+        val room_image = view.property_room_image
+        val room_size = view.property_room_size
+        val room_name = view.property_room_name
 
     }
 

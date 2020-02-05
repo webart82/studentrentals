@@ -23,6 +23,6 @@ data class ApartmentData(
     var ownersInfo: DUserData?,
     var apartmentName: String?,
     var roomImages:  ArrayList<String>?,
-    var rooms: List<mRoomData>?,
+    var rooms: List<RoomData>?,
     var extraCosts: List<mCostsData>?
 ):Parcelable
