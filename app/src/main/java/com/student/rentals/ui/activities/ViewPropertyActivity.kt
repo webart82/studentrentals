@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
@@ -16,14 +18,19 @@ import com.student.Utils.GlideApp
 import com.student.models.ApartmentData
 import com.student.rentals.R
 import com.student.rentals.databinding.ActivityViewPropertyBinding
+import com.student.rentals.ui.adapters.LandLoardsListAdapter
+import com.student.rentals.ui.adapters.RoomsListAdapter
 import kotlinx.android.synthetic.main.activity_view_property.*
 import kotlinx.android.synthetic.main.fragment_view_item.*
+import kotlinx.android.synthetic.main.item_property_description.*
 import kotlinx.android.synthetic.main.item_property_owner.*
+import kotlinx.android.synthetic.main.list_fragment.*
 import timber.log.Timber
 
 
 class ViewPropertyActivity : AppCompatActivity() {
     private lateinit var binding: ActivityViewPropertyBinding
+    private lateinit var adapter: RoomsListAdapter
 
     /**System create the activity {@link onCreate}**/
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,6 +73,10 @@ class ViewPropertyActivity : AppCompatActivity() {
             startActivity(smsIntent)
 
         }
+
+        property_room_recycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        property_room_recycler.adapter =  RoomsListAdapter(rooms, this,  null)
+
 
 
     }

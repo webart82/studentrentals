@@ -17,7 +17,7 @@ import com.student.Utils.GlideApp
 import com.student.Utils.TermsAndConditionsDialog
 import com.student.rentals.R
 import com.student.rentals.ui.activities.LandLoadProfileActivity
-import com.student.rentals.ui.adapters.RoomsListAdapter
+import com.student.rentals.ui.adapters.RoomsImagesAdapter
 import kotlinx.android.synthetic.main.fragment_view_item.*
 import kotlinx.android.synthetic.main.item_property_description.*
 import kotlinx.android.synthetic.main.item_property_extra_costs.*
@@ -73,7 +73,7 @@ class ViewItemFragment : Fragment() {
 
         }
 
-        property_bedrooms.setOnClickListener(){
+        /*property_bedrooms.setOnClickListener(){
             val dialog = Dialog(context!!)
             val houses: ArrayList<String> = ArrayList()
             for (i in 0..10){
@@ -82,11 +82,12 @@ class ViewItemFragment : Fragment() {
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
             dialog.setContentView(R.layout.item_property_rooms)
             dialog.recycler_rooms_images.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-            dialog.recycler_rooms_images.adapter = RoomsListAdapter(houses, requireContext(), onItemClick = { view, catgory -> Unit})
+            dialog.recycler_rooms_images.adapter = RoomsImagesAdapter(houses, requireContext(), onItemClick = { view, catgory -> Unit})
 
             dialog.show()
             dialog.window?.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT)
         }
+        */
 
         /** Call Property owner/ broker **/
         property_owner_dp.setOnClickListener(){

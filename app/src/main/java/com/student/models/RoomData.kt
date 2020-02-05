@@ -10,7 +10,7 @@ import kotlinx.android.parcel.Parcelize
  * Without permission from creator
  **/
 @Parcelize
-data class mRoomData(
+data class RoomData(
     var name: String?,
     var title: String?,
     var description: String?,

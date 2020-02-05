@@ -15,7 +15,17 @@
     android:layout_height="wrap_content"
     android:background="@android:color/transparent">
 
-    <LinearLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/property_room_recycler"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <!--<LinearLayout
         android:id="@+id/property_items"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -96,12 +106,12 @@
         </TextView>
 
 
-    </LinearLayout>
+    </LinearLayout>-->
     <TextView
         android:id="@+id/desc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/property_items"
+        app:layout_constraintTop_toBottomOf="@id/property_room_recycler"
         app:layout_constraintStart_toStartOf="parent"
         android:text="@string/descriptions"
         android:padding="@dimen/action_padding"

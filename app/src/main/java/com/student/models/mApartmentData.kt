@@ -10,7 +10,7 @@ data class mApartmentData(
     var description: String?,
     var thumbNail: String?,
     var roomImages: Any,
-    var rooms: List<mRoomData>,
+    var rooms: List<RoomData>,
     var extraCosts: List<mCostsData>,
     var _id: String?,
     var apartmentName: String?
