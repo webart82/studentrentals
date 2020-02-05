@@ -5,6 +5,9 @@
 
     <data>
         <variable
+            name="extraCosts"
+            type="com.student.models.ExtraCostsData" />
+        <variable
             name="ownerData"
             type="com.student.models.DUserData" />
 
@@ -47,7 +50,8 @@
         <include
             layout="@layout/fragment_view_item"
             bind:productData="@{productData}"
-            bind:ownerData="@{ownerData}"/>
+            bind:ownerData="@{ownerData}"
+            bind:extraCosts="@{extraCosts}"/>
 
     </FrameLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

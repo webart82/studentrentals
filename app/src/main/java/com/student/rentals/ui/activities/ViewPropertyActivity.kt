@@ -18,11 +18,13 @@ import com.student.Utils.GlideApp
 import com.student.models.ApartmentData
 import com.student.rentals.R
 import com.student.rentals.databinding.ActivityViewPropertyBinding
+import com.student.rentals.ui.adapters.ExtraCostsListAdapter
 import com.student.rentals.ui.adapters.LandLoardsListAdapter
 import com.student.rentals.ui.adapters.RoomsListAdapter
 import kotlinx.android.synthetic.main.activity_view_property.*
 import kotlinx.android.synthetic.main.fragment_view_item.*
 import kotlinx.android.synthetic.main.item_property_description.*
+import kotlinx.android.synthetic.main.item_property_extra_costs.*
 import kotlinx.android.synthetic.main.item_property_owner.*
 import kotlinx.android.synthetic.main.list_fragment.*
 import timber.log.Timber
@@ -77,8 +79,8 @@ class ViewPropertyActivity : AppCompatActivity() {
         property_room_recycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         property_room_recycler.adapter =  RoomsListAdapter(rooms, this,  null)
 
-
-
+        rcv_extra_costs.layoutManager = LinearLayoutManager(this)
+        rcv_extra_costs.adapter = ExtraCostsListAdapter(costs,this,null)
     }
 
     private fun loadFragment(fragment: Fragment) { // load fragment
