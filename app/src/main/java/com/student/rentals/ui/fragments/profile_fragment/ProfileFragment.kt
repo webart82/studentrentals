@@ -55,7 +55,7 @@ class ProfileFragment : Fragment() {
             Observer { mUsers ->
                 updateUI(mUsers?.thumbNail)
                 binding.userData = mUsers
-                binding.userData!!.addresses = mUsers?.addresses
+                binding.addressData = mUsers?.addresses
             })
     }
 

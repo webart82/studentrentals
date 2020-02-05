@@ -4,6 +4,9 @@
     xmlns:bind="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <variable
+            name="addressData"
+            type="com.student.models.DAddressData"/>
 
         <variable
             name="userData"
@@ -109,7 +112,7 @@
 
             <include
                 layout="@layout/item_property_owner_profile_address"
-                bind:userAddress="@{userData.addresses}" />
+                bind:userAddress="@{addressData}" />
 
         </LinearLayout>
     </RelativeLayout>

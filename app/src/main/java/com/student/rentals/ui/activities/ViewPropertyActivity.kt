@@ -53,9 +53,9 @@ class ViewPropertyActivity : AppCompatActivity() {
         val rooms = obj?.rooms
         val images = obj?.roomImages
         val costs = obj?.extraCosts
-        var owner = obj?.ownersInfo
-        var addr = owner?.addresses
-        Timber.d(addr.toString())
+        val owner = obj?.ownersInfo
+        val addr = owner?.addresses
+        Timber.d(obj.toString())
         binding.productData = obj
         binding.ownerData = owner
         owner?.thumbNail?.let { obj?.thumbNail?.let { it1 -> updateUI(it1, it) } }

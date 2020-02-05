@@ -1,6 +1,7 @@
 package com.student.models
 
 import android.os.Parcelable
+import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 /**
@@ -11,14 +12,23 @@ import kotlinx.android.parcel.Parcelize
  **/
 @Parcelize
 data class DAddressData(
-    var _id: String?,
-    var createdDate: String?,
-    var lineOne: String?,
-    var lineTwo: String?,
-    var homeNumber: String?,
-    var city: String?,
-    var postalCode: String?,
-    var state: String?,
-    var email: String?
+    @SerializedName("_id")
+    val Id: String? = null,
+    @SerializedName("createdDate")
+    val createdDate: String?  = null,
+    @SerializedName("lineOne")
+    val lineOne: String?  = null,
+    @SerializedName("lineTwo")
+    val lineTwo: String?   = null,
+    @SerializedName("homeNumber")
+    val homeNumber: String?  = null,
+    @SerializedName("city")
+    val city: String?  = null,
+    @SerializedName("postalCode")
+    val postalCode: String?  = null,
+    @SerializedName("state")
+    val state: String?  = null,
+    @SerializedName("email")
+    val email: String?  = null
 
 ):Parcelable
