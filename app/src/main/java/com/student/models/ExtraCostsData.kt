@@ -10,7 +10,7 @@ import kotlinx.android.parcel.Parcelize
  * Without permission from creator
  **/
 @Parcelize
-data class mCostsData(
+data class ExtraCostsData(
     var name:String?,
     var amount: Int?,
     var paymentType: String?,

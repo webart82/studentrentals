@@ -11,7 +11,7 @@ data class mApartmentData(
     var thumbNail: String?,
     var roomImages: Any,
     var rooms: List<RoomData>,
-    var extraCosts: List<mCostsData>,
+    var extraCosts: List<ExtraCostsData>,
     var _id: String?,
     var apartmentName: String?
 

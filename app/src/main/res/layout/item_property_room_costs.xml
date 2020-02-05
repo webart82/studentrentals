@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="extraCosts"
+            type="com.student.models.ExtraCostsData" />
+    </data>
+<TableRow
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:weightSum="3">
+
+    <TextView
+        android:id="@+id/txtCostTitle"
+        android:layout_weight="1"
+        android:padding="3dip"
+        android:text="@{extraCosts.name,default=@string/table_layout_rental_cost}"
+        android:textAlignment="textStart" />
+
+    <TextView
+        android:id="@+id/txtCostAmount"
+        android:layout_weight="1"
+        android:gravity="end"
+        android:padding="3dip"
+        android:text="@{extraCosts.amount.toString(),default=@string/table_amount_rental}"
+        android:textAlignment="center" />
+
+    <TextView
+
+        android:id="@+id/txtCostMethod"
+        android:layout_weight="1"
+        android:gravity="end"
+        android:padding="3dip"
+        android:text="@{extraCosts.paymentType,default=@string/table_method_bank}"
+        android:textAlignment="center"
+        android:textColor="@color/primaryColor" />
+
+</TableRow>
+</layout>

@@ -10,6 +10,9 @@
         <variable
             name="productData"
             type="com.student.models.ApartmentData" />
+        <variable
+            name="extraCosts"
+            type="com.student.models.ExtraCostsData" />
     </data>
 
 <ScrollView
@@ -66,7 +69,8 @@
                 <include
                     layout="@layout/item_property_photos"/>
                 <include
-                    layout="@layout/item_property_extra_costs"/>
+                    layout="@layout/item_property_extra_costs"
+                    bind:extraCosts="@{extraCosts}"/>
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
