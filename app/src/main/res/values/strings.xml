@@ -71,6 +71,13 @@
     <string name="phone2">Phone2:</string>
     <string name="home_number">Home Number:</string>
     <string name="postal_code">Postal Code</string>
+    <string name="no_account_yet_create_one">No account yet? Create one</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="already_a_member_login">Already a member? Login</string>
+    <string name="create_account">Create Account</string>
+    <string name="name">Name</string>
+    <string name="confirm_password">Confirm Password</string>
 
 
 </resources>

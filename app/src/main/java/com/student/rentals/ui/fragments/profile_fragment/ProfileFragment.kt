@@ -67,7 +67,8 @@ class ProfileFragment : Fragment() {
             .transition(DrawableTransitionOptions.withCrossFade(factory))
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .apply(RequestOptions.circleCropTransform())
-            .placeholder(R.drawable.photo)
+            .placeholder(R.drawable.person)
+            .error((R.drawable.person))
             .into(profile_image)
     }
 

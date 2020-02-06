@@ -24,17 +24,20 @@
     <TextView
         android:id="@+id/txtCostAmount"
         android:layout_weight="1"
-        android:gravity="end"
+        android:gravity="start"
         android:padding="3dip"
         android:text="@{extraCosts.amount.toString(),default=@string/table_amount_rental}"
-        android:textAlignment="center" />
+        android:textAlignment="textStart" />
 
     <TextView
 
         android:id="@+id/txtCostMethod"
         android:layout_weight="1"
-        android:gravity="end"
+        android:gravity="center"
         android:padding="3dip"
+        android:tooltipText="@string/extra_const"
+        bind:targetApi="O"
+        android:background="@drawable/rectangular_text_bg"
         android:text="@{extraCosts.paymentType,default=@string/table_method_bank}"
         android:textAlignment="center"
         android:textColor="@color/primaryColor" />

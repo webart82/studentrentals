@@ -80,8 +80,8 @@ public class HouseListAdapter extends Adapter<ViewHolder> {
                 .load(url)
                 .transition(withCrossFade(new DrawableCrossFadeFactory.Builder().setCrossFadeEnabled(true).build()))
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .error(R.drawable.photo)
-                .placeholder(R.drawable.photo)
+                .error(R.drawable.placeholder)
+                .placeholder(R.drawable.placeholder)
                 .apply(requestOptions)
                 .into(holder.houseImage);
 

@@ -12,7 +12,7 @@
         android:id="@+id/landloard_profile_image"
         android:layout_width="90dp"
         android:layout_height="90dp"
-        android:padding="4dp"
+        android:padding="@dimen/action_padding"
         android:scaleType="centerCrop"
         android:src="@drawable/photo"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,9 +24,10 @@
         android:id="@+id/landloard_profile_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="85dp"
+        android:layout_marginStart="90dp"
         android:layout_marginTop="@dimen/dp_4"
         android:orientation="vertical"
+        android:paddingStart="@dimen/action_padding"
         app:layout_constraintStart_toEndOf="@id/landloard_profile_image"
         app:layout_constraintTop_toTopOf="@id/landloard_profile_image">
 
