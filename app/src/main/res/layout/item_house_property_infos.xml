@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="@dimen/items_text"
-    android:background="@android:color/transparent">
+    android:background="@drawable/item_house_details"
+    tools:showIn="@layout/item_house_property">
 
     <TextView
         android:id="@+id/house_name"
@@ -15,9 +16,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:textColor="@android:color/white"
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
         android:text="@string/sample_name"
         android:textStyle="bold"
-        android:textSize="21sp"
         >
 
     </TextView>
@@ -28,9 +29,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:textColor="@android:color/white"
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
         android:text="@string/sample_price"
         android:textStyle="bold"
-        android:textSize="21sp"
         >
 
     </TextView>
@@ -41,9 +42,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/house_name"
         android:drawableStart="@drawable/map_marker"
-        android:drawableTint="@android:color/white"
-        android:textColor="@android:color/white"
+        android:drawableTint="@android:color/black"
+        android:textColor="@android:color/black"
         android:gravity="center_vertical"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
         android:text="@string/clintion_villa"
         tools:targetApi="23"
         >
@@ -56,8 +58,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/house_price"
         android:drawableStart="@drawable/star"
-        android:textColor="@android:color/white"
+        android:textColor="@android:color/black"
         android:gravity="center_vertical"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
         android:text="@string/_4_4m_reviews"
         >
 

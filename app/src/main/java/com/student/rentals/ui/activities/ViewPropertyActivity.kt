@@ -132,7 +132,8 @@ class ViewPropertyActivity : AppCompatActivity() {
             )
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .apply(RequestOptions.circleCropTransform())
-            .placeholder(R.drawable.photo)
+            .placeholder(R.drawable.person)
+            .error((R.drawable.person))
             .into(property_owner_dp)
     }
 

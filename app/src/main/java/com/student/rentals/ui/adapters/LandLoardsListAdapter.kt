@@ -53,7 +53,8 @@ class LandLoardsListAdapter(
             .transition(withCrossFade(factory))
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .apply(RequestOptions.circleCropTransform())
-            .placeholder(R.drawable.photo)
+            .placeholder(R.drawable.person)
+            .error(R.drawable.person)
             .into(holder.u_image)
 
         val item = aData.get(position)
