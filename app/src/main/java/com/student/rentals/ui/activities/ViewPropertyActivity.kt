@@ -5,28 +5,27 @@ import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.transition.DrawableCrossFadeFactory
 import com.student.Utils.Constants
+import com.student.Utils.Constants.PARCEL_BUNDLE
+import com.student.Utils.Constants.PARCEL_KEY
+import com.student.Utils.CustomDialogFragment
 import com.student.Utils.GlideApp
 import com.student.models.ApartmentData
 import com.student.rentals.R
 import com.student.rentals.databinding.ActivityViewPropertyBinding
 import com.student.rentals.ui.adapters.ExtraCostsListAdapter
-import com.student.rentals.ui.adapters.LandLoardsListAdapter
 import com.student.rentals.ui.adapters.RoomsListAdapter
 import kotlinx.android.synthetic.main.activity_view_property.*
 import kotlinx.android.synthetic.main.fragment_view_item.*
 import kotlinx.android.synthetic.main.item_property_description.*
 import kotlinx.android.synthetic.main.item_property_extra_costs.*
 import kotlinx.android.synthetic.main.item_property_owner.*
-import kotlinx.android.synthetic.main.list_fragment.*
 import timber.log.Timber
 
 
@@ -81,14 +80,18 @@ class ViewPropertyActivity : AppCompatActivity() {
 
         rcv_extra_costs.layoutManager = LinearLayoutManager(this)
         rcv_extra_costs.adapter = ExtraCostsListAdapter(costs,this,null)
+
+        property_owner_dp.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putParcelable(PARCEL_KEY, owner)
+            val ft: FragmentTransaction = supportFragmentManager.beginTransaction()
+            val nInstance = CustomDialogFragment.newInstance("String Here", bundle)
+
+            nInstance.show(ft, "dialog")
+        }
     }
 
-    private fun loadFragment(fragment: Fragment) { // load fragment
-        val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.frame_container_view_item, fragment)
-        transaction.addToBackStack(null)
-        transaction.commit()
-    }
+
 
     private fun setupToolbar(str: String) {
         item_toolbar.title = str
