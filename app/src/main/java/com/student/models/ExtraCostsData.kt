@@ -15,6 +15,6 @@ data class ExtraCostsData(
     @SerializedName("name") val name: String? = null,
     @SerializedName("amount") val amount: String? = null,
     @SerializedName("paymentType") val paymentType: String? = null,
-    @SerializedName("termsAndConditions") var terms: List<mTerms>?=null
+    @SerializedName("termsAndConditions") val terms: List<TermsDatas>?=null
 
 ) : Parcelable

@@ -1,259 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="termsData"
+            type="com.student.models.TermsDatas" />
+
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+
         <TextView
-            android:id="@+id/terms_title_"
+
+            android:id="@+id/terms"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/primaryColor"
-            android:gravity="center"
             android:padding="@dimen/dp_15"
-            android:text="@string/terms_and_conditions"
-            android:textAllCaps="true"
+            android:text="@{ termsData.Id +` `+ termsData.title, default=@string/app_name}"
             android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
         </TextView>
 
-        <LinearLayout
-            android:id="@+id/linear_1"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/dp_15"
-            app:layout_constraintTop_toBottomOf="@id/terms_title_">
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:text="@{termsData.description,default=@string/lorem}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/terms">
 
-            <TextView
-                android:id="@+id/terms"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/dp_15"
-                android:text="1. Names of all tenants and occupants"
-                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                android:textStyle="bold">
-
-            </TextView>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/lorem"
-                app:layout_constraintTop_toBottomOf="@id/terms">
-
-            </TextView>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/dp_15"
-                android:text="2. Description of rental"
-                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                android:textStyle="bold">
-
-            </TextView>
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/lorem"
-                app:layout_constraintTop_toBottomOf="@id/terms">
-
-            </TextView>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/dp_15"
-                android:text="3. Term of the tenancy."
-                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                android:textStyle="bold">
-
-            </TextView>
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/lorem"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                app:layout_constraintTop_toBottomOf="@id/terms">
-
-            </TextView>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/dp_15"
-                android:text="4. Rent"
-                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                android:textStyle="bold">
-
-            </TextView>
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/lorem"
-                app:layout_constraintTop_toBottomOf="@id/terms">
-
-            </TextView>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/dp_15"
-                android:text="4. Deposit And Fees"
-                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                android:textStyle="bold">
-
-            </TextView>
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/lorem"
-                app:layout_constraintTop_toBottomOf="@id/terms">
-
-            </TextView>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="5. Repairs and maintenance"
-                android:textStyle="bold"
-                android:padding="@dimen/dp_15"
-                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                >
-
-            </TextView>
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/terms"
-                android:text="@string/lorem">
-
-            </TextView>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/dp_15"
-                android:text="6. Entry to rental property."
-                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                android:textStyle="bold">
-
-            </TextView>
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/lorem"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                app:layout_constraintTop_toBottomOf="@id/terms">
-
-            </TextView>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/dp_15"
-                android:text="7. Your rules and important policies."
-                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                android:textStyle="bold">
-
-            </TextView>
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/lorem"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                app:layout_constraintTop_toBottomOf="@id/terms">
-
-            </TextView>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/dp_15"
-                android:text="8. Contact infomations."
-                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                android:textStyle="bold">
-
-            </TextView>
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/lorem"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                app:layout_constraintTop_toBottomOf="@id/terms">
-
-            </TextView>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/dp_15"
-                android:text="9. Other restrictions."
-                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                android:textStyle="bold">
-
-            </TextView>
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/lorem"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                app:layout_constraintTop_toBottomOf="@id/terms">
-
-            </TextView>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/action_padding"
-            android:weightSum="2"
-            app:layout_constraintBottom_toBottomOf="parent">
-
-            <Button
-                android:id="@+id/dialog_disagree"
-                style="@style/TextAppearance.AppCompat.Widget.Button"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Disagree">
-
-            </Button>
-
-            <Button
-                android:id="@+id/dialog_agree"
-                style="@style/TextAppearance.AppCompat.Widget.Button.Borderless.Colored"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Agree">
-
-            </Button>
-
-        </LinearLayout>
+        </TextView>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+</layout>

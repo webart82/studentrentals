@@ -1,6 +1,8 @@
 package com.student.rentals.ui.activities
 
+import android.opengl.Visibility
 import android.os.Bundle
+import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -49,15 +51,18 @@ class MainActivity : AppBaseActivity() {
         when (menuItem.itemId){
             R.id.navigation_home -> {
                loadFragment(HomeFragment())
+                toobar_add.visibility = View.INVISIBLE
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_list -> {
                 loadFragment(ListItemsFragment())
+                toobar_add.visibility = View.INVISIBLE
                 return@OnNavigationItemSelectedListener true
 
             }
             R.id.navigation_profile -> {
                 loadFragment(ProfileFragment())
+                toobar_add.visibility = View.VISIBLE
                 return@OnNavigationItemSelectedListener true
             }
         }

@@ -1,7 +1,6 @@
 package com.student.rentals.ui.fragments.view_fragment
 
 
-import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -10,19 +9,12 @@ import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.request.RequestOptions
-import com.student.Utils.CustomDialogFragment
 import com.student.Utils.GlideApp
-import com.student.Utils.TermsAndConditionsDialog
 import com.student.rentals.R
 import com.student.rentals.ui.activities.LandLoadProfileActivity
-import com.student.rentals.ui.adapters.RoomsImagesAdapter
 import kotlinx.android.synthetic.main.fragment_view_item.*
-import kotlinx.android.synthetic.main.item_property_description.*
-import kotlinx.android.synthetic.main.item_property_extra_costs.*
 import kotlinx.android.synthetic.main.item_property_owner.*
-import kotlinx.android.synthetic.main.item_property_rooms.*
 import timber.log.Timber
 
 
