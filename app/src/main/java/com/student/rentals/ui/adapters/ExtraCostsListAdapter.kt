@@ -4,9 +4,11 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.student.models.ExtraCostsData
+import com.student.models.TermsDatas
 import com.student.rentals.BR
 import com.student.rentals.R
 import com.student.rentals.databinding.ItemPropertyRoomCostsBinding
@@ -16,8 +18,7 @@ import kotlinx.android.synthetic.main.item_property_room_costs.view.*
 class ExtraCostsListAdapter(
     private val items: List<ExtraCostsData>?,
     private val context: Context,
-    val onItemClick: ((View, String) -> Unit)? = null
-) : RecyclerView.Adapter<ExtraCostsListAdapter.ImagesViewHolder>() {
+    val onItemClick: (List<TermsDatas>) -> Unit): RecyclerView.Adapter<ExtraCostsListAdapter.ImagesViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImagesViewHolder {
 
@@ -34,11 +35,15 @@ class ExtraCostsListAdapter(
 
     override fun onBindViewHolder(holder: ImagesViewHolder, position: Int) {
         val cost = items?.get(position)
+        val terms = cost?.terms
         holder.bind(items!!.get(position))
-        /*val terms = cost?.terms
-        holder.costAmount.text = cost?.amount.toString()
-        holder.costMethod.text = cost?.paymentType
-        holder.costTitle.text = cost?.name*/
+        if(!cost?.terms!!.isEmpty()){
+            holder.binding.txtCostMethod.visibility = View.VISIBLE
+            (holder as ImagesViewHolder).itemView.setOnClickListener{
+                terms.let { onItemClick.invoke(terms!!) }
+            }
+        }
+
     }
     class ImagesViewHolder(val binding: ItemPropertyRoomCostsBinding): RecyclerView.ViewHolder(binding.root){
 
@@ -46,6 +51,7 @@ class ExtraCostsListAdapter(
             binding.setVariable(BR.extraCosts, data)
             binding.executePendingBindings()
         }
+
     }
 
 }

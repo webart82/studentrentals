@@ -37,6 +37,7 @@
         android:padding="3dip"
         android:tooltipText="@string/extra_const"
         bind:targetApi="O"
+        android:visibility="invisible"
         android:background="@drawable/rectangular_text_bg"
         android:text="@{extraCosts.paymentType,default=@string/table_method_bank}"
         android:textAlignment="center"

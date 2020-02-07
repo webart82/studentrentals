@@ -3,6 +3,8 @@ package com.student.rentals.ui.activities
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.os.Parcelable
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentTransaction
@@ -12,21 +14,23 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.transition.DrawableCrossFadeFactory
 import com.student.Utils.Constants
-import com.student.Utils.Constants.PARCEL_BUNDLE
 import com.student.Utils.Constants.PARCEL_KEY
-import com.student.Utils.CustomDialogFragment
+import com.student.rentals.ui.dialogs.CustomDialogFragment
 import com.student.Utils.GlideApp
 import com.student.models.ApartmentData
+import com.student.models.TermsDatas
 import com.student.rentals.R
 import com.student.rentals.databinding.ActivityViewPropertyBinding
 import com.student.rentals.ui.adapters.ExtraCostsListAdapter
 import com.student.rentals.ui.adapters.RoomsListAdapter
+import com.student.rentals.ui.dialogs.TermsAndConditionsDialog
 import kotlinx.android.synthetic.main.activity_view_property.*
 import kotlinx.android.synthetic.main.fragment_view_item.*
 import kotlinx.android.synthetic.main.item_property_description.*
 import kotlinx.android.synthetic.main.item_property_extra_costs.*
 import kotlinx.android.synthetic.main.item_property_owner.*
 import timber.log.Timber
+import java.util.ArrayList
 
 
 class ViewPropertyActivity : AppCompatActivity() {
@@ -48,7 +52,7 @@ class ViewPropertyActivity : AppCompatActivity() {
         // loadFragment(ViewItemFragment())
         val budle = intent.getBundleExtra(Constants.PARCEL_BUNDLE)
         val obj = budle.getParcelable<ApartmentData>(Constants.PARCEL_KEY)
-         //
+        //
         val rooms = obj?.rooms
         val images = obj?.roomImages
         val costs = obj?.extraCosts
@@ -62,7 +66,7 @@ class ViewPropertyActivity : AppCompatActivity() {
 
         property_owner_action_call.setOnClickListener {
             val intent = Intent(Intent.ACTION_DIAL)
-            intent.data = Uri.parse("tel:"+addr?.lineOne )
+            intent.data = Uri.parse("tel:" + addr?.lineOne)
             startActivity(intent)
         }
         property_owner_action_message.setOnClickListener()
@@ -75,11 +79,13 @@ class ViewPropertyActivity : AppCompatActivity() {
 
         }
 
-        property_room_recycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        property_room_recycler.adapter =  RoomsListAdapter(rooms, this,  null)
+        property_room_recycler.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        property_room_recycler.adapter = RoomsListAdapter(rooms, this, null)
 
         rcv_extra_costs.layoutManager = LinearLayoutManager(this)
-        rcv_extra_costs.adapter = ExtraCostsListAdapter(costs,this,null)
+        rcv_extra_costs.adapter =
+            ExtraCostsListAdapter(costs, this, onItemClick = { appClickListener(it) })
 
         property_owner_dp.setOnClickListener {
             val bundle = Bundle()
@@ -91,6 +97,19 @@ class ViewPropertyActivity : AppCompatActivity() {
         }
     }
 
+    fun appClickListener(termsDatas: List<TermsDatas>) {
+        if(termsDatas.isEmpty()){
+            Toast.makeText(this, "No terms or condition has being defined currently", Toast.LENGTH_SHORT).show()
+
+        }else{
+       Timber.d(termsDatas.toString())
+        val bundle = Bundle()
+        bundle.putParcelableArrayList(PARCEL_KEY, termsDatas as ArrayList<out Parcelable>)
+        val ft: FragmentTransaction = supportFragmentManager.beginTransaction()
+        val nInstance = TermsAndConditionsDialog.newInstance("TERMS_DIALOG",bundle)
+        nInstance.show(ft, "dialog")
+            }
+    }
 
 
     private fun setupToolbar(str: String) {

@@ -1,4 +1,4 @@
-package com.student.Utils
+package com.student.rentals.ui.dialogs
 
 import android.content.Context
 import android.os.Bundle
@@ -8,11 +8,12 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.FragmentActivity
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.transition.DrawableCrossFadeFactory
+import com.student.Utils.Constants
+import com.student.Utils.GlideApp
 import com.student.models.DUserData
 import com.student.rentals.R
 import com.student.rentals.databinding.ItemPropertyPopupProfileBinding
@@ -67,7 +68,7 @@ class CustomDialogFragment : DialogFragment() {
     }
 
    companion object{
-       fun newInstance(content: String, bundle:Bundle): CustomDialogFragment{
+       fun newInstance(content: String, bundle:Bundle): CustomDialogFragment {
            val f = CustomDialogFragment()
            val args = bundle
            var data = bundle.getParcelable<DUserData>(Constants.PARCEL_KEY)
@@ -83,8 +84,7 @@ class CustomDialogFragment : DialogFragment() {
         binding.userData = u
        Timber.d(u.toString())
         val factory = DrawableCrossFadeFactory.Builder().setCrossFadeEnabled(true).build()
-       GlideApp
-            .with(dialog?.context!!)
+       GlideApp.with(dialog?.context!!)
             .load(Constants.IMAGE_BASE_URL + u?.thumbNail)
             .transition(DrawableTransitionOptions.withCrossFade(factory))
             .diskCacheStrategy(DiskCacheStrategy.ALL)
