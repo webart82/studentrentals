@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,6 +29,8 @@ public class HomeFragment extends Fragment {
     private View view;
     @BindView(R.id.house_list)
     RecyclerView house_list;
+    @BindView(R.id.p_progress_bar)
+    ProgressBar progressBar;
     private HomeViewModel viewModel;
     private HouseListAdapter adapter;
 
@@ -45,10 +48,12 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        progressBar.setProgressDrawable(getResources().getDrawable(R.mipmap.ic_launcher_round));
         viewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         viewModel.getRoomsList().observe(getViewLifecycleOwner(), new Observer<pApartmentData>() {
             @Override
             public void onChanged(pApartmentData pApartmentData) {
+
                 createList(pApartmentData.getData());
             }
         });
@@ -65,6 +70,10 @@ public class HomeFragment extends Fragment {
         house_list.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter.addItems(apartmentData);
         house_list.setAdapter(adapter);
+        progressBar.setVisibility(View.INVISIBLE);
+        house_list.setVisibility(View.VISIBLE);
+
+
     }
 
 }

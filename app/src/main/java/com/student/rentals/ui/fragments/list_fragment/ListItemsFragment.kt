@@ -42,6 +42,8 @@ class ListItemsFragment : Fragment() {
     fun createList(data: List<DUserData>){
         recycler_landloards.layoutManager = LinearLayoutManager(context)
         recycler_landloards.adapter =  LandLoardsListAdapter(data, requireContext(),  null)
+        p_progress_bar.visibility = View.GONE
+        recycler_landloards.visibility = View.VISIBLE
     }
 
     fun openActivity(): ((View, DUserData) -> Unit)? {

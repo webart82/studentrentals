@@ -2,6 +2,7 @@ package com.student.Api
 
 import androidx.lifecycle.LiveData
 import com.student.models.*
+import com.student.rentals.ui.activities.signUp.model.SignUpData
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -12,9 +13,6 @@ interface ApiInterface {
 
     @GET("users")
     fun getUsers(): LiveData<List<mLoginUserData>>
-
-    @GET("users/{id}")
-    fun getUser(): Call<String>
 
     @GET( "apartments/all")
     fun getAllApartments(): Call<pApartmentData>
@@ -27,6 +25,9 @@ interface ApiInterface {
 
     @POST("auth/login")
     fun postForLogin(@Body loginData: LoginData):Call<mLoginUserData>
+
+    @POST("auth/")
+    fun postForSignUp(@Body signUpData: SignUpData):Call<mLoginUserData>
 
 
 }
