@@ -9,13 +9,17 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
 
+import com.student.Utils.SharedPreferencesManager.Key;
 import com.student.models.LoginData;
 import com.student.models.mLoginUserData;
 import com.student.Utils.SharedPreferencesManager;
 import com.student.rentals.R;
+import com.student.rentals.R.id;
+import com.student.rentals.R.layout;
+import com.student.rentals.R.string;
 import com.student.rentals.ui.activities.LoginActivity.ViewModel.LoginViewModel;
 import com.student.rentals.ui.activities.MainActivity;
-import com.student.rentals.ui.activities.SignUp.view.SignUpActivity;
+import com.student.rentals.ui.activities.signUp.view.SignUpActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,30 +28,37 @@ import butterknife.OnClick;
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
     private SharedPreferencesManager preferencesManager;
-    @BindView(R.id.input_email)
-    EditText email;
-    @BindView(R.id.input_password)
+    @BindView(id.input_email)
+    EditText emailadress;
+    @BindView(id.input_password)
     EditText password;
-     LoginViewModel viewModel;
+    LoginViewModel viewModel;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d(TAG, getResources().getString(R.string.on_create));
-        viewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
-        preferencesManager = new SharedPreferencesManager(this);
-        setContentView(R.layout.activity_login);
+        Log.d(LoginActivity.TAG, this.getResources().getString(string.on_create));
+        this.viewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
+        this.preferencesManager = new SharedPreferencesManager(this);
+        this.setContentView(layout.activity_login);
         ButterKnife.bind(this);
     }
 
-    @OnClick(R.id.link_signup)
-    public void signup(){
-        startNewIntent(new Intent(getBaseContext(), SignUpActivity.class));
+    @OnClick(id.link_signup)
+    public void signup() {
+        this.startNewIntent(new Intent(this.getBaseContext(), SignUpActivity.class));
     }
 
-    @OnClick(R.id.btn_login)
-        public void login(){
-        isLogginSuccess(new LoginData(email.getText().toString().trim(), password.getText().toString().trim()));
+    @OnClick(id.btn_login)
+    public void login() {
+        final String email = this.emailadress.getText().toString().trim();
+        final String passwrd = this.password.getText().toString().trim();
+
+        if ( !email.isEmpty() && !passwrd.isEmpty() && email != null && passwrd != null && this.isEmailValid(email)) {
+            this.isLogginSuccess(new LoginData(email, passwrd));
+        }else {
+            this.password.setError("Invalid Email or Password !!!");
+        }
 
 
     }
@@ -60,7 +71,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        Log.d(TAG, getResources().getString(R.string.on_start));
+        Log.d(LoginActivity.TAG, this.getResources().getString(string.on_start));
     }
 
     /**
@@ -70,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d(TAG, getResources().getString(R.string.on_resume));
+        Log.d(LoginActivity.TAG, this.getResources().getString(string.on_resume));
     }
 
     /**
@@ -79,7 +90,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        Log.d(TAG, getResources().getString(R.string.on_pause));
+        Log.d(LoginActivity.TAG, this.getResources().getString(string.on_pause));
     }
 
     /**
@@ -88,7 +99,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        Log.d(TAG, getResources().getString(R.string.on_stop));
+        Log.d(LoginActivity.TAG, this.getResources().getString(string.on_stop));
     }
 
     /**
@@ -97,40 +108,44 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.d(TAG, getResources().getString(R.string.on_destroy));
+        Log.d(LoginActivity.TAG, this.getResources().getString(string.on_destroy));
     }
 
     /**
      * Call this function with @param loginData
-     * **/
-    private void isLogginSuccess(LoginData loginData){
-        viewModel.loginWithCredentials(loginData).observe(this, new Observer<mLoginUserData>() {
+     **/
+    private void isLogginSuccess(final LoginData loginData) {
+        this.viewModel.loginWithCredentials(loginData).observe(this, new Observer<mLoginUserData>() {
 
-                /**
-                 * Called when the data is changed.
-                 *
-                 * @param mLoginUserData The new data
-                 */
-                @Override
-                public void onChanged(mLoginUserData mLoginUserData) {
-                  if (mLoginUserData != null){
-                      preferencesManager.put(SharedPreferencesManager.Key.ACCESS_TOKEN_ID, mLoginUserData.getAccessToken());
-                      preferencesManager.put(SharedPreferencesManager.Key.LOGGED_IN_USERID, mLoginUserData.getUId());
-                      preferencesManager.put(SharedPreferencesManager.Key.LOGGED_IN_USEREMAIL, mLoginUserData.getMail());
-                      preferencesManager.put(SharedPreferencesManager.Key.IS_USER_LOGGED_IN, true);
-                      startNewIntent(new Intent(getBaseContext(), MainActivity.class));
-                  }
-                  else {
+            /**
+             * Called when the data is changed.
+             *
+             * @param mLoginUserData The new data
+             */
+            @Override
+            public void onChanged(final mLoginUserData mLoginUserData) {
+                if (mLoginUserData.getAccessToken() != null || !! mLoginUserData.getAccessToken().isEmpty()) {
+                    LoginActivity.this.preferencesManager.put(Key.ACCESS_TOKEN_ID, mLoginUserData.getAccessToken());
+                    LoginActivity.this.preferencesManager.put(Key.LOGGED_IN_USERID, mLoginUserData.getUId());
+                    LoginActivity.this.preferencesManager.put(Key.LOGGED_IN_USEREMAIL, mLoginUserData.getMail());
+                    LoginActivity.this.preferencesManager.put(Key.IS_USER_LOGGED_IN, true);
+                    LoginActivity.this.startNewIntent(new Intent(LoginActivity.this.getBaseContext(), MainActivity.class));
+                } else {
 
-                  }
-                    }
+                }
+            }
 
 
         });
 
     }
-    private void startNewIntent(Intent intent){
-        startActivity(intent);
-        this.finish();
+
+    private void startNewIntent(final Intent intent) {
+        this.startActivity(intent);
+        finish();
+    }
+
+    public Boolean isEmailValid(final String email) {
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 }

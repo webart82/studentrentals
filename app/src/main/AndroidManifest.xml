@@ -47,7 +47,7 @@
             android:name=".ui.activities.MapViewActivity"
             android:label="@string/title_activity_map_view" />
         <activity android:name=".ui.activities.mediacontents.view.CustomPhotoGalleryActivity"/>
-        <activity android:name=".ui.activities.SignUp.view.SignUpActivity" />
+        <activity android:name=".ui.activities.signUp.view.SignUpActivity" />
         <activity android:name=".ui.activities.LoginActivity.View.LoginActivity" />
         <activity android:name=".ui.activities.MainActivity" />
         <activity android:name=".ui.activities.ViewPropertyActivity" />
