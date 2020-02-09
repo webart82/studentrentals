@@ -56,6 +56,7 @@ public class HomeFragment extends Fragment {
 
                 createList(pApartmentData.getData());
             }
+
         });
     }
 

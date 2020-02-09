@@ -80,6 +80,10 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="cancel">cancel</string>
     <string name="agree">Agree</string>
+    <string name="username">Username</string>
+    <string name="title">Title</string>
+    <string name="job_title">Job Title</string>
+    <string name="update_profile">Update profile</string>
 
 
 </resources>
