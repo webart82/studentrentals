@@ -1,7 +1,10 @@
 package com.student.Api;
 
+import android.content.Context;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.student.ApplicationContext;
 import com.student.Utils.Constants;
 
 import okhttp3.OkHttpClient;
@@ -10,8 +13,10 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
-    public  ApiClient provideApiClient(){
-        return new ApiClient();
+    Context context;
+
+    public  ApiClient (Context context){
+        this.context = context;
     }
 
     private static Retrofit retrofit;

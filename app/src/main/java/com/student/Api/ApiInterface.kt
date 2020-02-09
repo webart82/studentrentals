@@ -4,10 +4,7 @@ import androidx.lifecycle.LiveData
 import com.student.models.*
 import com.student.rentals.ui.activities.signUp.model.SignUpData
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface ApiInterface {
 
@@ -28,6 +25,9 @@ interface ApiInterface {
 
     @POST("auth/")
     fun postForSignUp(@Body signUpData: SignUpData):Call<mLoginUserData>
+
+    @PATCH("users/{id}")
+    fun postToUpdateProfile(@Body userProfileData: UserProfileData, @Path("id") userId: String):Call<DUserData>
 
 
 }

@@ -1,16 +1,15 @@
 package com.student.rentals.ui.fragments.profile_fragment
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import butterknife.ButterKnife
-import butterknife.OnClick
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
@@ -18,13 +17,11 @@ import com.bumptech.glide.request.transition.DrawableCrossFadeFactory
 import com.student.Utils.Constants
 import com.student.Utils.GlideApp
 import com.student.Utils.SharedPreferencesManager
-import com.student.models.DUserData
 import com.student.rentals.R
 import com.student.rentals.databinding.ProfileFragmentBinding
-import com.student.rentals.ui.activities.mediacontents.view.MediaContentsActivity
+import com.student.rentals.ui.dialogs.CustomDialogFragment
+import com.student.rentals.ui.dialogs.UpdateProfileDialog
 import kotlinx.android.synthetic.main.activity_land_loard_profile.*
-import kotlinx.android.synthetic.main.item_property_owner_profile.view.*
-import kotlin.properties.Delegates
 
 
 class ProfileFragment : Fragment() {
@@ -36,7 +33,6 @@ class ProfileFragment : Fragment() {
     private lateinit var sharedPreferencesManager: SharedPreferencesManager
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
         binding = ProfileFragmentBinding.inflate(inflater, container, false)
         sharedPreferencesManager = SharedPreferencesManager(activity)
         ButterKnife.bind(this, binding.root)
@@ -57,6 +53,18 @@ class ProfileFragment : Fragment() {
                 binding.userData = mUsers
                 binding.addressData = mUsers?.addresses
             })
+    }
+
+    override fun onResume() {
+        super.onResume()
+        profile_edit.setOnClickListener(){
+            val ft: FragmentTransaction =
+                (activity as AppCompatActivity?)!!.supportFragmentManager.beginTransaction()
+            val nInstance = UpdateProfileDialog.newInstance()
+            nInstance.show(ft,"UPDATE_PROFILE")
+
+        }
+
     }
 
     fun updateUI(dp: String?) {
