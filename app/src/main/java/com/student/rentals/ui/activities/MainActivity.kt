@@ -64,6 +64,7 @@ class MainActivity : AppBaseActivity() {
                 loadFragment(ProfileFragment())
                 toobar_add.visibility = View.VISIBLE
                 return@OnNavigationItemSelectedListener true
+
             }
         }
         false

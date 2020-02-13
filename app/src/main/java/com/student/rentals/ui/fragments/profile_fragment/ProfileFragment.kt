@@ -19,9 +19,10 @@ import com.student.Utils.GlideApp
 import com.student.Utils.SharedPreferencesManager
 import com.student.rentals.R
 import com.student.rentals.databinding.ProfileFragmentBinding
-import com.student.rentals.ui.dialogs.CustomDialogFragment
 import com.student.rentals.ui.dialogs.UpdateProfileDialog
+import com.student.rentals.ui.dialogs.uploadsContentDialog.view.uploadsContentDialog
 import kotlinx.android.synthetic.main.activity_land_loard_profile.*
+import timber.log.Timber
 
 
 class ProfileFragment : Fragment() {
@@ -46,26 +47,29 @@ class ProfileFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        model.getProfileData(sharedPreferencesManager.getString(SharedPreferencesManager.Key.LOGGED_IN_USERID).toString().trim())!!.observe(
-            viewLifecycleOwner,
-            Observer { mUsers ->
-                updateUI(mUsers?.thumbNail)
-                binding.userData = mUsers
-                binding.addressData = mUsers?.addresses
-            })
     }
 
     override fun onResume() {
         super.onResume()
+        fetchData()
         profile_edit.setOnClickListener(){
             val ft: FragmentTransaction =
                 (activity as AppCompatActivity?)!!.supportFragmentManager.beginTransaction()
             val nInstance = UpdateProfileDialog.newInstance()
             nInstance.show(ft,"UPDATE_PROFILE")
 
+
+        }
+
+        profile_upload.setOnClickListener(){
+            val ft: FragmentTransaction =
+                (activity as AppCompatActivity?)!!.supportFragmentManager.beginTransaction()
+            val nInstance = uploadsContentDialog.newInstance()
+            nInstance.show(ft,"UPDATE_PROFILE")
         }
 
     }
+
 
     fun updateUI(dp: String?) {
         val factory = DrawableCrossFadeFactory.Builder().setCrossFadeEnabled(true).build()
@@ -80,4 +84,18 @@ class ProfileFragment : Fragment() {
             .into(profile_image)
     }
 
+
+
+    open fun fetchData(){
+        p_profile_layout.visibility = View.INVISIBLE
+        model.getProfileData(sharedPreferencesManager.getString(SharedPreferencesManager.Key.LOGGED_IN_USERID).toString().trim())!!.observe(
+            viewLifecycleOwner,
+            Observer { mUsers ->
+                p_profile_layout.visibility = View.VISIBLE
+                pprogress_bar.visibility = View.INVISIBLE
+                updateUI(mUsers?.thumbNail)
+                binding.userData = mUsers
+                binding.addressData = mUsers?.addresses
+            })
+    }
 }

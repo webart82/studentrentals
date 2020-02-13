@@ -4,9 +4,10 @@
     xmlns:bind="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="addressData"
-            type="com.student.models.DAddressData"/>
+            type="com.student.models.DAddressData" />
 
         <variable
             name="userData"
@@ -15,106 +16,128 @@
 
 
     <RelativeLayout
-        android:id="@+id/layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-
-        <ImageView
-            android:id="@+id/header_cover_image"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:scaleType="centerCrop"
-
-            android:src="@drawable/nav_menu_header_bg"
-            app:srcCompat="@drawable/nav_menu_header_bg" />
-
-        <ImageView
-            android:id="@+id/profile_image"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_below="@+id/header_cover_image"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="-130dp"
-            android:elevation="5dp"
-            android:padding="20dp"
-            android:scaleType="centerCrop" />
+        <ProgressBar
+            android:id="@+id/pprogress_bar"
+            style="@android:style/Widget.Holo.Light.ProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:progress="25"
+            android:visibility="visible" />
 
         <RelativeLayout
-            android:id="@+id/profile_layout"
+            android:id="@+id/p_profile_layout"
+            android:visibility="visible"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/header_cover_image"
-            android:background="#213F41"
-            android:elevation="4dp"
-            android:paddingBottom="24dp">
-
+            android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/profile_edit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginRight="16dp"
+                android:id="@+id/header_cover_image"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:scaleType="centerCrop"
 
+                android:src="@drawable/nav_menu_header_bg"
+                app:srcCompat="@drawable/nav_menu_header_bg" />
 
-                android:src="@android:drawable/ic_menu_edit" />
-
-            <TextView
-                android:id="@+id/name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <ImageView
+                android:id="@+id/profile_image"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_below="@+id/header_cover_image"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="70dp"
-                android:text="@{userData.fullName, default=@string/ipsum}"
-                android:textColor="#fff"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:layout_marginTop="-130dp"
+                android:elevation="5dp"
+                android:padding="20dp"
+                android:scaleType="centerCrop" />
 
-            <TextView
-                android:id="@+id/location"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:id="@+id/profile_layout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/designation"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
-                android:text="@{userData.title, default=@string/ipsum}"
-                android:textColor="#fff"
-                android:textSize="16sp" />
+                android:layout_below="@+id/header_cover_image"
+                android:background="#213F41"
+                android:elevation="4dp"
+                android:paddingBottom="24dp">
 
-            <TextView
-                android:id="@+id/designation"
-                android:layout_width="wrap_content"
+
+                <ImageView
+                    android:id="@+id/profile_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp"
+                    android:src="@android:drawable/ic_menu_edit" />
+
+                <ImageView
+                    android:id="@+id/profile_upload"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_below="@id/profile_edit"
+                    android:src="@android:drawable/ic_input_add" />
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="70dp"
+                    android:text="@{userData.fullName, default=@string/ipsum}"
+                    android:textColor="#fff"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/designation"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:text="@{userData.email, default=@string/ipsum}"
+                    android:textColor="#fff"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/designation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/name"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:text="@{userData.userName, default=@string/ipsum}"
+                    android:textColor="#fff"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/name"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
-                android:text="@{userData.userName, default=@string/ipsum}"
-                android:textColor="#fff"
-                android:textSize="18sp" />
+                android:layout_below="@+id/profile_layout"
+                android:orientation="vertical">
+                <include
+                    layout="@layout/item_property_owner_profile_address"
+                    bind:userAddress="@{addressData}" />
+                <include
+                    android:id="@+id/profile_infos"
+                    layout="@layout/item_property_owner_profile_contents"
+                    bind:userData="@{userData}" />
+
+
+
+            </LinearLayout>
         </RelativeLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/profile_layout"
-            android:orientation="vertical">
-
-            <include
-                android:id="@+id/profile_infos"
-                layout="@layout/item_property_owner_profile_contents"
-                bind:userData="@{userData}"
-                />
-
-            <include
-                layout="@layout/item_property_owner_profile_address"
-                bind:userAddress="@{addressData}" />
-
-        </LinearLayout>
     </RelativeLayout>
 
 </layout>

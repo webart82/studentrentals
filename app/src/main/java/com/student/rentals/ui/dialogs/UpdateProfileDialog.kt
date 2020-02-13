@@ -1,6 +1,7 @@
 package com.student.rentals.ui.dialogs
 
 import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,14 +11,15 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import com.student.Utils.SharedPreferencesManager
-import com.student.models.DUserData
 import com.student.models.UserProfileData
 import com.student.rentals.R
+import com.student.rentals.ui.fragments.profile_fragment.ProfileFragment
 import com.student.rentals.ui.fragments.profile_fragment.ProfileViewModel
 import kotlinx.android.synthetic.main.fragment_update_profile.*
 import timber.log.Timber
 import java.util.*
 import kotlin.concurrent.schedule
+
 
 /**
  * Copyright (c) $today.year.
@@ -65,6 +67,11 @@ class UpdateProfileDialog : DialogFragment() {
         Timber.d(resources.getString(R.string.on_attach))
     }
 
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+        Timber.d("DiALOG DISMISSED")
+
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -93,10 +100,7 @@ class UpdateProfileDialog : DialogFragment() {
         val userdata = UserProfileData(username,firstname,lastname,email,about,title,jobtitle)
         viewModel.updateProfile(preferencesManager!!.getString(SharedPreferencesManager.Key.LOGGED_IN_USERID), userdata)!!
             .observe(viewLifecycleOwner, Observer { DUserData ->
-                Timber.d(DUserData.toString())
-                Timer().schedule(5000) {
-                    p_progress_bar.visibility = View.INVISIBLE
-                    txt_alert.visibility =View.INVISIBLE
+                Timer().schedule(3000) {
                     dismiss()
                 }
             })
