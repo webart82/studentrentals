@@ -63,8 +63,6 @@ public class HomeFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable final Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-
     }
 
     private void createList(List<ApartmentData> apartmentData) {

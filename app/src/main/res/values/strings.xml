@@ -25,6 +25,8 @@
     <string name="on_pause">On pause</string>
     <string name="on_destroy_view">On destroy view</string>
     <string name="on_detach">On Detach</string>
+    <string name="on_cancel">On Cancel</string>
+    <string name="on_view_created">On View Created</string>
 
     <string name="ipsum">Ipsum Ipsum</string>
 
