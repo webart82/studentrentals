@@ -20,11 +20,13 @@ import timber.log.Timber;
 public class HomeViewModel extends ViewModel {
 
     @Inject
-    public HomeViewModel(){}
+    public HomeViewModel() {
+    }
+
     /**
      * this is the data that we will fetch asynchronously
      **/
-    private MutableLiveData<pApartmentData> dataList = new MutableLiveData<pApartmentData>();
+    private MutableLiveData<pApartmentData> dataList;
     ApiInterface apiInterface = ApiClient.getInstance().create(ApiInterface.class);
 
 
@@ -33,17 +35,10 @@ public class HomeViewModel extends ViewModel {
      **/
 
     public LiveData<pApartmentData> getRoomsList() {
-        //if the list is null
-
-            /**
-             * we will load it asynchronously from server in this method
-             * **/
+        if (dataList == null) {
+            dataList = new MutableLiveData<pApartmentData>();
             loadDatas();
-
-
-        /**
-         * finally we will return the list data's
-         */
+        }
         return dataList;
     }
 
@@ -57,7 +52,7 @@ public class HomeViewModel extends ViewModel {
             @Override
             public void onResponse(Call<pApartmentData> call, retrofit2.Response<pApartmentData> response) {
                 dataList.setValue(response.body());
-                Timber.d("HomeView Model"+response.body().toString());
+                Timber.d("HomeView Model" + response.body().toString());
             }
 
             @Override

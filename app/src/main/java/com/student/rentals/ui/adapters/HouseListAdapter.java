@@ -53,9 +53,10 @@ public class HouseListAdapter extends Adapter<ViewHolder> {
     private List<ApartmentData> aData = new ArrayList<>();
 
 
-    public HouseListAdapter(final Context context) {
+    public HouseListAdapter(final Context context,final List<ApartmentData> aData) {
         this.layoutInflater = LayoutInflater.from(context);
         this.context = context;
+        this.aData = aData;
     }
 
     @NonNull
@@ -92,10 +93,7 @@ public class HouseListAdapter extends Adapter<ViewHolder> {
         return this.aData.size();
     }
 
-    public void addItems(final List<ApartmentData> aData) {
-        this.aData = aData;
-        this.notifyDataSetChanged();
-    }
+
 
     class ViewHolder extends RecyclerView.ViewHolder implements OnClickListener, OnLongClickListener {
         @BindView(id.house_location)

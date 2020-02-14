@@ -13,10 +13,8 @@ import retrofit2.Response
 import timber.log.Timber
 
 class ListItemsViewModel : ViewModel() {
-    /**
-     * this is the data that we will fetch asynchronously
-     */
-    private val dataList = MutableLiveData<mUsers?>()
+
+    private var dataList: MutableLiveData<mUsers?>? = null
     var apiInterface = ApiClient.getInstance().create(
         ApiInterface::class.java
     )
@@ -26,10 +24,11 @@ class ListItemsViewModel : ViewModel() {
      * we will call this method to get the data
      */
     fun getUsersList(): LiveData<mUsers?>? { //if the list is null
-        /**
-         * we will load it asynchronously from server in this method
-         */
-        loadDatas()
+        if(dataList == null){
+            dataList = MutableLiveData<mUsers?>()
+            loadDatas()
+        }
+
         /**
          * finally we will return the list data's
          */
@@ -46,7 +45,7 @@ class ListItemsViewModel : ViewModel() {
                 call: Call<mUsers>,
                 response: Response<mUsers>
             ) {
-                dataList.value = response.body()
+                dataList?.value = response.body()
                 Timber.d("HomeView Model" + response.body().toString())
             }
 
