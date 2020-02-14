@@ -74,10 +74,23 @@ dependencies {
     implementation "org.koin:koin-core-ext:$koin_version"
     // or Koin for view model features
     implementation "org.koin:koin-android-viewmodel:$koin_version"
-    implementation "androidx.fragment:fragment-ktx:1.2.0"
+    implementation "androidx.fragment:fragment-ktx:1.2.1"
 
     //Chrome customTabs
     implementation 'androidx.browser:browser:1.2.0'
     implementation 'com.jakewharton.timber:timber:4.7.1'
 
+    //Dagger2
+    implementation "com.google.dagger:dagger:$dagger2_version"
+    implementation "com.google.dagger:dagger-android:$dagger2_version"
+    implementation "com.google.dagger:dagger-android-support:$dagger2_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger2_version"
+    kapt "com.google.dagger:dagger-android-processor:$dagger2_version"
+    annotationProcessor "com.google.dagger:dagger-compiler:$dagger2_version"
+    compileOnly 'javax.annotation:jsr250-api:1.0'
+    implementation 'javax.inject:javax.inject:1'
+
+}
+kapt {
+    generateStubs = true
 }

@@ -11,12 +11,16 @@ import com.student.models.pApartmentData;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import timber.log.Timber;
 
 public class HomeViewModel extends ViewModel {
 
+    @Inject
+    public HomeViewModel(){}
     /**
      * this is the data that we will fetch asynchronously
      **/

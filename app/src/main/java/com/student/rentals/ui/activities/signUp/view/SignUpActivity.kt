@@ -5,29 +5,34 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import com.student.ApplicationContext
 import com.student.Utils.SharedPreferencesManager
 import com.student.rentals.R
 import com.student.rentals.ui.activities.LoginActivity.View.LoginActivity
+import com.student.rentals.ui.activities.LoginActivity.ViewModel.LoginViewModel
 import com.student.rentals.ui.activities.MainActivity
 import com.student.rentals.ui.activities.signUp.ViewModel.SignUpViewModel
 import com.student.rentals.ui.activities.signUp.model.SignUpData
 import kotlinx.android.synthetic.main.activity_sign_up.*
-import kotlinx.coroutines.delay
 import timber.log.Timber
 import java.util.*
+import javax.inject.Inject
 import kotlin.concurrent.schedule
 
 class SignUpActivity : AppCompatActivity() {
 
     private var preferencesManager: SharedPreferencesManager? = null
-    private var viewModel: SignUpViewModel? = null
+
+
+    var viewModel: SignUpViewModel? = null
+        @Inject set
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        (applicationContext as ApplicationContext).appComponent.inject(this)
         super.onCreate(savedInstanceState)
         Timber.d(resources.getString(R.string.on_create))
         setContentView(R.layout.activity_sign_up)
         preferencesManager = SharedPreferencesManager(this)
-        viewModel = ViewModelProvider(this).get(SignUpViewModel::class.java)
     }
 
 
@@ -52,13 +57,13 @@ class SignUpActivity : AppCompatActivity() {
             if (!isEmailValid(email)) input_email.setError("Invalid Email address !!!")
             //btn_signup.isEnabled = false
             if (isValidPassword(password, cpassword) && password.length >= 8)
-            input_confirm_password.setError("Invalid password")
+                input_confirm_password.setError("Invalid password")
             if (isValidPassword(password, cpassword) && isEmailValid(email)
             ) {
                 SignUp(SignUpData(email, password))
             }
         }
-        link_login.setOnClickListener(){
+        link_login.setOnClickListener() {
             startActivity(Intent(this, LoginActivity::class.java))
         }
     }
@@ -88,7 +93,7 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     fun isValidPassword(password: String, repass: String): Boolean {
-        return  password.equals(repass)
+        return password.equals(repass)
     }
 
     private fun SignUp(signUpData: SignUpData) {
