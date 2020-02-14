@@ -6,6 +6,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.student.ApplicationContext
 import com.student.rentals.R
 import com.student.rentals.ui.AppBaseActivity
 import com.student.rentals.ui.fragments.home_fragment.HomeFragment
@@ -18,6 +19,8 @@ import timber.log.Timber
 class MainActivity : AppBaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        (applicationContext as ApplicationContext).appComponent.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
