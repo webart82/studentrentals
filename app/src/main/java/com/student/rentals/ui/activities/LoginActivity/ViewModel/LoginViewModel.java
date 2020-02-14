@@ -11,12 +11,17 @@ import com.student.Api.ApiInterface;
 import com.student.models.LoginData;
 import com.student.models.mLoginUserData;
 
+import javax.inject.Inject;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 
 public class LoginViewModel extends ViewModel {
     private static final String TAG = "LoginViewModel";
 
+    @Inject
+    public LoginViewModel(){}
+    
     /**
      * this is the data that we will fetch asynchronously
      **/

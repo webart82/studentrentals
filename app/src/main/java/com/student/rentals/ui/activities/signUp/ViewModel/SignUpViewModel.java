@@ -12,11 +12,16 @@ import com.student.models.LoginData;
 import com.student.models.mLoginUserData;
 import com.student.rentals.ui.activities.signUp.model.SignUpData;
 
+import javax.inject.Inject;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 
 public class SignUpViewModel extends ViewModel {
     private static final String TAG = "LoginViewModel";
+
+    @Inject
+    public SignUpViewModel(){}
 
     /**
      * this is the data that we will fetch asynchronously

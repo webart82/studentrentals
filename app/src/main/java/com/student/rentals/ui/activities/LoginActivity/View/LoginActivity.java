@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
 
+import com.student.ApplicationContext;
 import com.student.Utils.SharedPreferencesManager.Key;
 import com.student.models.LoginData;
 import com.student.models.mLoginUserData;
@@ -21,6 +22,8 @@ import com.student.rentals.ui.activities.LoginActivity.ViewModel.LoginViewModel;
 import com.student.rentals.ui.activities.MainActivity;
 import com.student.rentals.ui.activities.signUp.view.SignUpActivity;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -32,13 +35,14 @@ public class LoginActivity extends AppCompatActivity {
     EditText emailadress;
     @BindView(id.input_password)
     EditText password;
+    @Inject
     LoginViewModel viewModel;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
+        ((ApplicationContext)getApplicationContext()).appComponent.inject(this);
         super.onCreate(savedInstanceState);
         Log.d(LoginActivity.TAG, this.getResources().getString(string.on_create));
-        this.viewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
         this.preferencesManager = new SharedPreferencesManager(this);
         this.setContentView(layout.activity_login);
         ButterKnife.bind(this);

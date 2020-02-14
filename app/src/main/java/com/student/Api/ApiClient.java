@@ -4,24 +4,29 @@ import android.content.Context;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.student.ApplicationContext;
 import com.student.Utils.Constants;
+import com.student.di.ApplicationScope;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
+import dagger.Module;
+import dagger.Provides;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-
+@Module
 public class ApiClient {
     Context context;
 
-    public  ApiClient (Context context){
-        this.context = context;
-    }
+
 
     private static Retrofit retrofit;
     private static OkHttpClient client;
     public static String BASE_URL = Constants.INSTANCE.getBASE_URL();
+    @Singleton
+    @Provides
     public static Retrofit getInstance() {
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
