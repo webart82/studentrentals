@@ -15,8 +15,8 @@ class ProfileViewModel : ViewModel() {
     /**
      * this is the data that we will fetch asynchronously
      */
-    private val dataList = MutableLiveData<DUserData?>()
-    private val dUserData = MutableLiveData<DUserData?>()
+    private var dataList: MutableLiveData<DUserData?>?= null
+    private var dUserData = MutableLiveData<DUserData?>()
     var apiInterface = ApiClient.getInstance().create(
         ApiInterface::class.java
     )
@@ -26,10 +26,10 @@ class ProfileViewModel : ViewModel() {
      * we will call this method to get the data
      */
     fun getProfileData(uId:String): LiveData<DUserData?>? { //if the list is null
-        /**
-         * we will load it asynchronously from server in this method
-         */
-        loadDatas(uId)
+        if(dataList == null) {
+            dataList = MutableLiveData<DUserData?>()
+            loadDatas(uId)
+        }
         /**
          * finally we will return the list data's
          */
@@ -58,7 +58,7 @@ class ProfileViewModel : ViewModel() {
         val call = apiInterface.getLoggedInUserProfile(userId)
         call.enqueue(object : Callback<DUserData> {
             override fun onResponse(call: Call<DUserData>, response: Response<DUserData>) {
-                dataList.value = response.body()
+                dataList?.value = response.body()
             }
 
             override fun onFailure(
