@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.student.Api.ApiClient;
 import com.student.Api.ApiInterface;
+import com.student.Api.NetworkModule;
 import com.student.models.mApartmentData;
 import com.student.models.pApartmentData;
 
@@ -18,21 +19,10 @@ import retrofit2.Callback;
 import timber.log.Timber;
 
 public class HomeViewModel extends ViewModel {
+    @Inject public HomeViewModel() { }
+    @Inject NetworkModule networkModule;
 
-    @Inject
-    public HomeViewModel() {
-    }
-
-    /**
-     * this is the data that we will fetch asynchronously
-     **/
     private MutableLiveData<pApartmentData> dataList;
-    ApiInterface apiInterface = ApiClient.getInstance().create(ApiInterface.class);
-
-
-    /**
-     * we will call this method to get the data
-     **/
 
     public LiveData<pApartmentData> getRoomsList() {
         if (dataList == null) {
@@ -42,12 +32,10 @@ public class HomeViewModel extends ViewModel {
         return dataList;
     }
 
-    /**
-     * This method is using Retrofit to get the JSON data from URL
-     **/
+
     private void loadDatas() {
 
-        Call<pApartmentData> call = apiInterface.getAllApartments();
+        Call<pApartmentData> call = new NetworkModule().getApiClient().getAllApartments();
         call.enqueue(new Callback<pApartmentData>() {
             @Override
             public void onResponse(Call<pApartmentData> call, retrofit2.Response<pApartmentData> response) {

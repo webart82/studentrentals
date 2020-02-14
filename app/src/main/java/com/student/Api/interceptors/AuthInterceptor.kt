@@ -1,6 +1,5 @@
-package com.student.Api
+package com.student.Api.interceptors
 
-import android.content.Context
 import com.student.ApplicationContext
 import com.student.Utils.SharedPreferencesManager
 import okhttp3.Interceptor

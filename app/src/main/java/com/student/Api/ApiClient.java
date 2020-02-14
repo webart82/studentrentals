@@ -4,8 +4,8 @@ import android.content.Context;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.student.Api.interceptors.AuthInterceptor;
 import com.student.Utils.Constants;
-import com.student.di.ApplicationScope;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -20,6 +20,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiClient {
     Context context;
 
+    @Inject
+    public  ApiClient(){
+        return;
+    }
 
 
     private static Retrofit retrofit;
