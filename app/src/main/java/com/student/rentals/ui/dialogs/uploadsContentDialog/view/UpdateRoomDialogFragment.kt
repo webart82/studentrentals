@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import androidx.core.view.isVisible
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
@@ -24,6 +25,8 @@ import kotlinx.android.synthetic.main.update_room_data.*
 import kotlinx.android.synthetic.main.uploaded_list.*
 import timber.log.Timber
 import java.lang.Integer.parseInt
+import java.util.*
+import kotlin.concurrent.schedule
 
 /**
  * Copyright (c) $today.year.
@@ -34,8 +37,7 @@ import java.lang.Integer.parseInt
 class UpdateRoomDialogFragment : DialogFragment() {
     private var content: String? = null
     private var u: RoomData? = null
-    private val model: UploadsViewModel by activityViewModels()
-
+    private val viewModel: UploadsViewModel by activityViewModels()
     private lateinit var binding: UpdateRoomDataBinding
     private var preferencesManager: SharedPreferencesManager? = null
     override fun getTheme(): Int {
@@ -57,7 +59,11 @@ class UpdateRoomDialogFragment : DialogFragment() {
         retainInstance = true
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         binding = UpdateRoomDataBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -66,6 +72,7 @@ class UpdateRoomDialogFragment : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         Timber.d(resources.getString(R.string.on_view_created))
         updateUI(u)
+        Timber.d(u.toString())
 
     }
 
@@ -76,6 +83,18 @@ class UpdateRoomDialogFragment : DialogFragment() {
         params.width = LinearLayout.LayoutParams.WRAP_CONTENT
         params.height = LinearLayout.LayoutParams.WRAP_CONTENT
         dialog?.window?.attributes = params as android.view.WindowManager.LayoutParams
+
+        icon_edit.setOnClickListener {
+            txtable_layout.isVisible = !txtable_layout.isVisible
+            txtedt_layout.isVisible = !txtedt_layout.isVisible
+            btn_save.isVisible = !btn_save.isVisible
+        }
+        btn_cancel.setOnClickListener {
+            dismiss()
+        }
+        btn_save.setOnClickListener {
+            editRoomData()
+        }
 
     }
 
@@ -92,21 +111,26 @@ class UpdateRoomDialogFragment : DialogFragment() {
     private fun updateUI(roomData: RoomData?) {
         binding.roomd = roomData
     }
-    private fun editRoomData(){
+
+    private fun editRoomData() {
         var data = RoomData(
-            txt_name.text.toString().trim(),
-            txt_title.text.toString().trim(),
-            txt_desc.text.toString().trim(),
-            txt_size.text.toString().trim(),
-            parseInt(txt_total.text.toString().trim()))
-        model.updateRoom(data, u?._id).observe(viewLifecycleOwner, Observer {
-            u = it
+            edt_name.text.toString().trim(),
+            edt_title.text.toString().trim(),
+            edt_desc.text.toString().trim(),
+            edt_size.text.toString().trim(),
+            parseInt(edt_total.text.toString().trim())
+        )
+        viewModel.updateRoom(data, u?._id)?.observe(viewLifecycleOwner, Observer { RoomData ->
+            Timer().schedule(3000) {
+                dismiss()
+            }
+
         })
     }
 
     companion object {
 
-        fun newInstance(content: String, bundle:Bundle): UpdateRoomDialogFragment {
+        fun newInstance(content: String, bundle: Bundle): UpdateRoomDialogFragment {
             val f = UpdateRoomDialogFragment()
             val args = bundle
             var data = bundle.getParcelable<RoomData>(Constants.PARCEL_KEY)

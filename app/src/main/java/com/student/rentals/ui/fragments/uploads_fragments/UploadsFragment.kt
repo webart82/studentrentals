@@ -36,8 +36,8 @@ class UploadsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel!!.getRoomsList(preferencesManager.getString(SharedPreferencesManager.Key.LOGGED_IN_USERID))
-            .observe(viewLifecycleOwner,
-                Observer { (_, _, data) -> createList(data) })
+            .observe(viewLifecycleOwner, Observer {
+                createList(it?.data) })
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -46,7 +46,9 @@ class UploadsFragment : Fragment() {
 
     private fun createList(apartmentData: List<ApartmentData>?) {
         my_uploads_recycler_view.layoutManager = LinearLayoutManager(context)
-
+        my_uploads_recycler_view.isNestedScrollingEnabled = false
+        my_uploads_recycler_view.setHasFixedSize(true)
+        my_uploads_recycler_view.setItemViewCacheSize(20)
         my_uploads_recycler_view!!.adapter = UploadsListAdapter(activity, apartmentData)
         my_uploads_recycler_view.visibility = View.INVISIBLE
         my_uploads_recycler_view!!.visibility = View.VISIBLE
