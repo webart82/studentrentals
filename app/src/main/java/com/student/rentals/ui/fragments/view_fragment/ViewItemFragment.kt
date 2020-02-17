@@ -24,7 +24,6 @@ import timber.log.Timber
 class ViewItemFragment : Fragment() {
     /**Fragment is attached to the host Activity**/
     private var viewModel: ViewItemViewModel? = null
-    //private val sharedPreferences: SharedPreferencesManager = SharedPreferencesManager(get)
 
     val TAG = "ViewItemFragment"
     override fun onAttach(context: Context) {
@@ -59,65 +58,6 @@ class ViewItemFragment : Fragment() {
             .apply(RequestOptions.circleCropTransform())
             .into(property_owner_dp)
 
-//        table_method_bank.setOnClickListener(){
-//            val dialog = TermsAndConditionsDialog(context!!)
-//            dialog.show()
-//
-//        }
-
-        /** property_bedrooms.setOnClickListener(){
-        val dialog = Dialog(context!!)
-        val houses: ArrayList<String> = ArrayList()
-        for (i in 0..10){
-        houses.add("House: " +i)
-        }
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setContentView(R.layout.item_property_rooms)
-        dialog.recycler_rooms_images.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        dialog.recycler_rooms_images.adapter = RoomsImagesAdapter(houses, requireContext(), onItemClick = { view, catgory -> Unit})
-
-        dialog.show()
-        dialog.window?.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT)
-        }
-
-         **/
-
-        /** Call Property owner/ broker **
-        property_owner_dp.setOnClickListener() {
-        var dialog = CustomDialogFragment()
-
-
-        val dialog = Dialog(context!!)
-
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setContentView(R.layout.item_property_popup_profile)
-        var url = "https://i.pinimg.com/originals/be/ac/96/beac96b8e13d2198fd4bb1d5ef56cdcf.jpg"
-        viewModel?.getProfileData(1)?.observe(viewLifecycleOwner, Observer{ user ->
-        Timber.d(user.toString())
-
-        })
-
-
-
-
-
-        GlideApp
-        .with(this)
-        .load(url)
-        .apply(RequestOptions.circleCropTransform())
-        .placeholder(R.drawable.photo)
-        .into(dialog.popup_profile_image)
-        dialog.popup_profile_edit.setOnClickListener{
-        openActivity()
-        }
-
-        dialog.show()
-        dialog.window?.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT)
-
-
-
-        }
-         **/
         item_property_scrollview.viewTreeObserver
             .addOnScrollChangedListener {
                 if (item_property_scrollview.getChildAt(0).getBottom()

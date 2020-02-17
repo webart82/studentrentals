@@ -52,6 +52,7 @@
         <activity android:name=".ui.activities.MainActivity" />
         <activity android:name=".ui.activities.ViewPropertyActivity" />
         <activity android:name=".ui.activities.LandLoadProfileActivity" />
+        <activity android:name=".ui.activities.ViewUploadActivity" />
     </application>
 
 </manifest>

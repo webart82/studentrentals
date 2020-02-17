@@ -1,6 +1,6 @@
 package com.student.di.subcomponents;
 
-import com.student.di.PerActivity;
+import com.student.di.scopes.PerActivity;
 import com.student.rentals.ui.activities.LoginActivity.View.LoginActivity;
 
 import dagger.Subcomponent;
@@ -15,9 +15,6 @@ import dagger.Subcomponent;
 @Subcomponent
 public interface LoginComponent {
 
-    @Subcomponent.Factory
-    interface Factory {
-        LoginComponent create();
-    }
+
     void inject(LoginActivity loginActivity);
 }

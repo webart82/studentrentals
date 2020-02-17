@@ -6,46 +6,52 @@ import androidx.lifecycle.ViewModel;
 
 import com.student.Api.ApiClient;
 import com.student.Api.ApiInterface;
+import com.student.Api.NetworkModule;
+import com.student.models.RoomData;
 import com.student.models.pApartmentData;
+
+import javax.inject.Inject;
 
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.Response;
 import timber.log.Timber;
 
 public class UploadsViewModel extends ViewModel {
+    @Inject public UploadsViewModel() { }
+    @Inject NetworkModule networkModule;
 
-    /**
-     * this is the data that we will fetch asynchronously
-     **/
-    private MutableLiveData<pApartmentData> dataList = new MutableLiveData<pApartmentData>();
-    ApiInterface apiInterface = ApiClient.getInstance().create(ApiInterface.class);
+    private MutableLiveData<pApartmentData> dataList;
+    private MutableLiveData<RoomData> roomDataMutableLiveData;
 
-
-    /**
-     * we will call this method to get the data
-     **/
-
-    public LiveData<pApartmentData> getApartmentList(String id) {
-        //if the list is null
-
-            /**
-             * we will load it asynchronously from server in this method
-             * **/
+    public LiveData<pApartmentData> getRoomsList( String id) {
+        if (dataList == null) {
+            dataList = new MutableLiveData<pApartmentData>();
             loadDatas(id);
-
-
-        /**
-         * finally we will return the list data's
-         */
+        }
         return dataList;
     }
+    public LiveData<RoomData> updateRoom(RoomData roomData, String roomId){
+        Call<RoomData> call = new NetworkModule().getApiClient().postToUpdateRoom(roomData, roomId);
+        call.enqueue(new Callback<RoomData>() {
+            @Override
+            public void onResponse(Call<RoomData> call, Response<RoomData> response) {
+                roomDataMutableLiveData = new MutableLiveData<RoomData>();
+                roomDataMutableLiveData.setValue(response.body());
 
-    /**
-     * This method is using Retrofit to get the JSON data from URL
-     **/
-    private void loadDatas(String userId) {
+            }
 
-        Call<pApartmentData> call = apiInterface.getApartmentsPostedByMe(userId);
+            @Override
+            public void onFailure(Call<RoomData> call, Throwable t) {
+
+            }
+        });
+        return roomDataMutableLiveData;
+    }
+
+
+    private void loadDatas(String iid) {
+        Call<pApartmentData> call = new NetworkModule().getApiClient().getApartmentsPostedByMe(iid);
         call.enqueue(new Callback<pApartmentData>() {
             @Override
             public void onResponse(Call<pApartmentData> call, retrofit2.Response<pApartmentData> response) {
@@ -60,4 +66,4 @@ public class UploadsViewModel extends ViewModel {
         });
 
     }
-}
+    }

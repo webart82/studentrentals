@@ -1,5 +1,7 @@
 package com.student.Api;
 
+import com.student.di.scopes.ApplicationScope;
+
 import javax.inject.Singleton;
 
 import dagger.Module;

@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.item_property_room_images.view.*
 class RoomsListAdapter(
     private val items: List<RoomData>?,
     private val context: Context,
-    val onItemClick: ((View, String) -> Unit)? = null
+    val onItemClick: ((RoomData) -> Unit)? = null
 ) : RecyclerView.Adapter<RoomsListAdapter.ImagesViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImagesViewHolder {
@@ -33,21 +33,12 @@ class RoomsListAdapter(
 
     override fun onBindViewHolder(holder: ImagesViewHolder, position: Int) {
         val roomData = items?.get(position)
-        holder?.room_name?.text = roomData?.total.toString() + " " +  roomData?.name
-        var requestOptions = RequestOptions()
-        requestOptions = requestOptions
-            .transform(CenterCrop(), RoundedCorners(1))
-        var url = "https://d3mqmy22owj503.cloudfront.net/00/500800/images/site_graphics/slider2.jpg"
+        holder.room_name?.text = roomData?.total.toString() + " " +  roomData?.name
+        (holder as ImagesViewHolder).itemView.setOnClickListener{
+            roomData.let { onItemClick?.invoke(roomData!!) }
+        }
 
 
-
-       /* GlideApp
-            .with(context)
-            .load(url)
-            .error(R.drawable.photo)
-            .placeholder(R.drawable.photo)
-            .apply(requestOptions)
-            .into(holder?.room_image)*/
     }
     class ImagesViewHolder(view: View): RecyclerView.ViewHolder(view){
 

@@ -9,127 +9,119 @@
             type="com.student.models.ApartmentData" />
     </data>
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@android:color/transparent">
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/property_room_recycler"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </androidx.recyclerview.widget.RecyclerView>
-
-    <!--<LinearLayout
-        android:id="@+id/property_items"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:orientation="horizontal"
-        android:weightSum="5">
+        android:background="@android:color/transparent"
+        android:orientation="vertical">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/property_room_recycler"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <TableLayout
+            android:id="@+id/desc_tableview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp_12"
+            app:layout_constraintTop_toBottomOf="@+id/property_room_recycler">
+
+            <TableRow>
+
+                <TextView
+                    android:layout_weight="1"
+                    android:padding="3dip"
+                    android:text="@string/apartment_name"
+                    android:textAlignment="textStart" />
+
+                <TextView
+                    android:id="@+id/txtCostAmount"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:padding="3dip"
+                    android:text="@{productData.apartmentName,default=@string/table_amount_rental}"
+                    android:textAlignment="textStart" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_weight="1"
+                    android:padding="3dip"
+                    android:text="@string/apartment_type"
+                    android:textAlignment="textStart" />
+
+                <TextView
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:padding="3dip"
+                    android:text="@{productData.apartmentType,default=@string/table_amount_rental}"
+                    android:textAlignment="textStart" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_weight="1"
+                    android:padding="3dip"
+                    android:text="@string/apartment_amount"
+                    android:textAlignment="textStart" />
+
+                <TextView
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:padding="3dip"
+                    android:text="@{productData.amount,default=@string/table_amount_rental}"
+                    android:textAlignment="textStart" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_weight="1"
+                    android:padding="3dip"
+                    android:text="@string/apartment_terms"
+                    android:textAlignment="textStart" />
+
+                <TextView
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:padding="3dip"
+                    android:text="@{productData.paymentTerms,default=@string/table_amount_rental}"
+                    android:textAlignment="textStart" />
+            </TableRow>
+        </TableLayout>
 
         <TextView
-            android:id="@+id/property_bedrooms"
-            android:layout_width="0dp"
+            android:id="@+id/desc"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="@dimen/action_padding"
-            android:drawableTop="@drawable/bed_king_outline"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textSize="12sp"
-            android:background="@drawable/rectangular_text_bg"
-            android:text="@string/bedrooms">
+            android:padding="@dimen/dp_12"
+            android:text="@string/descriptions"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/desc_tableview">
 
         </TextView>
+
         <TextView
-
-            android:layout_width="0dp"
+            android:id="@+id/property_descprition"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="@dimen/action_padding"
-            android:drawableTop="@drawable/shower"
-            android:layout_weight="1"
-            android:text="@string/bathrooms"
-            android:gravity="center_horizontal"
+            android:padding="@dimen/dp_12"
+            android:text="@{productData.description, default=@string/lorem}"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:background="@drawable/rectangular_text_bg"
-            android:textSize="12sp">
-
-        </TextView>
-        <TextView
-
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/action_padding"
-            android:drawableTop="@drawable/stove"
-            android:layout_weight="1"
-            android:text="@string/kitchens"
-            android:gravity="center_horizontal"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:background="@drawable/rectangular_text_bg"
-            android:textSize="12sp">
-
-        </TextView>
-        <TextView
-
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/action_padding"
-            android:drawableTop="@drawable/room_service"
-            android:layout_weight="1"
-            android:text="@string/dinings"
-            android:gravity="center_horizontal"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:background="@drawable/rectangular_text_bg"
-            android:textSize="12sp">
-
-        </TextView>
-        <TextView
-
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/action_padding"
-            android:drawableTop="@drawable/home_group"
-            android:layout_weight="1"
-            android:text="Tenants"
-            android:gravity="center_horizontal"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:background="@drawable/rectangular_text_bg"
-            android:textSize="12sp">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/desc">
 
         </TextView>
 
 
-    </LinearLayout>-->
-    <TextView
-        android:id="@+id/desc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/property_room_recycler"
-        app:layout_constraintStart_toStartOf="parent"
-        android:text="@string/descriptions"
-        android:padding="@dimen/action_padding"
-        android:textStyle="bold">
-
-    </TextView>
-    <TextView
-        android:id="@+id/property_descprition"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/desc"
-        app:layout_constraintStart_toStartOf="parent"
-        android:text="@{productData.description, default=@string/lorem}"
-        android:padding="@dimen/action_padding"
-        android:textAppearance="@style/TextAppearance.AppCompat.Small">
-
-    </TextView>
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

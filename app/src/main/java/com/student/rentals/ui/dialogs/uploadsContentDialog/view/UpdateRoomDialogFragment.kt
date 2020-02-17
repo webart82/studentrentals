@@ -14,14 +14,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.student.Utils.Constants
 import com.student.Utils.SharedPreferencesManager
 import com.student.models.ApartmentData
-import com.student.models.TermsDatas
+import com.student.models.RoomData
 import com.student.models.pApartmentData
 import com.student.rentals.R
+import com.student.rentals.databinding.UpdateRoomDataBinding
 import com.student.rentals.ui.adapters.UploadsListAdapter
-import com.student.rentals.ui.dialogs.TermsAndConditionsDialog
 import com.student.rentals.ui.dialogs.uploadsContentDialog.viewModel.UploadsViewModel
+import kotlinx.android.synthetic.main.update_room_data.*
 import kotlinx.android.synthetic.main.uploaded_list.*
 import timber.log.Timber
+import java.lang.Integer.parseInt
 
 /**
  * Copyright (c) $today.year.
@@ -29,14 +31,17 @@ import timber.log.Timber
  * You are not allowed to copy it or use it in another project
  * Without permission from creator
  **/
-class uploadsContentDialog: DialogFragment() {
-    private var content:String? = null
-    private var u:List<pApartmentData>? = null
-    private val model:UploadsViewModel by activityViewModels()
+class UpdateRoomDialogFragment : DialogFragment() {
+    private var content: String? = null
+    private var u: RoomData? = null
+    private val model: UploadsViewModel by activityViewModels()
+
+    private lateinit var binding: UpdateRoomDataBinding
     private var preferencesManager: SharedPreferencesManager? = null
     override fun getTheme(): Int {
         return R.style.AppTheme_NoActionBar_FullScreenDialog
     }
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         Timber.d(resources.getString(R.string.on_attach))
@@ -47,19 +52,21 @@ class uploadsContentDialog: DialogFragment() {
         Timber.d(resources.getString(R.string.on_create))
         val style = DialogFragment.STYLE_NO_FRAME
         val theme = R.style.DialogTheme
-        setStyle(style,theme)
+        setStyle(style, theme)
         preferencesManager = SharedPreferencesManager(activity)
         retainInstance = true
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.uploaded_list, container, false)
-        return view
+        binding = UpdateRoomDataBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Timber.d(resources.getString(R.string.on_view_created))
+        updateUI(u)
+
     }
 
     override fun onResume() {
@@ -70,10 +77,6 @@ class uploadsContentDialog: DialogFragment() {
         params.height = LinearLayout.LayoutParams.WRAP_CONTENT
         dialog?.window?.attributes = params as android.view.WindowManager.LayoutParams
 
-        model.getApartmentList(preferencesManager?.getString(SharedPreferencesManager.Key.LOGGED_IN_USERID))
-            .observe(viewLifecycleOwner, Observer{
-                updateUI(it.data)
-            })
     }
 
     override fun onCancel(dialog: DialogInterface) {
@@ -86,19 +89,34 @@ class uploadsContentDialog: DialogFragment() {
         Timber.d(resources.getString(R.string.on_destroy))
     }
 
-    private fun updateUI(data: List<ApartmentData>?){
-        Timber.d(data.toString())
-        val adapter = UploadsListAdapter(dialog?.context)
-        adapter.addItems(data)
-        my_uploads_recycler_view.layoutManager = LinearLayoutManager(dialog?.context)
-        my_uploads_recycler_view.adapter =  adapter
-
+    private fun updateUI(roomData: RoomData?) {
+        binding.roomd = roomData
     }
-    companion object{
-        fun newInstance(): uploadsContentDialog {
-            val f = uploadsContentDialog()
+    private fun editRoomData(){
+        var data = RoomData(
+            txt_name.text.toString().trim(),
+            txt_title.text.toString().trim(),
+            txt_desc.text.toString().trim(),
+            txt_size.text.toString().trim(),
+            parseInt(txt_total.text.toString().trim()))
+        model.updateRoom(data, u?._id).observe(viewLifecycleOwner, Observer {
+            u = it
+        })
+    }
+
+    companion object {
+
+        fun newInstance(content: String, bundle:Bundle): UpdateRoomDialogFragment {
+            val f = UpdateRoomDialogFragment()
+            val args = bundle
+            var data = bundle.getParcelable<RoomData>(Constants.PARCEL_KEY)
+            args.putString("content", content)
+            f.arguments = args
+            f.u = data
+
+
             return f
         }
     }
-    
+
 }

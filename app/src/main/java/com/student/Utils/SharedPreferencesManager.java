@@ -57,7 +57,9 @@ public class SharedPreferencesManager {
         ACCESS_TOKEN_ID,
         LOGGED_IN_USERID,
         LOGGED_IN_USEREMAIL,
-        USER_LOCATION_NAME;
+        USER_LOCATION_NAME,
+        LOGGED_AS_ADMIN
+
 
     }
 

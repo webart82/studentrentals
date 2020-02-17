@@ -32,5 +32,6 @@ interface ApiInterface {
     @PATCH("users/{id}")
     fun postToUpdateProfile(@Body userProfileData: UserProfileData, @Path("id") userId: String):Call<DUserData>
 
-
+    @PATCH("rooms/{id}")
+    fun postToUpdateRoom(@Body roomData: RoomData, @Path("id") roomId: String):Call<RoomData>
 }

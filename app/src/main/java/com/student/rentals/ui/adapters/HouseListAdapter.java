@@ -49,11 +49,11 @@ public class HouseListAdapter extends Adapter<ViewHolder> {
     private static final String TAG = "HouseListAdapter";
 
     private final LayoutInflater layoutInflater;
-     final Context context;
+    final Context context;
     private List<ApartmentData> aData = new ArrayList<>();
 
 
-    public HouseListAdapter(final Context context,final List<ApartmentData> aData) {
+    public HouseListAdapter(final Context context, final List<ApartmentData> aData) {
         this.layoutInflater = LayoutInflater.from(context);
         this.context = context;
         this.aData = aData;
@@ -94,7 +94,6 @@ public class HouseListAdapter extends Adapter<ViewHolder> {
     }
 
 
-
     class ViewHolder extends RecyclerView.ViewHolder implements OnClickListener, OnLongClickListener {
         @BindView(id.house_location)
         TextView houseLocation;
@@ -109,38 +108,26 @@ public class HouseListAdapter extends Adapter<ViewHolder> {
         public ViewHolder(final View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-            itemView.setOnLongClickListener(this::onLongClick);
-            this.houseImage.setOnClickListener(this::onClick);
-            this.houseLocation.setOnClickListener(this::onClick);
+            itemView.setOnClickListener(this::onClick);
         }
 
         @Override
         public void onClick(final View v) {
             final int adapterPosition = this.getAdapterPosition();
-            switch (v.getId()) {
-                case id.house_image:
-                    //startIntent(new Intent(context, ViewPropertyActivity.class));
 
-                    final Intent parcelIntent = new Intent(HouseListAdapter.this.context, ViewPropertyActivity.class);
+            final Intent parcelIntent = new Intent(HouseListAdapter.this.context, ViewPropertyActivity.class);
 
-                    Bundle bundle = new Bundle();
-                    bundle.putParcelable(Constants.INSTANCE.getPARCEL_KEY(),aData.get(adapterPosition));
-                    parcelIntent.putExtra(Constants.INSTANCE.getPARCEL_BUNDLE(), bundle);
-                    parcelIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    HouseListAdapter.this.context.startActivity(parcelIntent);
-                    break;
-                case id.house_location:
-                    startCustomTabIntent("http://maps.google.com/maps?saddr=-6.715698,39.219768&daddr=-6.7422793,39.1952295");
-                    break;
-            }
+            Bundle bundle = new Bundle();
+            bundle.putParcelable(Constants.INSTANCE.getPARCEL_KEY(), aData.get(adapterPosition));
+            parcelIntent.putExtra(Constants.INSTANCE.getPARCEL_BUNDLE(), bundle);
+            parcelIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            HouseListAdapter.this.context.startActivity(parcelIntent);
+
         }
-
-
         @Override
         public boolean onLongClick(final View v) {
             return false;
         }
-
 
     }
 

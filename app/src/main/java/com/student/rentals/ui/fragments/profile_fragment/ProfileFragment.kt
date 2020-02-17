@@ -20,9 +20,8 @@ import com.student.Utils.SharedPreferencesManager
 import com.student.rentals.R
 import com.student.rentals.databinding.ProfileFragmentBinding
 import com.student.rentals.ui.dialogs.UpdateProfileDialog
-import com.student.rentals.ui.dialogs.uploadsContentDialog.view.uploadsContentDialog
+import com.student.rentals.ui.dialogs.uploadsContentDialog.view.UpdateRoomDialogFragment
 import kotlinx.android.synthetic.main.activity_land_loard_profile.*
-import timber.log.Timber
 
 
 class ProfileFragment : Fragment() {
@@ -64,7 +63,7 @@ class ProfileFragment : Fragment() {
         profile_upload.setOnClickListener(){
             val ft: FragmentTransaction =
                 (activity as AppCompatActivity?)!!.supportFragmentManager.beginTransaction()
-            val nInstance = uploadsContentDialog.newInstance()
+            val nInstance = UpdateProfileDialog.newInstance()
             nInstance.show(ft,"UPDATE_PROFILE")
         }
 
