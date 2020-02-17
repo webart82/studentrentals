@@ -24,11 +24,7 @@ class HomeFragment : Fragment() {
 
     private val viewModel: HomeViewModel? by activityViewModels()
     private var adapter: HouseListAdapter? = null
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.home_fragment, container, false)
 
 
@@ -36,9 +32,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel!!.roomsList.observe(
-            viewLifecycleOwner,
-            Observer { (_, _, data) -> createList(data) })
+        viewModel!!.roomsList.observe(viewLifecycleOwner, Observer { (_, _, data) -> createList(data) })
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -47,7 +41,9 @@ class HomeFragment : Fragment() {
 
     private fun createList(apartmentData: List<ApartmentData>?) {
         house_list.layoutManager = LinearLayoutManager(context)
-
+        house_list.isNestedScrollingEnabled = false
+        house_list.setHasFixedSize(true)
+        house_list.setItemViewCacheSize(20)
         house_list!!.adapter = HouseListAdapter(activity, apartmentData)
         p_progress_bar.visibility = View.INVISIBLE
         house_list!!.visibility = View.VISIBLE
