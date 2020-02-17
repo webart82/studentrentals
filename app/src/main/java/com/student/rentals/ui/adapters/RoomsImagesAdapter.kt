@@ -44,7 +44,7 @@ class RoomsImagesAdapter(
             .error(R.drawable.photo)
             .placeholder(R.drawable.photo)
             .apply(requestOptions)
-            .into(holder?.room_image)
+            .into(holder.room_image)
     }
     class ImagesViewHolder(view: View): RecyclerView.ViewHolder(view){
         val room_image = view.property_room_image

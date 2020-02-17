@@ -35,6 +35,7 @@ import com.student.rentals.R.color;
 import com.student.rentals.R.id;
 import com.student.rentals.R.layout;
 import com.student.rentals.ui.activities.ViewPropertyActivity;
+import com.student.rentals.ui.activities.ViewUploadActivity;
 import com.student.rentals.ui.adapters.HouseListAdapter.ViewHolder;
 
 import java.util.ArrayList;
@@ -42,6 +43,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+import timber.log.Timber;
 
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 
@@ -52,14 +55,16 @@ public class UploadsListAdapter extends Adapter<UploadsListAdapter.UploadsViewHo
      final Context context;
     private List<ApartmentData> aData = new ArrayList<>();
 
-     public UploadsListAdapter (final Context context) {
+     public UploadsListAdapter (final Context context,final List<ApartmentData> aData) {
+         this.aData = aData;
          this.layoutInflater = LayoutInflater.from(context);
          this.context = context;
+         notifyDataSetChanged();
      }
     @NonNull
     @Override
     public UploadsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new UploadsViewHolder(LayoutInflater.from(parent.getContext()).inflate(layout.item_house_property, parent, false));
+        return new UploadsViewHolder(LayoutInflater.from(parent.getContext()).inflate(layout.uploads_item_property, parent, false));
 
     }
 
@@ -92,12 +97,9 @@ public class UploadsListAdapter extends Adapter<UploadsListAdapter.UploadsViewHo
         return this.aData.size();
     }
 
-    public void addItems(final List<ApartmentData> aData) {
-        this.aData = aData;
-        this.notifyDataSetChanged();
-    }
 
-    class UploadsViewHolder extends RecyclerView.ViewHolder {
+
+    class UploadsViewHolder extends RecyclerView.ViewHolder implements OnClickListener, OnLongClickListener {
         @BindView(id.house_location)
         TextView houseLocation;
         @BindView(id.house_name)
@@ -111,6 +113,29 @@ public class UploadsListAdapter extends Adapter<UploadsListAdapter.UploadsViewHo
         public UploadsViewHolder(final View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+            itemView.setOnClickListener(this::onClick);
         }
+
+        @Override
+        public void onClick(final View v) {
+            final int adapterPosition = this.getAdapterPosition();
+              final Intent parcelIntent = new Intent(UploadsListAdapter.this.context, ViewUploadActivity.class);
+
+                    Bundle bundle = new Bundle();
+                    bundle.putParcelable(Constants.INSTANCE.getPARCEL_KEY(),aData.get(adapterPosition));
+                    parcelIntent.putExtra(Constants.INSTANCE.getPARCEL_BUNDLE(), bundle);
+                    parcelIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    UploadsListAdapter.this.context.startActivity(parcelIntent);
+
+
+        }
+
+
+        @Override
+        public boolean onLongClick(final View v) {
+            return false;
+        }
+
+
     }
 }

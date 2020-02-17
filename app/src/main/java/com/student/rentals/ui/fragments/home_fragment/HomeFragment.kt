@@ -47,6 +47,7 @@ class HomeFragment : Fragment() {
 
     private fun createList(apartmentData: List<ApartmentData>?) {
         house_list.layoutManager = LinearLayoutManager(context)
+
         house_list!!.adapter = HouseListAdapter(activity, apartmentData)
         p_progress_bar.visibility = View.INVISIBLE
         house_list!!.visibility = View.VISIBLE

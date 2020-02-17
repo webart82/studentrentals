@@ -8,7 +8,8 @@ import androidx.lifecycle.ViewModel;
 
 import com.student.Api.ApiClient;
 import com.student.Api.ApiInterface;
-import com.student.di.PerActivity;
+import com.student.di.scopes.ApplicationScope;
+import com.student.di.scopes.PerActivity;
 import com.student.models.LoginData;
 import com.student.models.mLoginUserData;
 
@@ -17,7 +18,7 @@ import javax.inject.Inject;
 import retrofit2.Call;
 import retrofit2.Callback;
 
-@PerActivity
+@ApplicationScope
 public class LoginViewModel extends ViewModel {
     private static final String TAG = "LoginViewModel";
 

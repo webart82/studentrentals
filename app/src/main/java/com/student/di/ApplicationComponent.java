@@ -1,9 +1,7 @@
 package com.student.di;
 
-import com.student.Api.ApiClient;
 import com.student.Api.NetworkModule;
-import com.student.di.subcomponents.LoginComponent;
-import com.student.di.subcomponents.SubComponentsModule;
+import com.student.di.scopes.ApplicationScope;
 import com.student.rentals.ui.activities.LoginActivity.View.LoginActivity;
 import com.student.rentals.ui.activities.MainActivity;
 import com.student.rentals.ui.activities.signUp.view.SignUpActivity;
@@ -20,10 +18,10 @@ import dagger.Component;
  **/
 @ApplicationScope
 @Singleton
-@Component(modules = {NetworkModule.class, SubComponentsModule.class})
+@Component
 public interface ApplicationComponent {
     void inject(SignUpActivity signUpActivity);
     void inject(MainActivity mainActivity);
+    void inject(LoginActivity loginActivity);
 
-    LoginComponent.Factory loginComponent();
 }

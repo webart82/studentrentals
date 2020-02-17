@@ -1,6 +1,7 @@
 package com.student.models
 
 import android.os.Parcelable
+import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 /**
@@ -11,11 +12,10 @@ import kotlinx.android.parcel.Parcelize
  **/
 @Parcelize
 data class RoomData(
-    var name: String?,
-    var title: String?,
-    var description: String?,
-    var size: String?,
-    var total: Int?,
-    var _id: String?
-
-):Parcelable
+    @SerializedName("name") val name: String? = null,
+    @SerializedName("title") val title: String? = null,
+    @SerializedName("description") val description: String? = null,
+    @SerializedName("size") val size: String? = null,
+    @SerializedName("total") val total: Int? = null,
+    @SerializedName("_id") val _id: String? = null
+) : Parcelable

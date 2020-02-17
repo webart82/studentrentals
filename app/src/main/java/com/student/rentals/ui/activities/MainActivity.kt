@@ -12,6 +12,7 @@ import com.student.rentals.ui.AppBaseActivity
 import com.student.rentals.ui.fragments.home_fragment.HomeFragment
 import com.student.rentals.ui.fragments.list_fragment.ListItemsFragment
 import com.student.rentals.ui.fragments.profile_fragment.ProfileFragment
+import com.student.rentals.ui.fragments.uploads_fragments.UploadsFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
 
@@ -64,7 +65,7 @@ class MainActivity : AppBaseActivity() {
 
             }
             R.id.navigation_profile -> {
-                loadFragment(ProfileFragment())
+                loadFragment(UploadsFragment())
                 toobar_add.visibility = View.VISIBLE
                 return@OnNavigationItemSelectedListener true
 

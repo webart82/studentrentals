@@ -79,7 +79,7 @@ class CustomDialogFragment : DialogFragment() {
            return f
        }
    }
-   open fun updateUI( u:DUserData?) {
+    fun updateUI( u:DUserData?) {
 
         binding.userData = u
        Timber.d(u.toString())
