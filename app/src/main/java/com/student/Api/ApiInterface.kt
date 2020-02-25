@@ -26,7 +26,10 @@ interface ApiInterface {
     @POST("auth/login")
     fun postForLogin(@Body loginData: LoginData):Call<mLoginUserData>
 
-    @POST("/apartments/{id}/rooms")
+    @POST("apartments/{id}/costs")
+    fun postToCreateNewCost(@Body extraCostsData: ExtraCostsData, @Path("id") apartmentId: String):Call<ExtraCostsData>
+
+    @POST("apartments/{id}/rooms")
     fun postToCreateNewRoom(@Body roomData: RoomData, @Path("id") apartmentId: String):Call<RoomData>
 
     @POST("auth/")

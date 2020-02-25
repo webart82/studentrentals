@@ -1,9 +1,9 @@
 package com.student.rentals.ui.activities
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.os.Parcelable
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -26,6 +26,7 @@ import com.student.rentals.databinding.ActivityViewUploadBinding
 import com.student.rentals.ui.adapters.ExtraCostsListAdapter
 import com.student.rentals.ui.adapters.RoomsListAdapter
 import com.student.rentals.ui.dialogs.TermsAndConditionsDialog
+import com.student.rentals.ui.dialogs.uploadsContentDialog.view.CostsDialogFragment
 import com.student.rentals.ui.dialogs.uploadsContentDialog.view.UpdateRoomDialogFragment
 import kotlinx.android.synthetic.main.activity_view_property.*
 import kotlinx.android.synthetic.main.fragment_view_item.*
@@ -38,7 +39,7 @@ import java.util.ArrayList
 
 class ViewUploadActivity : AppCompatActivity() {
     private lateinit var binding: ActivityViewUploadBinding
-    private lateinit var adapter: RoomsListAdapter
+    var _id:String? = null
 
     /**System create the activity {@link onCreate}**/
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,6 +55,7 @@ class ViewUploadActivity : AppCompatActivity() {
         val budle = intent.getBundleExtra(Constants.PARCEL_BUNDLE)
         val obj = budle.getParcelable<ApartmentData>(Constants.PARCEL_KEY)
         val rooms = obj?.rooms
+        _id = obj?._id
         val images = obj?.roomImages
         val costs = obj?.extraCosts
         val owner = obj?.ownersInfo
@@ -80,6 +82,25 @@ class ViewUploadActivity : AppCompatActivity() {
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_view_item, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.menu_add_costs ->{
+                val bundle = Bundle()
+                Timber.d(_id!!)
+                //bundle.putParcelable(PARCEL_KEY, _id as Parcelable)
+                val ft: FragmentTransaction = supportFragmentManager.beginTransaction()
+                val nInstance = CostsDialogFragment.newInstance(_id!!)
+                nInstance.show(ft, "dialog")
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
     fun appClickListener(termsDatas: List<TermsDatas>) {
         if (termsDatas.isEmpty()) { Toast.makeText(this, "No terms or condition has being defined currently", Toast.LENGTH_SHORT).show() }
         else {
@@ -99,7 +120,6 @@ class ViewUploadActivity : AppCompatActivity() {
         val nInstance = UpdateRoomDialogFragment.newInstance("TERMS_DIALOG", bundle)
         nInstance.show(ft, "dialog")
     }
-
 
     private fun setupToolbar(str: String) {
         item_toolbar.title = str
