@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.student.Utils.SharedPreferencesManager
 import com.student.models.ApartmentData
 import com.student.rentals.R
-import com.student.rentals.ui.adapters.HouseListAdapter
 import com.student.rentals.ui.adapters.UploadsListAdapter
+import com.student.rentals.ui.dialogs.uploadsContentDialog.viewModel.CoastsViewModel
 import com.student.rentals.ui.dialogs.uploadsContentDialog.viewModel.UploadsViewModel
 import kotlinx.android.synthetic.main.uploaded_list.*
 

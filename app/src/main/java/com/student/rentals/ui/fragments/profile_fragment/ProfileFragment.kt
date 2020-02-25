@@ -20,7 +20,6 @@ import com.student.Utils.SharedPreferencesManager
 import com.student.rentals.R
 import com.student.rentals.databinding.ProfileFragmentBinding
 import com.student.rentals.ui.dialogs.UpdateProfileDialog
-import com.student.rentals.ui.dialogs.uploadsContentDialog.view.UpdateRoomDialogFragment
 import kotlinx.android.synthetic.main.activity_land_loard_profile.*
 
 

@@ -3,6 +3,7 @@ package com.student.rentals.ui.dialogs.uploadsContentDialog.view
 import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
+import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,12 +14,19 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import com.student.Utils.Constants
 import com.student.Utils.SharedPreferencesManager
+import com.student.models.ExtraCostsData
 import com.student.models.RoomData
 import com.student.rentals.R
+import com.student.rentals.databinding.ExtraCostsDataBinding
 import com.student.rentals.databinding.UpdateRoomDataBinding
 import com.student.rentals.ui.dialogs.uploadsContentDialog.viewModel.CoastsViewModel
-import com.student.rentals.ui.dialogs.uploadsContentDialog.viewModel.UploadsViewModel
+import kotlinx.android.synthetic.main.extra_costs_data.*
 import kotlinx.android.synthetic.main.update_room_data.*
+import kotlinx.android.synthetic.main.update_room_data.btn_cancel
+import kotlinx.android.synthetic.main.update_room_data.btn_save
+import kotlinx.android.synthetic.main.update_room_data.edt_name
+import kotlinx.android.synthetic.main.update_room_data.icon_edit
+import kotlinx.android.synthetic.main.update_room_data.txtedt_layout
 import timber.log.Timber
 import java.lang.Integer.parseInt
 import java.util.*
@@ -30,11 +38,11 @@ import kotlin.concurrent.schedule
  * You are not allowed to copy it or use it in another project
  * Without permission from creator
  **/
-class UpdateRoomDialogFragment : DialogFragment() {
+class CostsDialogFragment : DialogFragment() {
     private var content: String? = null
-    private var u: RoomData? = null
-    private val viewModel: UploadsViewModel by activityViewModels()
-    private lateinit var binding: UpdateRoomDataBinding
+    private var du: String? = null
+    private val viewModel: CoastsViewModel by activityViewModels()
+    private lateinit var binding: ExtraCostsDataBinding
     private var preferencesManager: SharedPreferencesManager? = null
     override fun getTheme(): Int {
         return R.style.AppTheme_NoActionBar_FullScreenDialog
@@ -56,19 +64,16 @@ class UpdateRoomDialogFragment : DialogFragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = UpdateRoomDataBinding.inflate(inflater, container, false)
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        binding = ExtraCostsDataBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Timber.d(resources.getString(R.string.on_view_created))
-        updateUI(u)
-        Timber.d(u.toString())
+        //updateUI(u)
+        //Timber.d(u.toString())
 
     }
 
@@ -104,21 +109,20 @@ class UpdateRoomDialogFragment : DialogFragment() {
         Timber.d(resources.getString(R.string.on_destroy))
     }
 
-    private fun updateUI(roomData: RoomData?) {
-        binding.roomd = roomData
+    private fun updateUI(extraCostsData: ExtraCostsData?) {
+        binding.extradatas = extraCostsData
     }
 
     private fun editRoomData() {
-        var data = RoomData(
+        var data = ExtraCostsData(
             edt_name.text.toString().trim(),
-            edt_title.text.toString().trim(),
-            edt_desc.text.toString().trim(),
-            edt_size.text.toString().trim(),
-            parseInt(edt_total.text.toString().trim())
+            edt_amount.text.toString().trim(),
+            edt_payment_type.text.toString().trim()
         )
-        viewModel.updateRoom(data, u?._id)?.observe(viewLifecycleOwner, Observer { RoomData ->
+        viewModel.addNewCost(data, du)?.observe(viewLifecycleOwner, Observer {
             Timer().schedule(3000) {
                 dismiss()
+                Timber.d(it.toString())
             }
 
         })
@@ -126,13 +130,13 @@ class UpdateRoomDialogFragment : DialogFragment() {
 
     companion object {
 
-        fun newInstance(content: String, bundle: Bundle): UpdateRoomDialogFragment {
-            val f = UpdateRoomDialogFragment()
-            val args = bundle
-            var data = bundle.getParcelable<RoomData>(Constants.PARCEL_KEY)
-            args.putString("content", content)
-            f.arguments = args
-            f.u = data
+        fun newInstance(content: String): CostsDialogFragment {
+            val f = CostsDialogFragment()
+            //val args = bundle
+            //var data = bundle.getEx(Constants.PARCEL_KEY)
+            //args.putString("content", content)
+            //f.arguments = args
+            f.du = content
 
 
             return f

@@ -39,7 +39,7 @@
         bind:targetApi="O"
         android:visibility="invisible"
         android:background="@drawable/rectangular_text_bg"
-        android:text="@{extraCosts.paymentType,default=@string/table_method_bank}"
+        android:text="@{extraCosts.paymenttype,default=@string/table_method_bank}"
         android:textAlignment="center"
         android:textColor="@color/primaryColor" />
 
