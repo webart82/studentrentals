@@ -28,7 +28,7 @@ public class ApiClient {
 
     private static Retrofit retrofit;
     private static OkHttpClient client;
-    public static String BASE_URL = Constants.INSTANCE.getBASE_URL();
+    public static String BASE_URL = Constants.INSTANCE.getREMOTE_BASE_URL();
     @Singleton
     @Provides
     public static Retrofit getInstance() {

@@ -21,9 +21,7 @@ class ExtraCostsListAdapter(
     val onItemClick: (List<TermsDatas>) -> Unit): RecyclerView.Adapter<ExtraCostsListAdapter.ImagesViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImagesViewHolder {
-
-        val binding: ItemPropertyRoomCostsBinding =
-            DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.item_property_room_costs, parent, false)
+        val binding: ItemPropertyRoomCostsBinding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.item_property_room_costs, parent, false)
 
 
         return ImagesViewHolder(binding)
@@ -38,7 +36,7 @@ class ExtraCostsListAdapter(
         val terms = cost?.terms
         holder.bind(items!!.get(position))
         if(!cost?.terms!!.isEmpty()){
-            holder.binding.txtCostMethod.visibility = View.VISIBLE
+            holder.binding.txtCostMethod.isEnabled = true
             (holder as ImagesViewHolder).itemView.setOnClickListener{
                 terms.let { onItemClick.invoke(terms!!) }
             }
