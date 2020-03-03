@@ -13,10 +13,9 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import com.student.Utils.Constants
 import com.student.Utils.SharedPreferencesManager
-import com.student.models.RoomData
+import com.student.models.DataRoom
 import com.student.rentals.R
 import com.student.rentals.databinding.UpdateRoomDataBinding
-import com.student.rentals.ui.dialogs.uploadsContentDialog.viewModel.CoastsViewModel
 import com.student.rentals.ui.dialogs.uploadsContentDialog.viewModel.UploadsViewModel
 import kotlinx.android.synthetic.main.update_room_data.*
 import timber.log.Timber
@@ -32,7 +31,7 @@ import kotlin.concurrent.schedule
  **/
 class UpdateRoomDialogFragment : DialogFragment() {
     private var content: String? = null
-    private var u: RoomData? = null
+    private var u: DataRoom? = null
     private val viewModel: UploadsViewModel by activityViewModels()
     private lateinit var binding: UpdateRoomDataBinding
     private var preferencesManager: SharedPreferencesManager? = null
@@ -104,12 +103,12 @@ class UpdateRoomDialogFragment : DialogFragment() {
         Timber.d(resources.getString(R.string.on_destroy))
     }
 
-    private fun updateUI(roomData: RoomData?) {
-        binding.roomd = roomData
+    private fun updateUI(dataRoom: DataRoom?) {
+        binding.roomd = dataRoom
     }
 
     private fun editRoomData() {
-        var data = RoomData(
+        var data = DataRoom(
             edt_name.text.toString().trim(),
             edt_title.text.toString().trim(),
             edt_desc.text.toString().trim(),
@@ -129,7 +128,7 @@ class UpdateRoomDialogFragment : DialogFragment() {
         fun newInstance(content: String, bundle: Bundle): UpdateRoomDialogFragment {
             val f = UpdateRoomDialogFragment()
             val args = bundle
-            var data = bundle.getParcelable<RoomData>(Constants.PARCEL_KEY)
+            var data = bundle.getParcelable<DataRoom>(Constants.PARCEL_KEY)
             args.putString("content", content)
             f.arguments = args
             f.u = data

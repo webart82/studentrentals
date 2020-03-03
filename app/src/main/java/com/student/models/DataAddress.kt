@@ -11,7 +11,7 @@ import kotlinx.android.parcel.Parcelize
  * Without permission from creator
  **/
 @Parcelize
-data class DAddressData(
+data class DataAddress(
     @SerializedName("_id")
     val Id: String? = null,
     @SerializedName("createdDate")

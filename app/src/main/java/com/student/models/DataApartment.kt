@@ -10,7 +10,7 @@ import kotlinx.android.parcel.Parcelize
  * Without permission from creator
  **/
 @Parcelize
-data class ApartmentData(
+data class DataApartment(
     var apartmentType:String?,
     var longitude: String?,
     var latitude: String?,
@@ -20,9 +20,9 @@ data class ApartmentData(
     var thumbNail: String?,
     var _id: String?,
     var location: String?,
-    var ownersInfo: DUserData?,
+    var ownersInfo: DataUser?,
     var apartmentName: String?,
     var roomImages:  ArrayList<String>?,
-    var rooms: List<RoomData>?,
-    var extraCosts: List<ExtraCostsData>
+    var rooms: List<DataRoom>?,
+    var extraCosts: List<DataExtraCost>
 ):Parcelable

@@ -17,8 +17,8 @@ import com.student.Utils.Constants
 import com.student.Utils.Constants.PARCEL_KEY
 import com.student.rentals.ui.dialogs.CustomDialogFragment
 import com.student.Utils.GlideApp
-import com.student.models.ApartmentData
-import com.student.models.TermsDatas
+import com.student.models.DataApartment
+import com.student.models.DataTerms
 import com.student.rentals.R
 import com.student.rentals.databinding.ActivityViewPropertyBinding
 import com.student.rentals.ui.adapters.ExtraCostsListAdapter
@@ -51,7 +51,7 @@ class ViewPropertyActivity : AppCompatActivity() {
         super.onResume()
         // loadFragment(ViewItemFragment())
         val budle = intent.getBundleExtra(Constants.PARCEL_BUNDLE)
-        val obj = budle.getParcelable<ApartmentData>(Constants.PARCEL_KEY)
+        val obj = budle.getParcelable<DataApartment>(Constants.PARCEL_KEY)
         //
         val rooms = obj?.rooms
         val images = obj?.roomImages
@@ -97,14 +97,14 @@ class ViewPropertyActivity : AppCompatActivity() {
         }
     }
 
-    fun appClickListener(termsDatas: List<TermsDatas>) {
-        if(termsDatas.isEmpty()){
+    fun appClickListener(dataTermsData: List<DataTerms>) {
+        if(dataTermsData.isEmpty()){
             Toast.makeText(this, "No terms or condition has being defined currently", Toast.LENGTH_SHORT).show()
 
         }else{
-       Timber.d(termsDatas.toString())
+       Timber.d(dataTermsData.toString())
         val bundle = Bundle()
-        bundle.putParcelableArrayList(PARCEL_KEY, termsDatas as ArrayList<out Parcelable>)
+        bundle.putParcelableArrayList(PARCEL_KEY, dataTermsData as ArrayList<out Parcelable>)
         val ft: FragmentTransaction = supportFragmentManager.beginTransaction()
         val nInstance = TermsAndConditionsDialog.newInstance("TERMS_DIALOG",bundle)
         nInstance.show(ft, "dialog")

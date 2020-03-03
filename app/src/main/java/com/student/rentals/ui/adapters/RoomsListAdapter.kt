@@ -5,20 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.bumptech.glide.request.RequestOptions
-import com.student.Utils.GlideApp
-import com.student.models.RoomData
+import com.student.models.DataRoom
 import com.student.rentals.R
 import kotlinx.android.synthetic.main.item_property_room_content.view.*
-import kotlinx.android.synthetic.main.item_property_room_images.view.*
 
 
 class RoomsListAdapter(
-    private val items: List<RoomData>?,
+    private val items: List<DataRoom>?,
     private val context: Context,
-    val onItemClick: ((RoomData) -> Unit)? = null
+    val onItemClick: ((DataRoom) -> Unit)? = null
 ) : RecyclerView.Adapter<RoomsListAdapter.ImagesViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImagesViewHolder {

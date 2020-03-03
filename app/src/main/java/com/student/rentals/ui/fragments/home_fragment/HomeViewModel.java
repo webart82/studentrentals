@@ -4,13 +4,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.student.Api.ApiClient;
-import com.student.Api.ApiInterface;
 import com.student.Api.NetworkModule;
-import com.student.models.mApartmentData;
-import com.student.models.pApartmentData;
-
-import java.util.List;
+import com.student.models.DataApartmentList;
 
 import javax.inject.Inject;
 
@@ -22,11 +17,11 @@ public class HomeViewModel extends ViewModel {
     @Inject public HomeViewModel() { }
     @Inject NetworkModule networkModule;
 
-    private MutableLiveData<pApartmentData> dataList;
+    private MutableLiveData<DataApartmentList> dataList;
 
-    public LiveData<pApartmentData> getRoomsList() {
+    public LiveData<DataApartmentList> getRoomsList() {
         if (dataList == null) {
-            dataList = new MutableLiveData<pApartmentData>();
+            dataList = new MutableLiveData<DataApartmentList>();
             loadDatas();
         }
         return dataList;
@@ -35,16 +30,16 @@ public class HomeViewModel extends ViewModel {
 
     private void loadDatas() {
 
-        Call<pApartmentData> call = new NetworkModule().getApiClient().getAllApartments();
-        call.enqueue(new Callback<pApartmentData>() {
+        Call<DataApartmentList> call = new NetworkModule().getApiClient().getAllApartments();
+        call.enqueue(new Callback<DataApartmentList>() {
             @Override
-            public void onResponse(Call<pApartmentData> call, retrofit2.Response<pApartmentData> response) {
+            public void onResponse(Call<DataApartmentList> call, retrofit2.Response<DataApartmentList> response) {
                 dataList.setValue(response.body());
                 Timber.d("HomeView Model" + response.body().toString());
             }
 
             @Override
-            public void onFailure(Call<pApartmentData> call, Throwable t) {
+            public void onFailure(Call<DataApartmentList> call, Throwable t) {
 
             }
         });

@@ -9,35 +9,35 @@ import retrofit2.http.*
 interface ApiInterface {
 
     @GET("users")
-    fun getUsers(): LiveData<List<mLoginUserData>>
+    fun getUsers(): LiveData<List<DataLoginSuccess>>
 
     @GET( "apartments/all")
-    fun getAllApartments(): Call<pApartmentData>
+    fun getAllApartments(): Call<DataApartmentList>
 
     @GET("users")
-    fun getAllUsers():Call<mUsers>
+    fun getAllUsers():Call<DataUsers>
 
     @GET("users/{id}")
-    fun getLoggedInUserProfile(@Path("id") userId:String): Call<DUserData>
+    fun getLoggedInUserProfile(@Path("id") userId:String): Call<DataUser>
 
     @GET("apartments/{id}/me")
-    fun getApartmentsPostedByMe(@Path("id") userId:String): Call<pApartmentData>
+    fun getApartmentsPostedByMe(@Path("id") userId:String): Call<DataApartmentList>
 
     @POST("auth/login")
-    fun postForLogin(@Body loginData: LoginData):Call<mLoginUserData>
+    fun postForLogin(@Body datalogin: DataLogin):Call<DataLoginSuccess>
 
     @POST("apartments/{id}/costs")
-    fun postToCreateNewCost(@Body extraCostsData: ExtraCostsData, @Path("id") apartmentId: String):Call<ExtraCostsData>
+    fun postToCreateNewCost(@Body dataextracost: DataExtraCost, @Path("id") apartmentId: String):Call<DataExtraCost>
 
     @POST("apartments/{id}/rooms")
-    fun postToCreateNewRoom(@Body roomData: RoomData, @Path("id") apartmentId: String):Call<RoomData>
+    fun postToCreateNewRoom(@Body dataRoom: DataRoom, @Path("id") apartmentId: String):Call<DataRoom>
 
     @POST("auth/")
-    fun postForSignUp(@Body signUpData: SignUpData):Call<mLoginUserData>
+    fun postForSignUp(@Body signUpData: SignUpData):Call<DataLoginSuccess>
 
     @PATCH("users/{id}")
-    fun postToUpdateProfile(@Body userProfileData: UserProfileData, @Path("id") userId: String):Call<DUserData>
+    fun postToUpdateProfile(@Body dataProfile: DataProfile, @Path("id") userId: String):Call<DataUser>
 
     @PATCH("rooms/{id}")
-    fun postToUpdateRoom(@Body roomData: RoomData, @Path("id") roomId: String):Call<RoomData>
+    fun postToUpdateRoom(@Body dataRoom: DataRoom, @Path("id") roomId: String):Call<DataRoom>
 }

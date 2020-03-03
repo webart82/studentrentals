@@ -7,11 +7,11 @@
 
         <variable
             name="addressData"
-            type="com.student.models.DAddressData" />
+            type="com.student.models.DataAddress" />
 
         <variable
             name="userData"
-            type="com.student.models.DUserData" />
+            type="com.student.models.DataUser" />
     </data>
 
 

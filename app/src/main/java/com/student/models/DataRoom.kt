@@ -11,7 +11,7 @@ import kotlinx.android.parcel.Parcelize
  * Without permission from creator
  **/
 @Parcelize
-data class RoomData(
+data class DataRoom(
     @SerializedName("name") val name: String? = null,
     @SerializedName("title") val title: String? = null,
     @SerializedName("description") val description: String? = null,

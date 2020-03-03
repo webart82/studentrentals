@@ -7,7 +7,7 @@ package com.student.models
  * Without permission from creator
  **/
 
-data class UserProfileData(
+data class DataProfile(
     val username:String?=null,
     val firstname:String?=null,
     val lastname:String?=null,

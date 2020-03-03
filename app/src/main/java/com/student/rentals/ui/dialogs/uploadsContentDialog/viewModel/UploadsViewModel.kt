@@ -4,49 +4,48 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.student.Api.NetworkModule
-import com.student.models.RoomData
-import com.student.models.pApartmentData
+import com.student.models.DataRoom
+import com.student.models.DataApartmentList
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import timber.log.Timber
-import javax.inject.Inject
 
 class UploadsViewModel : ViewModel() {
-    private var dataList: MutableLiveData<pApartmentData?>?= null
-    private var roomDataMutableLiveData: MutableLiveData<RoomData?>? = null
+    private var dataApartmentListList: MutableLiveData<DataApartmentList?>?= null
+    private var dataMutableLiveDataRoom: MutableLiveData<DataRoom?>? = null
 
-    fun getRoomsList(id: String): LiveData<pApartmentData?> {
-        if (dataList == null) {
-            dataList = MutableLiveData()
+    fun getRoomsList(id: String): LiveData<DataApartmentList?> {
+        if (dataApartmentListList == null) {
+            dataApartmentListList = MutableLiveData()
             loadDatas(id)
         }
-        return dataList as MutableLiveData<pApartmentData?>
+        return dataApartmentListList as MutableLiveData<DataApartmentList?>
     }
 
-    fun updateRoom(roomData: RoomData?, roomId: String?): LiveData<RoomData?>? {
-        val call = NetworkModule().apiClient.postToUpdateRoom(roomData!!, roomId!!)
-        call.enqueue(object : Callback<RoomData?> {
-            override fun onResponse(call: Call<RoomData?>, response: Response<RoomData?>) {
-                roomDataMutableLiveData = MutableLiveData()
-                roomDataMutableLiveData!!.value = response.body()
+    fun updateRoom(dataRoom: DataRoom?, roomId: String?): LiveData<DataRoom?>? {
+        val call = NetworkModule().apiClient.postToUpdateRoom(dataRoom!!, roomId!!)
+        call.enqueue(object : Callback<DataRoom?> {
+            override fun onResponse(call: Call<DataRoom?>, response: Response<DataRoom?>) {
+                dataMutableLiveDataRoom = MutableLiveData()
+                dataMutableLiveDataRoom!!.value = response.body()
             }
 
-            override fun onFailure(call: Call<RoomData?>, t: Throwable) {
+            override fun onFailure(call: Call<DataRoom?>, t: Throwable) {
             }
         })
-        return roomDataMutableLiveData
+        return dataMutableLiveDataRoom
     }
 
     private fun loadDatas(iid: String) {
         val call = NetworkModule().apiClient.getApartmentsPostedByMe(iid)
-        call.enqueue(object : Callback<pApartmentData> {
-            override fun onResponse(call: Call<pApartmentData>, response: Response<pApartmentData>) {
-                dataList!!.value = response.body()
+        call.enqueue(object : Callback<DataApartmentList> {
+            override fun onResponse(call: Call<DataApartmentList>, response: Response<DataApartmentList>) {
+                dataApartmentListList!!.value = response.body()
                 Timber.d("HomeView Model" + response.body().toString())
             }
 
-            override fun onFailure(call: Call<pApartmentData>, t: Throwable) {
+            override fun onFailure(call: Call<DataApartmentList>, t: Throwable) {
             }
         })
     }

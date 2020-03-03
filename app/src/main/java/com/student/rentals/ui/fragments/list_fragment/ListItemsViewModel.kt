@@ -5,8 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.student.Api.ApiClient
 import com.student.Api.ApiInterface
-import com.student.models.mUsers
-import com.student.models.pApartmentData
+import com.student.models.DataUsers
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -14,7 +13,7 @@ import timber.log.Timber
 
 class ListItemsViewModel : ViewModel() {
 
-    private var dataList: MutableLiveData<mUsers?>? = null
+    private var dataList: MutableLiveData<DataUsers?>? = null
     var apiInterface = ApiClient.getInstance().create(
         ApiInterface::class.java
     )
@@ -23,9 +22,9 @@ class ListItemsViewModel : ViewModel() {
     /**
      * we will call this method to get the data
      */
-    fun getUsersList(): LiveData<mUsers?>? { //if the list is null
+    fun getUsersList(): LiveData<DataUsers?>? { //if the list is null
         if(dataList == null){
-            dataList = MutableLiveData<mUsers?>()
+            dataList = MutableLiveData<DataUsers?>()
             loadDatas()
         }
 
@@ -40,17 +39,17 @@ class ListItemsViewModel : ViewModel() {
      */
     private fun loadDatas() {
         val call = apiInterface.getAllUsers()
-        call.enqueue(object : Callback<mUsers> {
+        call.enqueue(object : Callback<DataUsers> {
             override fun onResponse(
-                call: Call<mUsers>,
-                response: Response<mUsers>
+                call: Call<DataUsers>,
+                response: Response<DataUsers>
             ) {
                 dataList?.value = response.body()
                 Timber.d("HomeView Model" + response.body().toString())
             }
 
             override fun onFailure(
-                call: Call<mUsers>,
+                call: Call<DataUsers>,
                 t: Throwable
             ) {
             }

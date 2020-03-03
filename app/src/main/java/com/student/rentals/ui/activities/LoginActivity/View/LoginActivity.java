@@ -2,7 +2,6 @@ package com.student.rentals.ui.activities.LoginActivity.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,10 +10,9 @@ import android.widget.EditText;
 
 import com.student.ApplicationContext;
 import com.student.Utils.SharedPreferencesManager.Key;
-import com.student.models.LoginData;
-import com.student.models.mLoginUserData;
+import com.student.models.DataLogin;
+import com.student.models.DataLoginSuccess;
 import com.student.Utils.SharedPreferencesManager;
-import com.student.rentals.R;
 import com.student.rentals.R.id;
 import com.student.rentals.R.layout;
 import com.student.rentals.R.string;
@@ -59,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
         final String passwrd = this.password.getText().toString().trim();
 
         if ( !email.isEmpty() && !passwrd.isEmpty() && email != null && passwrd != null && this.isEmailValid(email)) {
-            this.isLogginSuccess(new LoginData(email, passwrd));
+            this.isLogginSuccess(new DataLogin(email, passwrd));
         }else {
             this.password.setError("Invalid Email or Password !!!");
         }
@@ -118,20 +116,20 @@ public class LoginActivity extends AppCompatActivity {
     /**
      * Call this function with @param loginData
      **/
-    private void isLogginSuccess(final LoginData loginData) {
-        this.viewModel.loginWithCredentials(loginData).observe(this, new Observer<mLoginUserData>() {
+    private void isLogginSuccess(final DataLogin datalogin) {
+        this.viewModel.loginWithCredentials(datalogin).observe(this, new Observer<DataLoginSuccess>() {
 
             /**
              * Called when the data is changed.
              *
-             * @param mLoginUserData The new data
+             * @param DataLoginSuccess The new data
              */
             @Override
-            public void onChanged(final mLoginUserData mLoginUserData) {
-                if (mLoginUserData.getAccessToken() != null || !! mLoginUserData.getAccessToken().isEmpty()) {
-                    LoginActivity.this.preferencesManager.put(Key.ACCESS_TOKEN_ID, mLoginUserData.getAccessToken());
-                    LoginActivity.this.preferencesManager.put(Key.LOGGED_IN_USERID, mLoginUserData.getUId());
-                    LoginActivity.this.preferencesManager.put(Key.LOGGED_IN_USEREMAIL, mLoginUserData.getMail());
+            public void onChanged(final DataLoginSuccess DataLoginSuccess) {
+                if (DataLoginSuccess.getAccessToken() != null || !! DataLoginSuccess.getAccessToken().isEmpty()) {
+                    LoginActivity.this.preferencesManager.put(Key.ACCESS_TOKEN_ID, DataLoginSuccess.getAccessToken());
+                    LoginActivity.this.preferencesManager.put(Key.LOGGED_IN_USERID, DataLoginSuccess.getUId());
+                    LoginActivity.this.preferencesManager.put(Key.LOGGED_IN_USEREMAIL, DataLoginSuccess.getMail());
                     LoginActivity.this.preferencesManager.put(Key.IS_USER_LOGGED_IN, true);
                     LoginActivity.this.startNewIntent(new Intent(LoginActivity.this.getBaseContext(), MainActivity.class));
                 } else {

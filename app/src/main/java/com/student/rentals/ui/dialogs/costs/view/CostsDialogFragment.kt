@@ -3,7 +3,6 @@ package com.student.rentals.ui.dialogs.uploadsContentDialog.view
 import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
-import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,13 +11,10 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import com.student.Utils.Constants
 import com.student.Utils.SharedPreferencesManager
-import com.student.models.ExtraCostsData
-import com.student.models.RoomData
+import com.student.models.DataExtraCost
 import com.student.rentals.R
 import com.student.rentals.databinding.ExtraCostsDataBinding
-import com.student.rentals.databinding.UpdateRoomDataBinding
 import com.student.rentals.ui.dialogs.uploadsContentDialog.viewModel.CoastsViewModel
 import kotlinx.android.synthetic.main.extra_costs_data.*
 import kotlinx.android.synthetic.main.update_room_data.*
@@ -28,7 +24,6 @@ import kotlinx.android.synthetic.main.update_room_data.edt_name
 import kotlinx.android.synthetic.main.update_room_data.icon_edit
 import kotlinx.android.synthetic.main.update_room_data.txtedt_layout
 import timber.log.Timber
-import java.lang.Integer.parseInt
 import java.util.*
 import kotlin.concurrent.schedule
 
@@ -109,12 +104,12 @@ class CostsDialogFragment : DialogFragment() {
         Timber.d(resources.getString(R.string.on_destroy))
     }
 
-    private fun updateUI(extraCostsData: ExtraCostsData?) {
-        binding.extradatas = extraCostsData
+    private fun updateUI(dataextracost: DataExtraCost?) {
+        binding.extradatas = dataextracost
     }
 
     private fun editRoomData() {
-        var data = ExtraCostsData(
+        var data = DataExtraCost(
             edt_name.text.toString().trim(),
             edt_amount.text.toString().trim(),
             edt_payment_type.text.toString().trim()

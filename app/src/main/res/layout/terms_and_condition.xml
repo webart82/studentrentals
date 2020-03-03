@@ -6,7 +6,7 @@
 
         <variable
             name="termsData"
-            type="com.student.models.TermsDatas" />
+            type="com.student.models.DataTerms" />
 
     </data>
 

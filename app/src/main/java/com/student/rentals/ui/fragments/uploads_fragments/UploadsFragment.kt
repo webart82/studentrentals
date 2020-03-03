@@ -10,10 +10,9 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.student.Utils.SharedPreferencesManager
-import com.student.models.ApartmentData
+import com.student.models.DataApartment
 import com.student.rentals.R
 import com.student.rentals.ui.adapters.UploadsListAdapter
-import com.student.rentals.ui.dialogs.uploadsContentDialog.viewModel.CoastsViewModel
 import com.student.rentals.ui.dialogs.uploadsContentDialog.viewModel.UploadsViewModel
 import kotlinx.android.synthetic.main.uploaded_list.*
 
@@ -44,7 +43,7 @@ class UploadsFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
     }
 
-    private fun createList(apartmentData: List<ApartmentData>?) {
+    private fun createList(apartmentData: List<DataApartment>?) {
         my_uploads_recycler_view.layoutManager = LinearLayoutManager(context)
         my_uploads_recycler_view.isNestedScrollingEnabled = false
         my_uploads_recycler_view.setHasFixedSize(true)

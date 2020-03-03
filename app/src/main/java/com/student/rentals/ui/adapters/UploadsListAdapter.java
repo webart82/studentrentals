@@ -2,23 +2,16 @@ package com.student.rentals.ui.adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
-import android.net.Uri;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.Adapter;
 
@@ -29,22 +22,17 @@ import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.transition.DrawableCrossFadeFactory;
 import com.student.Utils.Constants;
 import com.student.Utils.GlideApp;
-import com.student.models.ApartmentData;
+import com.student.models.DataApartment;
 import com.student.rentals.R;
-import com.student.rentals.R.color;
 import com.student.rentals.R.id;
 import com.student.rentals.R.layout;
-import com.student.rentals.ui.activities.ViewPropertyActivity;
 import com.student.rentals.ui.activities.ViewUploadActivity;
-import com.student.rentals.ui.adapters.HouseListAdapter.ViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
-import timber.log.Timber;
 
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 
@@ -53,9 +41,9 @@ public class UploadsListAdapter extends Adapter<UploadsListAdapter.UploadsViewHo
 
     private final LayoutInflater layoutInflater;
      final Context context;
-    private List<ApartmentData> aData = new ArrayList<>();
+    private List<DataApartment> aData = new ArrayList<>();
 
-     public UploadsListAdapter (final Context context,final List<ApartmentData> aData) {
+     public UploadsListAdapter (final Context context,final List<DataApartment> aData) {
          this.aData = aData;
          this.layoutInflater = LayoutInflater.from(context);
          this.context = context;
@@ -71,7 +59,7 @@ public class UploadsListAdapter extends Adapter<UploadsListAdapter.UploadsViewHo
 
     @Override
     public void onBindViewHolder(@NonNull UploadsViewHolder holder, int position) {
-        ApartmentData apartment = this.aData.get(position);
+        DataApartment apartment = this.aData.get(position);
         holder.houseName.setText(apartment.getApartmentName());
         holder.houseLocation.setText(apartment.getLocation());
         holder.housePrice.setText(apartment.getAmount());
