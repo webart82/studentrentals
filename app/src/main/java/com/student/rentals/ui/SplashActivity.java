@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.student.Utils.SharedPreferencesManager;
-import com.student.rentals.ui.activities.LoginActivity.View.LoginActivity;
+import com.student.rentals.ui.activities.loginActivity.view.LoginActivity;
 import com.student.rentals.ui.activities.MainActivity;
 
 import java.io.IOException;

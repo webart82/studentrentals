@@ -13,6 +13,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.student.Utils.GlideApp
 import com.student.rentals.R
 import com.student.rentals.ui.activities.LandLoadProfileActivity
+import com.student.rentals.ui.fragments.BaseFragment
 import kotlinx.android.synthetic.main.fragment_view_item.*
 import kotlinx.android.synthetic.main.item_property_owner.*
 import timber.log.Timber
@@ -21,7 +22,7 @@ import timber.log.Timber
 /**
  * A simple [Fragment] subclass.
  */
-class ViewItemFragment : Fragment() {
+class ViewItemFragment : BaseFragment() {
     /**Fragment is attached to the host Activity**/
     private var viewModel: ViewItemViewModel? = null
 
@@ -89,51 +90,4 @@ class ViewItemFragment : Fragment() {
     fun openActivity() {
         startActivity(Intent(context, LandLoadProfileActivity::class.java))
     }
-
-
-    /** **/
-    override fun onStart() {
-        super.onStart()
-        Timber.d(resources.getString(R.string.on_start))
-    }
-
-    /** **/
-    override fun onResume() {
-        super.onResume()
-        Timber.d(resources.getString(R.string.on_resume))
-    }
-
-    /** **/
-    override fun onPause() {
-        super.onPause()
-        Timber.d(resources.getString(R.string.on_pause))
-    }
-
-    /** Fragment is Active **/
-
-    /** **/
-    override fun onStop() {
-        super.onStop()
-        Timber.d(resources.getString(R.string.on_stop))
-    }
-
-    /** **/
-    override fun onDestroyView() {
-        super.onDestroyView()
-        Timber.d(resources.getString(R.string.on_destroy_view))
-    }
-
-    /** **/
-    override fun onDestroy() {
-        super.onDestroy()
-        Timber.d(resources.getString(R.string.on_destroy))
-    }
-
-    /** **/
-    override fun onDetach() {
-        super.onDetach()
-        Timber.d(resources.getString(R.string.on_detach))
-    }
-
-    /** Fragment is Destroyed **/
 }

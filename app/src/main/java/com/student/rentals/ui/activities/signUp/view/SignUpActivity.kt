@@ -3,23 +3,22 @@ package com.student.rentals.ui.activities.signUp.view
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.student.ApplicationContext
 import com.student.Utils.SharedPreferencesManager
 import com.student.rentals.R
-import com.student.rentals.ui.activities.LoginActivity.View.LoginActivity
-import com.student.rentals.ui.activities.LoginActivity.ViewModel.LoginViewModel
+import com.student.rentals.ui.AppBaseActivity
+import com.student.rentals.ui.activities.loginActivity.view.LoginActivity
 import com.student.rentals.ui.activities.MainActivity
 import com.student.rentals.ui.activities.signUp.ViewModel.SignUpViewModel
-import com.student.rentals.ui.activities.signUp.model.SignUpData
+import com.student.models.DataSignUp
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import timber.log.Timber
 import java.util.*
 import javax.inject.Inject
 import kotlin.concurrent.schedule
 
-class SignUpActivity : AppCompatActivity() {
+class SignUpActivity : AppBaseActivity() {
 
     private var preferencesManager: SharedPreferencesManager? = null
 
@@ -60,7 +59,7 @@ class SignUpActivity : AppCompatActivity() {
                 input_confirm_password.setError("Invalid password")
             if (isValidPassword(password, cpassword) && isEmailValid(email)
             ) {
-                SignUp(SignUpData(email, password))
+                SignUp(DataSignUp(email, password))
             }
         }
         link_login.setOnClickListener() {
@@ -96,10 +95,10 @@ class SignUpActivity : AppCompatActivity() {
         return password.equals(repass)
     }
 
-    private fun SignUp(signUpData: SignUpData) {
+    private fun SignUp(dataSignUp: DataSignUp) {
         p_progress_bar.visibility = View.VISIBLE
         sign_up_alert.visibility = View.VISIBLE
-        viewModel?.signUpAsNewUser(signUpData)?.observe(this, Observer { mLoginUserData ->
+        viewModel?.signUpAsNewUser(dataSignUp)?.observe(this, Observer { mLoginUserData ->
             Timber.d(mLoginUserData.toString())
             if (mLoginUserData.accessToken != null) {
                 sign_up_alert.text = "Signup successful"

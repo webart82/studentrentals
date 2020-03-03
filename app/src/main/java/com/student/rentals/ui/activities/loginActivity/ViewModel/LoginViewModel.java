@@ -1,4 +1,4 @@
-package com.student.rentals.ui.activities.LoginActivity.ViewModel;
+package com.student.rentals.ui.activities.loginActivity.ViewModel;
 
 import android.util.Log;
 

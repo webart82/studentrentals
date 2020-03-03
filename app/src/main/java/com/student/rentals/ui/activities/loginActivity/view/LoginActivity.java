@@ -1,6 +1,5 @@
-package com.student.rentals.ui.activities.LoginActivity.View;
+package com.student.rentals.ui.activities.loginActivity.view;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 
 import android.content.Intent;
@@ -16,7 +15,8 @@ import com.student.Utils.SharedPreferencesManager;
 import com.student.rentals.R.id;
 import com.student.rentals.R.layout;
 import com.student.rentals.R.string;
-import com.student.rentals.ui.activities.LoginActivity.ViewModel.LoginViewModel;
+import com.student.rentals.ui.AppBaseActivity;
+import com.student.rentals.ui.activities.loginActivity.ViewModel.LoginViewModel;
 import com.student.rentals.ui.activities.MainActivity;
 import com.student.rentals.ui.activities.signUp.view.SignUpActivity;
 
@@ -26,7 +26,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppBaseActivity {
     private static final String TAG = "LoginActivity";
     private SharedPreferencesManager preferencesManager;
     @BindView(id.input_email)
@@ -40,7 +40,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(final Bundle savedInstanceState) {
         ((ApplicationContext)getApplicationContext()).appComponent.inject(this);
         super.onCreate(savedInstanceState);
-        Log.d(LoginActivity.TAG, this.getResources().getString(string.on_create));
         this.preferencesManager = new SharedPreferencesManager(this);
         this.setContentView(layout.activity_login);
         ButterKnife.bind(this);
@@ -66,52 +65,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-    /**
-     * Make activity visible to the user
-     * Prepare the app to enter foreground and become interactive
-     **/
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Log.d(LoginActivity.TAG, this.getResources().getString(string.on_start));
-    }
-
-    /**
-     * It comes to the foreground
-     * The app is now interactive to user
-     **/
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.d(LoginActivity.TAG, this.getResources().getString(string.on_resume));
-    }
-
-    /**
-     * User is leaving us
-     **/
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.d(LoginActivity.TAG, this.getResources().getString(string.on_pause));
-    }
-
-    /**
-     * Activity is no longer visible to user
-     **/
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.d(LoginActivity.TAG, this.getResources().getString(string.on_stop));
-    }
-
-    /**
-     * before activity is destroyed
-     **/
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.d(LoginActivity.TAG, this.getResources().getString(string.on_destroy));
-    }
 
     /**
      * Call this function with @param loginData
@@ -144,7 +97,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void startNewIntent(final Intent intent) {
         this.startActivity(intent);
-        finish();
+        this.finish();
     }
 
     public Boolean isEmailValid(final String email) {

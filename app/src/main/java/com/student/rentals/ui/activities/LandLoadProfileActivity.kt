@@ -9,11 +9,12 @@ import androidx.fragment.app.FragmentTransaction
 import com.bumptech.glide.request.RequestOptions
 import com.student.Utils.GlideApp
 import com.student.rentals.R
+import com.student.rentals.ui.AppBaseActivity
 import com.student.rentals.ui.fragments.view_fragment.ViewItemFragment
 import kotlinx.android.synthetic.main.activity_land_loard_profile.*
 import kotlinx.android.synthetic.main.activity_view_property.*
 
-class LandLoadProfileActivity : AppCompatActivity() {
+class LandLoadProfileActivity : AppBaseActivity() {
 
     /**System create the activity {@link onCreate}**/
     override fun onCreate(savedInstanceState: Bundle?) {

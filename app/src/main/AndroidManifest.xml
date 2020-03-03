@@ -48,11 +48,12 @@
             android:label="@string/title_activity_map_view" />
         <activity android:name=".ui.activities.mediacontents.view.CustomPhotoGalleryActivity"/>
         <activity android:name=".ui.activities.signUp.view.SignUpActivity" />
-        <activity android:name=".ui.activities.LoginActivity.View.LoginActivity" />
+        <activity android:name=".ui.activities.loginActivity.view.LoginActivity" />
         <activity android:name=".ui.activities.MainActivity" />
         <activity android:name=".ui.activities.ViewPropertyActivity" />
         <activity android:name=".ui.activities.LandLoadProfileActivity" />
         <activity android:name=".ui.activities.ViewUploadActivity" />
+        <activity android:name=".ui.AppBaseActivity" />
     </application>
 
 </manifest>

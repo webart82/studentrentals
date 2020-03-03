@@ -27,7 +27,7 @@
     <string name="on_detach">On Detach</string>
     <string name="on_cancel">On Cancel</string>
     <string name="on_view_created">On View Created</string>
-
+    <string name="on_attach_fragment">On Attach Fragment</string>
     <string name="ipsum">Ipsum Ipsum</string>
 
 

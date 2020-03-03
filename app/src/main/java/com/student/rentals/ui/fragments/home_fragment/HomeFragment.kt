@@ -11,26 +11,19 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.student.models.DataApartment
 import com.student.rentals.R
 import com.student.rentals.ui.adapters.HouseListAdapter
+import com.student.rentals.ui.fragments.BaseFragment
 import kotlinx.android.synthetic.main.home_fragment.*
 import kotlinx.android.synthetic.main.list_fragment.p_progress_bar
 
-class HomeFragment : Fragment() {
-
+class HomeFragment : BaseFragment() {
     private val viewModel: HomeViewModel? by activityViewModels()
-    private var adapter: HouseListAdapter? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.home_fragment, container, false)
-
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel!!.roomsList.observe(viewLifecycleOwner, Observer { (_, _, data) -> createList(data) })
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
     }
 
     private fun createList(apartmentData: List<DataApartment>?) {

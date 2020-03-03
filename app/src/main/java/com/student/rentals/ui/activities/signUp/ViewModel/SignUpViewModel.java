@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel;
 import com.student.Api.ApiClient;
 import com.student.Api.ApiInterface;
 import com.student.models.DataLoginSuccess;
-import com.student.rentals.ui.activities.signUp.model.SignUpData;
+import com.student.models.DataSignUp;
 
 import javax.inject.Inject;
 
@@ -39,12 +39,12 @@ public class SignUpViewModel extends ViewModel {
      * we will call this method to get the data
      **/
 
-    public LiveData<DataLoginSuccess> signUpAsNewUser(SignUpData signUpData) {
+    public LiveData<DataLoginSuccess> signUpAsNewUser(DataSignUp dataSignUp) {
 
         /**
          * we will load it asynchronously from server in this method
          * **/
-        loadDatas(signUpData);
+        loadDatas(dataSignUp);
         /**
          * finally we will return the login datas
          */
@@ -54,8 +54,8 @@ public class SignUpViewModel extends ViewModel {
     /**
      * This method is using Retrofit to get the JSON data from URL
      **/
-    private void loadDatas(SignUpData signUpData) {
-        Call<DataLoginSuccess> call = apiInterface.postForSignUp(signUpData);
+    private void loadDatas(DataSignUp dataSignUp) {
+        Call<DataLoginSuccess> call = apiInterface.postForSignUp(dataSignUp);
         call.enqueue(new Callback<DataLoginSuccess>() {
             @Override
             public void onResponse(Call<DataLoginSuccess> call, retrofit2.Response<DataLoginSuccess> response) {

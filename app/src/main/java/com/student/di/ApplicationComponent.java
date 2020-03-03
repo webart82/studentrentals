@@ -1,8 +1,7 @@
 package com.student.di;
 
-import com.student.Api.NetworkModule;
 import com.student.di.scopes.ApplicationScope;
-import com.student.rentals.ui.activities.LoginActivity.View.LoginActivity;
+import com.student.rentals.ui.activities.loginActivity.view.LoginActivity;
 import com.student.rentals.ui.activities.MainActivity;
 import com.student.rentals.ui.activities.signUp.view.SignUpActivity;
 

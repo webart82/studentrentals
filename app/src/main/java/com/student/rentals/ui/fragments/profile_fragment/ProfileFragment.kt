@@ -14,26 +14,26 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.transition.DrawableCrossFadeFactory
+import com.student.ApplicationContext
 import com.student.Utils.Constants
 import com.student.Utils.GlideApp
 import com.student.Utils.SharedPreferencesManager
 import com.student.rentals.R
 import com.student.rentals.databinding.ProfileFragmentBinding
 import com.student.rentals.ui.dialogs.UpdateProfileDialog
+import com.student.rentals.ui.fragments.BaseFragment
 import kotlinx.android.synthetic.main.activity_land_loard_profile.*
 
 
-class ProfileFragment : Fragment() {
+class ProfileFragment : BaseFragment() {
     companion object {
         fun newInstance() = ProfileFragment()
     }
     private val model: ProfileViewModel by activityViewModels()
     private lateinit var binding: ProfileFragmentBinding
-    private lateinit var sharedPreferencesManager: SharedPreferencesManager
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = ProfileFragmentBinding.inflate(inflater, container, false)
-        sharedPreferencesManager = SharedPreferencesManager(activity)
         ButterKnife.bind(this, binding.root)
         return binding.root
     }
@@ -69,7 +69,7 @@ class ProfileFragment : Fragment() {
     }
 
 
-    fun updateUI(dp: String?) {
+    private fun updateUI(dp: String?) {
         val factory = DrawableCrossFadeFactory.Builder().setCrossFadeEnabled(true).build()
         GlideApp
             .with(this)
@@ -84,9 +84,9 @@ class ProfileFragment : Fragment() {
 
 
 
-    open fun fetchData(){
+    private fun fetchData(){
         p_profile_layout.visibility = View.INVISIBLE
-        model.getProfileData(sharedPreferencesManager.getString(SharedPreferencesManager.Key.LOGGED_IN_USERID).toString().trim())!!.observe(
+        model.getProfileData(ApplicationContext.instance.getsharepref().getString(SharedPreferencesManager.Key.LOGGED_IN_USERID).toString().trim())!!.observe(
             viewLifecycleOwner,
             Observer { mUsers ->
                 p_profile_layout.visibility = View.VISIBLE
