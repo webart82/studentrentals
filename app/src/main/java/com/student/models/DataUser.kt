@@ -11,9 +11,9 @@ import kotlinx.android.parcel.Parcelize
  * Without permission from creator
  **/
 @Parcelize
-data class DUserData(
+data class DataUser(
     @SerializedName("address")
-    val addresses: DAddressData? = null,
+    val addresses: DataAddress? = null,
     @SerializedName("_id")
     val Id: String?,
     @SerializedName("createdDate")

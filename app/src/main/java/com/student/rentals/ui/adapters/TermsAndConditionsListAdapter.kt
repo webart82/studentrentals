@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.library.baseAdapters.BR
 import androidx.recyclerview.widget.RecyclerView
-import com.student.models.TermsDatas
+import com.student.models.DataTerms
 import com.student.rentals.R
 import com.student.rentals.databinding.TermsAndConditionBinding
 
@@ -17,7 +17,7 @@ import com.student.rentals.databinding.TermsAndConditionBinding
  * Without permission from creator
  **/
 class TermsAndConditionsListAdapter(
-    private val terms: List<TermsDatas>?,
+    private val terms: List<DataTerms>?,
     private val context: Context
 ) :
     RecyclerView.Adapter<TermsAndConditionsListAdapter.TermsViewHolder>() {
@@ -50,7 +50,7 @@ class TermsAndConditionsListAdapter(
     class TermsViewHolder(val binding: TermsAndConditionBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(data: TermsDatas) {
+        fun bind(data: DataTerms) {
             binding.setVariable(BR.termsData, data)
             binding.executePendingBindings()
         }

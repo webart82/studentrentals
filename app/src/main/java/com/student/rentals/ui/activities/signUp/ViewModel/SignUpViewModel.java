@@ -1,15 +1,12 @@
 package com.student.rentals.ui.activities.signUp.ViewModel;
 
-import android.util.Log;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.student.Api.ApiClient;
 import com.student.Api.ApiInterface;
-import com.student.models.LoginData;
-import com.student.models.mLoginUserData;
+import com.student.models.DataLoginSuccess;
 import com.student.rentals.ui.activities.signUp.model.SignUpData;
 
 import javax.inject.Inject;
@@ -26,14 +23,14 @@ public class SignUpViewModel extends ViewModel {
     /**
      * this is the data that we will fetch asynchronously
      **/
-    private MutableLiveData<mLoginUserData> responseList = new MutableLiveData<mLoginUserData>();
+    private MutableLiveData<DataLoginSuccess> responseList = new MutableLiveData<DataLoginSuccess>();
     ApiInterface apiInterface = ApiClient.getInstance().create(ApiInterface.class);
 
-    public MutableLiveData<mLoginUserData> getResponseList() {
+    public MutableLiveData<DataLoginSuccess> getResponseList() {
         return this.responseList;
     }
 
-    public void setResponseList(final MutableLiveData<mLoginUserData> responseList) {
+    public void setResponseList(final MutableLiveData<DataLoginSuccess> responseList) {
         this.responseList = responseList;
     }
 
@@ -42,7 +39,7 @@ public class SignUpViewModel extends ViewModel {
      * we will call this method to get the data
      **/
 
-    public LiveData<mLoginUserData> signUpAsNewUser(SignUpData signUpData) {
+    public LiveData<DataLoginSuccess> signUpAsNewUser(SignUpData signUpData) {
 
         /**
          * we will load it asynchronously from server in this method
@@ -58,16 +55,16 @@ public class SignUpViewModel extends ViewModel {
      * This method is using Retrofit to get the JSON data from URL
      **/
     private void loadDatas(SignUpData signUpData) {
-        Call<mLoginUserData> call = apiInterface.postForSignUp(signUpData);
-        call.enqueue(new Callback<mLoginUserData>() {
+        Call<DataLoginSuccess> call = apiInterface.postForSignUp(signUpData);
+        call.enqueue(new Callback<DataLoginSuccess>() {
             @Override
-            public void onResponse(Call<mLoginUserData> call, retrofit2.Response<mLoginUserData> response) {
+            public void onResponse(Call<DataLoginSuccess> call, retrofit2.Response<DataLoginSuccess> response) {
                 responseList.setValue(response.body());
 
             }
 
             @Override
-            public void onFailure(Call<mLoginUserData> call, Throwable t) {
+            public void onFailure(Call<DataLoginSuccess> call, Throwable t) {
 
             }
         });

@@ -1,7 +1,7 @@
 package com.student.models
 
-data class pApartmentData(
+data class DataApartmentList(
     var status: Int?,
     var message: String?,
-    var data: List<ApartmentData>?
+    var data: List<DataApartment>?
     )

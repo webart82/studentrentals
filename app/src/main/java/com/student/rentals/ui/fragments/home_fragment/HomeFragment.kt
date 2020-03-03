@@ -4,20 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import butterknife.BindView
-import butterknife.ButterKnife
-import com.student.models.ApartmentData
+import com.student.models.DataApartment
 import com.student.rentals.R
 import com.student.rentals.ui.adapters.HouseListAdapter
 import kotlinx.android.synthetic.main.home_fragment.*
-import kotlinx.android.synthetic.main.list_fragment.*
 import kotlinx.android.synthetic.main.list_fragment.p_progress_bar
 
 class HomeFragment : Fragment() {
@@ -39,7 +33,7 @@ class HomeFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
     }
 
-    private fun createList(apartmentData: List<ApartmentData>?) {
+    private fun createList(apartmentData: List<DataApartment>?) {
         house_list.layoutManager = LinearLayoutManager(context)
         house_list.isNestedScrollingEnabled = false
         house_list.setHasFixedSize(true)

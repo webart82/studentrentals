@@ -4,28 +4,24 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.student.Api.NetworkModule
-import com.student.models.ExtraCostsData
-import com.student.models.RoomData
-import com.student.models.pApartmentData
+import com.student.models.DataExtraCost
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import timber.log.Timber
-import javax.inject.Inject
 
 class CoastsViewModel : ViewModel() {
-    private var dataList: MutableLiveData<ExtraCostsData?>?= null
+    private var dataList: MutableLiveData<DataExtraCost?>?= null
 
 
-    fun addNewCost(extraCostsData: ExtraCostsData?, apartmentId: String?): LiveData<ExtraCostsData?>? {
-        val call = NetworkModule().apiClient.postToCreateNewCost(extraCostsData!!, apartmentId!!)
-        call.enqueue(object : Callback<ExtraCostsData?> {
-            override fun onResponse(call: Call<ExtraCostsData?>, response: Response<ExtraCostsData?>) {
+    fun addNewCost(dataextracost: DataExtraCost?, apartmentId: String?): LiveData<DataExtraCost?>? {
+        val call = NetworkModule().apiClient.postToCreateNewCost(dataextracost!!, apartmentId!!)
+        call.enqueue(object : Callback<DataExtraCost?> {
+            override fun onResponse(call: Call<DataExtraCost?>, response: Response<DataExtraCost?>) {
                 dataList = MutableLiveData()
               dataList!!.value = response.body()
             }
 
-            override fun onFailure(call: Call<ExtraCostsData?>, t: Throwable) {
+            override fun onFailure(call: Call<DataExtraCost?>, t: Throwable) {
             }
         })
         return dataList

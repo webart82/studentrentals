@@ -1,6 +1,6 @@
 package com.student.models
 
-data class InfosData(
+data class DataInfos(
     var name: String?,
     var count: Int?
 )

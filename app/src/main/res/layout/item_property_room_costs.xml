@@ -6,7 +6,7 @@
     <data>
         <variable
             name="extraCosts"
-            type="com.student.models.ExtraCostsData" />
+            type="com.student.models.DataExtraCost" />
     </data>
 <TableRow
     android:layout_width="match_parent"

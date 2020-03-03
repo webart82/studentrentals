@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.student.Api.ApiClient
 import com.student.Api.ApiInterface
-import com.student.models.DUserData
-import com.student.models.UserProfileData
+import com.student.models.DataUser
+import com.student.models.DataProfile
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -15,8 +15,8 @@ class ProfileViewModel : ViewModel() {
     /**
      * this is the data that we will fetch asynchronously
      */
-    private var dataList: MutableLiveData<DUserData?>?= null
-    private var dUserData = MutableLiveData<DUserData?>()
+    private var dataList: MutableLiveData<DataUser?>?= null
+    private var dUserData = MutableLiveData<DataUser?>()
     var apiInterface = ApiClient.getInstance().create(
         ApiInterface::class.java
     )
@@ -25,9 +25,9 @@ class ProfileViewModel : ViewModel() {
     /**
      * we will call this method to get the data
      */
-    fun getProfileData(uId:String): LiveData<DUserData?>? { //if the list is null
+    fun getProfileData(uId:String): LiveData<DataUser?>? { //if the list is null
         if(dataList == null) {
-            dataList = MutableLiveData<DUserData?>()
+            dataList = MutableLiveData<DataUser?>()
             loadDatas(uId)
         }
         /**
@@ -36,14 +36,14 @@ class ProfileViewModel : ViewModel() {
         return dataList
     }
 
-    fun updateProfile(uId:String, userProfileData: UserProfileData):LiveData<DUserData?>?{
+    fun updateProfile(uId:String, dataProfile: DataProfile):LiveData<DataUser?>?{
 
-        val call = apiInterface.postToUpdateProfile(userProfileData,uId)
-        call.enqueue(object : Callback<DUserData>{
+        val call = apiInterface.postToUpdateProfile(dataProfile,uId)
+        call.enqueue(object : Callback<DataUser>{
 
-            override fun onFailure(call: Call<DUserData>, t: Throwable) {
+            override fun onFailure(call: Call<DataUser>, t: Throwable) {
             }
-            override fun onResponse(call: Call<DUserData>, response: Response<DUserData>) {
+            override fun onResponse(call: Call<DataUser>, response: Response<DataUser>) {
                 dUserData.value = response.body()
             }
 
@@ -56,13 +56,13 @@ class ProfileViewModel : ViewModel() {
      */
     private fun loadDatas(userId: String) {
         val call = apiInterface.getLoggedInUserProfile(userId)
-        call.enqueue(object : Callback<DUserData> {
-            override fun onResponse(call: Call<DUserData>, response: Response<DUserData>) {
+        call.enqueue(object : Callback<DataUser> {
+            override fun onResponse(call: Call<DataUser>, response: Response<DataUser>) {
                 dataList?.value = response.body()
             }
 
             override fun onFailure(
-                call: Call<DUserData>,
+                call: Call<DataUser>,
                 t: Throwable
             ) {
             }

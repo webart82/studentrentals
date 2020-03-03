@@ -11,9 +11,8 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import com.student.Utils.SharedPreferencesManager
-import com.student.models.UserProfileData
+import com.student.models.DataProfile
 import com.student.rentals.R
-import com.student.rentals.ui.fragments.profile_fragment.ProfileFragment
 import com.student.rentals.ui.fragments.profile_fragment.ProfileViewModel
 import kotlinx.android.synthetic.main.fragment_update_profile.*
 import timber.log.Timber
@@ -97,7 +96,7 @@ class UpdateProfileDialog : DialogFragment() {
         val about = edit_about.text.toString().trim()
         val title= edit_title.text.toString().trim()
         val jobtitle = edit_jobtitle.text.toString().trim()
-        val userdata = UserProfileData(username,firstname,lastname,email,about,title,jobtitle)
+        val userdata = DataProfile(username,firstname,lastname,email,about,title,jobtitle)
         viewModel.updateProfile(preferencesManager!!.getString(SharedPreferencesManager.Key.LOGGED_IN_USERID), userdata)!!
             .observe(viewLifecycleOwner, Observer { DUserData ->
                 Timer().schedule(3000) {

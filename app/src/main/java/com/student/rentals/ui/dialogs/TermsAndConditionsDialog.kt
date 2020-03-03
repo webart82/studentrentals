@@ -9,9 +9,8 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.snackbar.Snackbar
 import com.student.Utils.Constants
-import com.student.models.TermsDatas
+import com.student.models.DataTerms
 import com.student.rentals.R
 import com.student.rentals.ui.adapters.TermsAndConditionsListAdapter
 import kotlinx.android.synthetic.main.terms_list.*
@@ -19,7 +18,7 @@ import timber.log.Timber
 
 class TermsAndConditionsDialog: DialogFragment() {
     private var content:String? = null
-    private var u:List<TermsDatas>? = null
+    private var u:List<DataTerms>? = null
 
     //private lateinit var binding: ItemPropertyPopupProfileBinding
     override fun getTheme(): Int {
@@ -74,7 +73,7 @@ class TermsAndConditionsDialog: DialogFragment() {
         fun newInstance(content: String, bundle:Bundle): TermsAndConditionsDialog {
             val f = TermsAndConditionsDialog()
             val args = bundle
-            var data = bundle.getParcelableArrayList<TermsDatas>(Constants.PARCEL_KEY)
+            var data = bundle.getParcelableArrayList<DataTerms>(Constants.PARCEL_KEY)
             args.putString("content", content)
             f.arguments = args
             f.u = data

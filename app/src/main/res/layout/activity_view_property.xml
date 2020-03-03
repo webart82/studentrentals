@@ -6,14 +6,14 @@
     <data>
         <variable
             name="extraCosts"
-            type="com.student.models.ExtraCostsData" />
+            type="com.student.models.DataExtraCost" />
         <variable
             name="ownerData"
-            type="com.student.models.DUserData" />
+            type="com.student.models.DataUser" />
 
         <variable
             name="productData"
-            type="com.student.models.ApartmentData" />
+            type="com.student.models.DataApartment" />
     </data>
 
 

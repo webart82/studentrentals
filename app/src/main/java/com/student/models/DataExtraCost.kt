@@ -11,10 +11,10 @@ import kotlinx.android.parcel.Parcelize
  * Without permission from creator
  **/
 @Parcelize
-data class ExtraCostsData(
+data class DataExtraCost(
     @SerializedName("name") val name: String? = null,
     @SerializedName("amount") val amount: String? = null,
     @SerializedName("paymenttype") val paymenttype: String? = null,
-    @SerializedName("termsAndConditions") val terms: List<TermsDatas>?=null
+    @SerializedName("termsAndConditions") val terms: List<DataTerms>?=null
 
 ) : Parcelable

@@ -28,12 +28,11 @@ import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.transition.DrawableCrossFadeFactory;
 import com.student.Utils.Constants;
 import com.student.Utils.GlideApp;
-import com.student.models.ApartmentData;
+import com.student.models.DataApartment;
 import com.student.rentals.R;
 import com.student.rentals.R.color;
 import com.student.rentals.R.id;
 import com.student.rentals.R.layout;
-import com.student.rentals.databinding.ActivityViewPropertyBinding;
 import com.student.rentals.ui.activities.ViewPropertyActivity;
 import com.student.rentals.ui.adapters.HouseListAdapter.ViewHolder;
 
@@ -50,10 +49,10 @@ public class HouseListAdapter extends Adapter<ViewHolder> {
 
     private final LayoutInflater layoutInflater;
     final Context context;
-    private List<ApartmentData> aData = new ArrayList<>();
+    private List<DataApartment> aData = new ArrayList<>();
 
 
-    public HouseListAdapter(final Context context, final List<ApartmentData> aData) {
+    public HouseListAdapter(final Context context, final List<DataApartment> aData) {
         this.layoutInflater = LayoutInflater.from(context);
         this.context = context;
         this.aData = aData;
@@ -67,7 +66,7 @@ public class HouseListAdapter extends Adapter<ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
-        ApartmentData apartment = this.aData.get(position);
+        DataApartment apartment = this.aData.get(position);
         holder.houseName.setText(apartment.getApartmentName());
         holder.houseLocation.setText(apartment.getLocation());
         holder.housePrice.setText(apartment.getAmount());

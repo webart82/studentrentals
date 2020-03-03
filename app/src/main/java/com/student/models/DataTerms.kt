@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class TermsDatas(
+data class DataTerms(
     @SerializedName("title")val title: String? = null,
     @SerializedName("descriptions")val description: String? = null,
     @SerializedName("_id") var Id:String?

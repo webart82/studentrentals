@@ -14,7 +14,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.transition.DrawableCrossFadeFactory
 import com.student.Utils.Constants
 import com.student.Utils.GlideApp
-import com.student.models.DUserData
+import com.student.models.DataUser
 import com.student.rentals.R
 import com.student.rentals.databinding.ItemPropertyPopupProfileBinding
 import kotlinx.android.synthetic.main.item_property_popup_profile.*
@@ -28,7 +28,7 @@ import timber.log.Timber
  */
 class CustomDialogFragment : DialogFragment() {
     private var content:String? = null
-    private var u:DUserData? = null
+    private var u:DataUser? = null
     private lateinit var binding: ItemPropertyPopupProfileBinding
     override fun getTheme(): Int {
         return R.style.AppTheme_NoActionBar_FullScreenDialog
@@ -71,7 +71,7 @@ class CustomDialogFragment : DialogFragment() {
        fun newInstance(content: String, bundle:Bundle): CustomDialogFragment {
            val f = CustomDialogFragment()
            val args = bundle
-           var data = bundle.getParcelable<DUserData>(Constants.PARCEL_KEY)
+           var data = bundle.getParcelable<DataUser>(Constants.PARCEL_KEY)
 
            args.putString("content", content)
            f.arguments = args
@@ -79,7 +79,7 @@ class CustomDialogFragment : DialogFragment() {
            return f
        }
    }
-    fun updateUI( u:DUserData?) {
+    fun updateUI( u:DataUser?) {
 
         binding.userData = u
        Timber.d(u.toString())
