@@ -96,6 +96,7 @@
     <string name="room_size">Size</string>
     <string name="room_desc">Description</string>
     <string name="payment_type">Payments</string>
+    <string name="save">save</string>
 
 
 </resources>

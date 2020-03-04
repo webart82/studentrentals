@@ -54,15 +54,9 @@ class ViewUploadActivity : AppBaseActivity() {
     override fun onResume() {
         super.onResume()
         val apartmentData = intent.getBundleExtra(Constants.PARCEL_BUNDLE)?.getParcelable<DataApartment>(Constants.PARCEL_KEY)!!
-        //val bundle = intent.getBundleExtra(Constants.PARCEL_BUNDLE)
-        //val obj = bundle?.getParcelable<DataApartment>(Constants.PARCEL_KEY)
-        //val rooms = obj?.rooms
-        //_id = obj?.apartmentId
+
         val (_,_,_,_,_,_,thumbNail,apartmentId,_, owner,apartmentName,images,rooms, costs) =  apartmentData
         _id = apartmentId
-        //val costs = obj?.extraCosts
-       // val owner = obj?.ownersInfo
-        //val addr = owner?.addresses
 
         binding.productData = apartmentData
         binding.ownerData = owner
@@ -94,8 +88,14 @@ class ViewUploadActivity : AppBaseActivity() {
         when(item.itemId){
             R.id.menu_add_costs ->{
                 val ft: FragmentTransaction = supportFragmentManager.beginTransaction()
-                val nInstance = CostsDialogFragment.newInstance(_id!!)
+                val nInstance = CostsDialogFragment.newInstance(_id!!,Constants.ACTION_CREATE)
                 nInstance.show(ft, "dialog")
+            }
+            R.id.menu_add_rooms->
+            {
+                val ft:FragmentTransaction = supportFragmentManager.beginTransaction()
+                val inInstance = UpdateRoomDialogFragment.newInstance(_id!!,Constants.ACTION_CREATE)
+                inInstance.show(ft, "create_dialog")
             }
         }
         return super.onOptionsItemSelected(item)
@@ -118,7 +118,7 @@ class ViewUploadActivity : AppBaseActivity() {
         val bundle = Bundle()
         bundle.putParcelable(PARCEL_KEY, dataRoom)
         val ft: FragmentTransaction = supportFragmentManager.beginTransaction()
-        val nInstance = UpdateRoomDialogFragment.newInstance("TERMS_DIALOG", bundle)
+        val nInstance = UpdateRoomDialogFragment.newInstance("TERMS_DIALOG", bundle,Constants.ACTION_EDIT)
         nInstance.show(ft, "dialog")
     }
 

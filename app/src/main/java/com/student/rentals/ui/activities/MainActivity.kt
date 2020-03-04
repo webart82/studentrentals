@@ -65,7 +65,7 @@ class MainActivity : AppBaseActivity() {
 
             }
             R.id.navigation_profile -> {
-                loadFragment(UploadsFragment())
+                loadFragment(ProfileFragment())
                 toobar_add.visibility = View.VISIBLE
                 return@OnNavigationItemSelectedListener true
 

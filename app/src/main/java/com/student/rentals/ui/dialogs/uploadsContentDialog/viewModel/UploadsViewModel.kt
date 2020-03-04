@@ -36,6 +36,17 @@ class UploadsViewModel : ViewModel() {
         })
         return dataMutableLiveDataRoom
     }
+    fun createRoom(dataRoom: DataRoom, apartmentId:String):LiveData<DataRoom?>?{
+        val call = NetworkModule().apiClient.postToCreateNewRoom(dataRoom,apartmentId)
+        call.enqueue(object : Callback<DataRoom?> {
+            override fun onResponse(call: Call<DataRoom?>, response: Response<DataRoom?>) {
+                dataMutableLiveDataRoom = MutableLiveData()
+            }
+            override fun onFailure(call: Call<DataRoom?>, t: Throwable) {
+            }
+        })
+        return dataMutableLiveDataRoom
+    }
 
     private fun loadDatas(iid: String) {
         val call = NetworkModule().apiClient.getApartmentsPostedByMe(iid)
