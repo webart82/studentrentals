@@ -39,7 +39,7 @@ class ListItemsFragment : BaseFragment() {
 
     fun createList(data: List<DataUser>){
         recycler_landloards.layoutManager = LinearLayoutManager(context)
-        recycler_landloards.adapter =  LandLoardsListAdapter(data, requireContext(),  openActivity())
+        recycler_landloards.adapter =  LandLoardsListAdapter(data, requireContext(),  null)
         p_progress_bar.visibility = View.GONE
         recycler_landloards.visibility = View.VISIBLE
     }

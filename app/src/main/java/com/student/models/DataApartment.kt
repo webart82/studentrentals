@@ -12,7 +12,7 @@ import kotlinx.android.parcel.Parcelize
  **/
 @Parcelize
 data class DataApartment(
-    @SerializedName("paymentTerms") var apartmentType: String? = null,
+    @SerializedName("apartmentType") var apartmentType: String? = null,
     @SerializedName("longitude") val longitude: String? = null,
     @SerializedName("latitude") val apartmentLatitude: String? = null,
     @SerializedName("paymentTerms") val apartmentPaymentTerms: String? = null,

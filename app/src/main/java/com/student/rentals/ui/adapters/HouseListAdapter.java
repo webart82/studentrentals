@@ -68,11 +68,11 @@ public class HouseListAdapter extends Adapter<ViewHolder> {
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         DataApartment apartment = this.aData.get(position);
         holder.houseName.setText(apartment.getApartmentName());
-        holder.houseLocation.setText(apartment.getLocation());
-        holder.housePrice.setText(apartment.getAmount());
+        holder.houseLocation.setText(apartment.getApartmentLocation());
+        holder.housePrice.setText(apartment.getApartmentAmount());
         RequestOptions requestOptions = new RequestOptions();
         requestOptions.transform(new CenterCrop(), new RoundedCorners(16));
-        String url = apartment.getThumbNail();
+        String url = apartment.getApartmentThumbnail();
 
 
         GlideApp
