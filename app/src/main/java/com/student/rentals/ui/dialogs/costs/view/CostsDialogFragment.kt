@@ -11,6 +11,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import com.student.Utils.Constants
 import com.student.Utils.SharedPreferencesManager
 import com.student.models.DataExtraCost
 import com.student.rentals.R
@@ -36,6 +37,7 @@ import kotlin.concurrent.schedule
 class CostsDialogFragment : DialogFragment() {
     private var content: String? = null
     private var du: String? = null
+    private var OPERATION_ACTION:String? = null
     private val viewModel: CoastsViewModel by activityViewModels()
     private lateinit var binding: ExtraCostsDataBinding
     private var preferencesManager: SharedPreferencesManager? = null
@@ -68,29 +70,31 @@ class CostsDialogFragment : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         Timber.d(resources.getString(R.string.on_view_created))
         //updateUI(u)
-        //Timber.d(u.toString())
 
     }
 
     override fun onResume() {
         super.onResume()
-
         val params: ViewGroup.LayoutParams = dialog!!.window!!.attributes
         params.width = LinearLayout.LayoutParams.WRAP_CONTENT
         params.height = LinearLayout.LayoutParams.WRAP_CONTENT
         dialog?.window?.attributes = params as android.view.WindowManager.LayoutParams
+     if (OPERATION_ACTION.equals(Constants.ACTION_CREATE)){
+         icon_edit.visibility = View.INVISIBLE
+         icon_edit.setOnClickListener {
+             txtable_layout.isVisible = !txtable_layout.isVisible
+             txtedt_layout.isVisible = !txtedt_layout.isVisible
+             btn_save.isVisible = !btn_save.isVisible
+         }
+         btn_cancel.setOnClickListener {
+             dismiss()
+         }
+         btn_save.setOnClickListener {
+             addCost()
+         }
+     }else if(OPERATION_ACTION.equals(Constants.ACTION_EDIT)){
 
-        icon_edit.setOnClickListener {
-            txtable_layout.isVisible = !txtable_layout.isVisible
-            txtedt_layout.isVisible = !txtedt_layout.isVisible
-            btn_save.isVisible = !btn_save.isVisible
-        }
-        btn_cancel.setOnClickListener {
-            dismiss()
-        }
-        btn_save.setOnClickListener {
-            editRoomData()
-        }
+     }
 
     }
 
@@ -108,16 +112,11 @@ class CostsDialogFragment : DialogFragment() {
         binding.extradatas = dataextracost
     }
 
-    private fun editRoomData() {
-        var data = DataExtraCost(
-            edt_name.text.toString().trim(),
-            edt_amount.text.toString().trim(),
-            edt_payment_type.text.toString().trim()
-        )
+    private fun addCost() {
+        var data = DataExtraCost(edt_name.text.toString().trim(), edt_amount.text.toString().trim(), edt_payment_type.text.toString().trim())
         viewModel.addNewCost(data, du)?.observe(viewLifecycleOwner, Observer {
             Timer().schedule(3000) {
                 dismiss()
-                Timber.d(it.toString())
             }
 
         })
@@ -125,13 +124,14 @@ class CostsDialogFragment : DialogFragment() {
 
     companion object {
 
-        fun newInstance(content: String): CostsDialogFragment {
+        fun newInstance(content: String, action: String): CostsDialogFragment {
             val f = CostsDialogFragment()
             //val args = bundle
             //var data = bundle.getEx(Constants.PARCEL_KEY)
             //args.putString("content", content)
             //f.arguments = args
             f.du = content
+            f.OPERATION_ACTION = action
 
 
             return f

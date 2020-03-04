@@ -32,6 +32,8 @@ import kotlin.concurrent.schedule
 class UpdateRoomDialogFragment : DialogFragment() {
     private var content: String? = null
     private var u: DataRoom? = null
+    private var OPERATIONAL_ACTION:String? = null
+    private var APARTMENT_ID:String? = null
     private val viewModel: UploadsViewModel by activityViewModels()
     private lateinit var binding: UpdateRoomDataBinding
     private var preferencesManager: SharedPreferencesManager? = null
@@ -54,20 +56,16 @@ class UpdateRoomDialogFragment : DialogFragment() {
         retainInstance = true
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = UpdateRoomDataBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Timber.d(resources.getString(R.string.on_view_created))
-        updateUI(u)
-        Timber.d(u.toString())
+        if (OPERATIONAL_ACTION.equals(Constants.ACTION_EDIT)) {
+            updateUI(u)
+        }
 
     }
 
@@ -78,29 +76,32 @@ class UpdateRoomDialogFragment : DialogFragment() {
         params.width = LinearLayout.LayoutParams.WRAP_CONTENT
         params.height = LinearLayout.LayoutParams.WRAP_CONTENT
         dialog?.window?.attributes = params as android.view.WindowManager.LayoutParams
+        if(OPERATIONAL_ACTION.equals(Constants.ACTION_EDIT)) {
 
-        icon_edit.setOnClickListener {
-            txtable_layout.isVisible = !txtable_layout.isVisible
-            txtedt_layout.isVisible = !txtedt_layout.isVisible
-            btn_save.isVisible = !btn_save.isVisible
+            icon_edit.setOnClickListener {
+                txtable_layout.isVisible = !txtable_layout.isVisible
+                txtedt_layout.isVisible = !txtedt_layout.isVisible
+                btn_save.isVisible = !btn_save.isVisible
+            }
+            btn_cancel.setOnClickListener {
+                dismiss()
+            }
+            btn_save.setOnClickListener {
+                editRoomData()
+            }
+        }else if (OPERATIONAL_ACTION.equals(Constants.ACTION_CREATE)){
+            txtedt_layout.visibility = View.VISIBLE
+            txtable_layout.visibility =View.INVISIBLE
+            icon_edit.visibility = View.INVISIBLE
+            btn_save.visibility = View.VISIBLE
+            btn_cancel.setOnClickListener {
+                dismiss()
+            }
+            btn_save.setOnClickListener {
+                addRoom()
+            }
         }
-        btn_cancel.setOnClickListener {
-            dismiss()
-        }
-        btn_save.setOnClickListener {
-            editRoomData()
-        }
 
-    }
-
-    override fun onCancel(dialog: DialogInterface) {
-        super.onCancel(dialog)
-        Timber.d(resources.getString(R.string.on_cancel))
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Timber.d(resources.getString(R.string.on_destroy))
     }
 
     private fun updateUI(dataRoom: DataRoom?) {
@@ -122,18 +123,38 @@ class UpdateRoomDialogFragment : DialogFragment() {
 
         })
     }
+    private fun addRoom(){
+        var data = DataRoom(
+            edt_name.text.toString().trim(),
+            edt_title.text.toString().trim(),
+            edt_desc.text.toString().trim(),
+            edt_size.text.toString().trim(),
+            parseInt(edt_total.text.toString().trim())
+        )
+        viewModel.createRoom(data, APARTMENT_ID!!)?.observe(viewLifecycleOwner, Observer { RoomData ->
+            Timer().schedule(3000) {
+                dismiss()
+            }
+
+        })
+    }
 
     companion object {
 
-        fun newInstance(content: String, bundle: Bundle): UpdateRoomDialogFragment {
+        fun newInstance(content: String, bundle: Bundle, action:String): UpdateRoomDialogFragment {
             val f = UpdateRoomDialogFragment()
             val args = bundle
             var data = bundle.getParcelable<DataRoom>(Constants.PARCEL_KEY)
             args.putString("content", content)
             f.arguments = args
             f.u = data
-
-
+            f.OPERATIONAL_ACTION = action
+            return f
+        }
+        fun newInstance(apartmentId:String, action:String):UpdateRoomDialogFragment {
+            val f = UpdateRoomDialogFragment()
+            f.APARTMENT_ID = apartmentId
+            f.OPERATIONAL_ACTION = action
             return f
         }
     }

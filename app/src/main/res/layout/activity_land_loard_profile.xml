@@ -17,7 +17,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <ProgressBar
             android:id="@+id/pprogress_bar"
@@ -46,8 +46,8 @@
 
             <ImageView
                 android:id="@+id/profile_image"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 android:layout_below="@+id/header_cover_image"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="-130dp"
@@ -56,6 +56,7 @@
                 android:scaleType="centerCrop" />
 
             <RelativeLayout
+                android:visibility="gone"
                 android:id="@+id/profile_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -119,9 +120,24 @@
                     android:textColor="#fff"
                     android:textSize="18sp" />
             </RelativeLayout>
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/profile_view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="600dp"
+                android:layout_below="@id/profile_layout">
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tab_layout"
+                    android:layout_width="match_parent"
+                    android:background="@color/primaryColor"
+                    android:layout_height="?actionBarSize"
+                    app:tabTextAppearance="@style/TextAppearance.AppCompat.Small"/>
+
+            </androidx.viewpager.widget.ViewPager>
 
 
             <LinearLayout
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/profile_layout"
