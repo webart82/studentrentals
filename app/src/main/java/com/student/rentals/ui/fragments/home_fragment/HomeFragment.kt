@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.student.models.DataApartment
 import com.student.rentals.R
 import com.student.rentals.ui.adapters.HouseListAdapter
@@ -27,7 +28,7 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun createList(apartmentData: List<DataApartment>?) {
-        house_list.layoutManager = LinearLayoutManager(context)
+        house_list.layoutManager = LinearLayoutManager(context) as RecyclerView.LayoutManager?
         house_list.isNestedScrollingEnabled = false
         house_list.setHasFixedSize(true)
         house_list.setItemViewCacheSize(20)

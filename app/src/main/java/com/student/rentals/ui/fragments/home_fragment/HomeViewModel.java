@@ -35,7 +35,6 @@ public class HomeViewModel extends ViewModel {
             @Override
             public void onResponse(Call<DataApartmentList> call, retrofit2.Response<DataApartmentList> response) {
                 dataList.setValue(response.body());
-                Timber.d("HomeView Model" + response.body().toString());
             }
 
             @Override
