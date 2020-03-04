@@ -51,19 +51,17 @@ class ViewPropertyActivity : AppBaseActivity() {
     override fun onResume() {
         super.onResume()
         // loadFragment(ViewItemFragment())
-        val budle = intent.getBundleExtra(Constants.PARCEL_BUNDLE)
-        val obj = budle.getParcelable<DataApartment>(Constants.PARCEL_KEY)
-        //
-        val rooms = obj?.rooms
-        val images = obj?.roomImages
-        val costs = obj?.extraCosts
-        val owner = obj?.ownersInfo
+        val bundle = intent.getBundleExtra(Constants.PARCEL_BUNDLE)
+        val apartmentData = bundle.getParcelable<DataApartment>(Constants.PARCEL_KEY)
+
+        val (_,_,_,_,_,_,thumbNail,apartmentId,_, owner,apartmentName,images,rooms, costs) =  apartmentData!!
+
         val addr = owner?.addresses
-        Timber.d(obj.toString())
-        binding.productData = obj
+
+        binding.productData = apartmentData
         binding.ownerData = owner
-        owner?.thumbNail?.let { obj?.thumbNail?.let { it1 -> updateUI(it1, it) } }
-        obj?.apartmentName?.let { setupToolbar(it) }
+        thumbNail?.let { thumbNail.let { it1 -> updateUI(it1, it) } }
+        apartmentName?.let { setupToolbar(it) }
 
         property_owner_action_call.setOnClickListener {
             val intent = Intent(Intent.ACTION_DIAL)
