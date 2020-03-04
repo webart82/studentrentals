@@ -1,7 +1,7 @@
 package com.student.di.subcomponents;
 
 import com.student.di.scopes.PerActivity;
-import com.student.rentals.ui.activities.LoginActivity.View.LoginActivity;
+import com.student.rentals.ui.activities.loginActivity.view.LoginActivity;
 
 import dagger.Subcomponent;
 

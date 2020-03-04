@@ -2,7 +2,7 @@ package com.student.Api
 
 import androidx.lifecycle.LiveData
 import com.student.models.*
-import com.student.rentals.ui.activities.signUp.model.SignUpData
+import com.student.models.DataSignUp
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -33,7 +33,7 @@ interface ApiInterface {
     fun postToCreateNewRoom(@Body dataRoom: DataRoom, @Path("id") apartmentId: String):Call<DataRoom>
 
     @POST("auth/")
-    fun postForSignUp(@Body signUpData: SignUpData):Call<DataLoginSuccess>
+    fun postForSignUp(@Body dataSignUp: DataSignUp):Call<DataLoginSuccess>
 
     @PATCH("users/{id}")
     fun postToUpdateProfile(@Body dataProfile: DataProfile, @Path("id") userId: String):Call<DataUser>

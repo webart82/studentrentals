@@ -21,6 +21,7 @@ import com.student.models.DataApartment
 import com.student.models.DataTerms
 import com.student.rentals.R
 import com.student.rentals.databinding.ActivityViewPropertyBinding
+import com.student.rentals.ui.AppBaseActivity
 import com.student.rentals.ui.adapters.ExtraCostsListAdapter
 import com.student.rentals.ui.adapters.RoomsListAdapter
 import com.student.rentals.ui.dialogs.TermsAndConditionsDialog
@@ -33,7 +34,7 @@ import timber.log.Timber
 import java.util.ArrayList
 
 
-class ViewPropertyActivity : AppCompatActivity() {
+class ViewPropertyActivity : AppBaseActivity() {
     private lateinit var binding: ActivityViewPropertyBinding
     private lateinit var adapter: RoomsListAdapter
 

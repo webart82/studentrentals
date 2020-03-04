@@ -1,6 +1,7 @@
 package com.student.models
 
 import android.os.Parcelable
+import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 /**
@@ -11,18 +12,18 @@ import kotlinx.android.parcel.Parcelize
  **/
 @Parcelize
 data class DataApartment(
-    var apartmentType:String?,
-    var longitude: String?,
-    var latitude: String?,
-    var paymentTerms:  String?,
-    var amount: String?,
-    var description: String?,
-    var thumbNail: String?,
-    var _id: String?,
-    var location: String?,
-    var ownersInfo: DataUser?,
-    var apartmentName: String?,
-    var roomImages:  ArrayList<String>?,
-    var rooms: List<DataRoom>?,
-    var extraCosts: List<DataExtraCost>
-):Parcelable
+    @SerializedName("paymentTerms") var apartmentType: String? = null,
+    @SerializedName("longitude") val longitude: String? = null,
+    @SerializedName("latitude") val apartmentLatitude: String? = null,
+    @SerializedName("paymentTerms") val apartmentPaymentTerms: String? = null,
+    @SerializedName("amount") val apartmentAmount: String? = null,
+    @SerializedName("description") val apartmentDescriptions: String? = null,
+    @SerializedName("thumbNail") val apartmentThumbnail: String? = null,
+    @SerializedName("_id") val apartmentId: String? = null,
+    @SerializedName("location") val apartmentLocation: String? = null,
+    @SerializedName("ownersInfo") val apartmentOwnersInfo: DataUser? = null,
+    @SerializedName("apartmentName") val apartmentName: String? = null,
+    @SerializedName("roomImages") val apartmentRoomImages: ArrayList<String>?,
+    @SerializedName("rooms") val apartmentRooms: List<DataRoom>?,
+    @SerializedName("extraCosts") val apartmentExtraCosts: List<DataExtraCost>
+) : Parcelable

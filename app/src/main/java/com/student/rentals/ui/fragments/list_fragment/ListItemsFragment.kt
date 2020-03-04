@@ -13,14 +13,12 @@ import com.student.models.DataUser
 import com.student.rentals.R
 import com.student.rentals.ui.activities.LandLoadProfileActivity
 import com.student.rentals.ui.adapters.LandLoardsListAdapter
+import com.student.rentals.ui.fragments.BaseFragment
 import kotlinx.android.synthetic.main.list_fragment.*
 
-class ListItemsFragment : Fragment() {
-    val landloards: ArrayList<String> = ArrayList()
+class ListItemsFragment : BaseFragment() {
     private val model: ListItemsViewModel by activityViewModels()
-    companion object {
-        fun newInstance() = ListItemsFragment()
-    }
+
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -41,7 +39,7 @@ class ListItemsFragment : Fragment() {
 
     fun createList(data: List<DataUser>){
         recycler_landloards.layoutManager = LinearLayoutManager(context)
-        recycler_landloards.adapter =  LandLoardsListAdapter(data, requireContext(),  null)
+        recycler_landloards.adapter =  LandLoardsListAdapter(data, requireContext(),  openActivity())
         p_progress_bar.visibility = View.GONE
         recycler_landloards.visibility = View.VISIBLE
     }
@@ -49,6 +47,10 @@ class ListItemsFragment : Fragment() {
     fun openActivity(): ((View, DataUser) -> Unit)? {
         startActivity(Intent(context, LandLoadProfileActivity::class.java))
         return null
+    }
+
+    companion object {
+        fun newInstance() = ListItemsFragment()
     }
 
 }
