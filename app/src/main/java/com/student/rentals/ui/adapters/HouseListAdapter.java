@@ -38,11 +38,13 @@ import com.student.rentals.ui.adapters.HouseListAdapter.ViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
+import static java.lang.Float.parseFloat;
 
 public class HouseListAdapter extends Adapter<ViewHolder> {
     private static final String TAG = "HouseListAdapter";
@@ -107,20 +109,29 @@ public class HouseListAdapter extends Adapter<ViewHolder> {
         public ViewHolder(final View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-            itemView.setOnClickListener(this::onClick);
+            houseImage.setOnClickListener(this::onClick);
+            houseLocation.setOnClickListener(this::onClick);
         }
 
         @Override
         public void onClick(final View v) {
-            final int adapterPosition = this.getAdapterPosition();
+           switch (v.getId()){
+               case id.house_image:
+                   final int adapterPosition = this.getAdapterPosition();
 
-            final Intent parcelIntent = new Intent(HouseListAdapter.this.context, ViewPropertyActivity.class);
+                   final Intent parcelIntent = new Intent(HouseListAdapter.this.context, ViewPropertyActivity.class);
 
-            Bundle bundle = new Bundle();
-            bundle.putParcelable(Constants.INSTANCE.getPARCEL_KEY(), aData.get(adapterPosition));
-            parcelIntent.putExtra(Constants.INSTANCE.getPARCEL_BUNDLE(), bundle);
-            parcelIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            HouseListAdapter.this.context.startActivity(parcelIntent);
+                   Bundle bundle = new Bundle();
+                   bundle.putParcelable(Constants.INSTANCE.getPARCEL_KEY(), aData.get(adapterPosition));
+                   parcelIntent.putExtra(Constants.INSTANCE.getPARCEL_BUNDLE(), bundle);
+                   parcelIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                   HouseListAdapter.this.context.startActivity(parcelIntent);
+                   break;
+               case id.house_location:
+                   DataApartment apartment = aData.get(getAdapterPosition());
+                   startCustomTabIntent(parseFloat(apartment.getLongitude()), parseFloat(apartment.getApartmentLatitude()));
+                       break;
+           }
 
         }
         @Override
@@ -131,7 +142,9 @@ public class HouseListAdapter extends Adapter<ViewHolder> {
     }
 
 
-    private void startCustomTabIntent(String url) {
+    private void startCustomTabIntent(float ln, float lt) {
+        String uri = String.format(Locale.ENGLISH, "http://maps.google.com/maps?q=loc:%f,%f", ln, lt);
+
         final String PACKAGE_NAME = "com.android.chrome";
         CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
         builder.setToolbarColor(this.context.getResources().getColor(color.primaryColor));
@@ -149,6 +162,6 @@ public class HouseListAdapter extends Adapter<ViewHolder> {
                 customTabsIntent.intent.setPackage(PACKAGE_NAME);
             }
         }
-        customTabsIntent.launchUrl(this.context, Uri.parse(url));
+        customTabsIntent.launchUrl(this.context, Uri.parse(uri));
     }
 }

@@ -1,5 +1,6 @@
 package com.student.rentals.ui.activities
 
+import android.content.Intent
 import android.opengl.Visibility
 import android.os.Bundle
 import android.view.View
@@ -9,6 +10,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.student.ApplicationContext
 import com.student.rentals.R
 import com.student.rentals.ui.AppBaseActivity
+import com.student.rentals.ui.activities.uploadActivity.createApartmentActivity
 import com.student.rentals.ui.fragments.home_fragment.HomeFragment
 import com.student.rentals.ui.fragments.list_fragment.ListItemsFragment
 import com.student.rentals.ui.fragments.profile_fragment.ProfileFragment
@@ -48,7 +50,9 @@ class MainActivity : AppBaseActivity() {
 
     override fun onResume() {
         super.onResume()
-        Timber.d(resources.getString(R.string.on_resume))
+        toobar_add.setOnClickListener{
+            startActivity(Intent(this, createApartmentActivity::class.java))
+        }
     }
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener {
         menuItem ->
@@ -73,6 +77,7 @@ class MainActivity : AppBaseActivity() {
         }
         false
     }
+
 
     private fun loadFragment(fragment: Fragment) { // load fragment
         val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
