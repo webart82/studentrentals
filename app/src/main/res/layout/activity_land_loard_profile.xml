@@ -34,15 +34,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
+            <View
                 android:id="@+id/header_cover_image"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:scaleType="centerCrop"
-
-                android:src="@drawable/nav_menu_header_bg"
-                app:srcCompat="@drawable/nav_menu_header_bg" />
+                android:background="@color/primaryColor"
+                android:scaleType="centerCrop" />
 
             <ImageView
                 android:id="@+id/profile_image"

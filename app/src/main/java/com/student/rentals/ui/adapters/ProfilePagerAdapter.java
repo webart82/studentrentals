@@ -9,6 +9,7 @@ import androidx.fragment.app.ListFragment;
 import androidx.viewpager.widget.PagerAdapter;
 
 import com.student.rentals.ui.fragments.list_fragment.ListItemsFragment;
+import com.student.rentals.ui.fragments.list_fragment.NotifiactionsFragment;
 import com.student.rentals.ui.fragments.uploads_fragments.UploadsFragment;
 
 public class ProfilePagerAdapter extends FragmentPagerAdapter {
@@ -19,7 +20,7 @@ public class ProfilePagerAdapter extends FragmentPagerAdapter {
         super(fm, behavior);
         childFragments = new Fragment[] {
 
-                new ListItemsFragment(),
+                new NotifiactionsFragment(),
                 new UploadsFragment(),
         };
     }

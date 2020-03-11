@@ -63,7 +63,7 @@ class UpdateRoomDialogFragment : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if (OPERATIONAL_ACTION.equals(Constants.ACTION_EDIT)) {
+        if (OPERATIONAL_ACTION.equals(Constants.ACTION_EDIT) || OPERATIONAL_ACTION.equals(Constants.ACTION_VIEW)) {
             updateUI(u)
         }
 
@@ -94,12 +94,16 @@ class UpdateRoomDialogFragment : DialogFragment() {
             txtable_layout.visibility =View.INVISIBLE
             icon_edit.visibility = View.INVISIBLE
             btn_save.visibility = View.VISIBLE
-            btn_cancel.setOnClickListener {
-                dismiss()
-            }
+
             btn_save.setOnClickListener {
                 addRoom()
             }
+        }else if (OPERATIONAL_ACTION.equals(Constants.ACTION_VIEW)){
+            //txtable_layout.visibility =View.VISIBLE
+            icon_edit.visibility = View.INVISIBLE
+        }
+        btn_cancel.setOnClickListener {
+            dismiss()
         }
 
     }

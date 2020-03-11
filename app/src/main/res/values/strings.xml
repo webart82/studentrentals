@@ -92,11 +92,16 @@
     <string name="apartment_terms">Payment Terms</string>
     <string name="room_name">Name</string>
     <string name="room_title">Title</string>
-    <string name="room_total" >Total</string>
+    <string name="room_total">Total</string>
     <string name="room_size">Size</string>
     <string name="room_desc">Description</string>
     <string name="payment_type">Payments</string>
     <string name="save">save</string>
+    <string name="restaurants">restaurants</string>
 
+    <string-array name="my_filters">
+        <item>restaurants</item>
+        <item>churches</item>
+    </string-array>
 
 </resources>
