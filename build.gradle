@@ -31,4 +31,5 @@ ext{
     // koin version
     koin_version = '1.0.2'
     dagger2_version = '2.16'
+    retrofit2Version = '2.3.0'
 }

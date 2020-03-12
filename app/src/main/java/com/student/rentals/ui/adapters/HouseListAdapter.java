@@ -33,7 +33,7 @@ import com.student.rentals.R;
 import com.student.rentals.R.color;
 import com.student.rentals.R.id;
 import com.student.rentals.R.layout;
-import com.student.rentals.ui.activities.ViewPropertyActivity;
+import com.student.rentals.ui.activities.view.ViewPropertyActivity;
 import com.student.rentals.ui.adapters.HouseListAdapter.ViewHolder;
 
 import java.util.ArrayList;

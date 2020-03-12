@@ -6,11 +6,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.student.rentals.ui.fragments.list_apartments.ApparmentsFragment;
-import com.student.rentals.ui.fragments.list_fragment.ListItemsFragment;
-import com.student.rentals.ui.fragments.list_fragment.NotifiactionsFragment;
-import com.student.rentals.ui.fragments.profile_fragment.ProfileFragment;
-import com.student.rentals.ui.fragments.uploads_fragments.UploadsFragment;
+import com.student.rentals.ui.fragments.view.ApparmentsFragment;
+import com.student.rentals.ui.fragments.view.ListItemsFragment;
+import com.student.rentals.ui.fragments.view.ProfileFragment;
 
 /**
  * Copyright (c) $today.year.

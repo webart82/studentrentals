@@ -19,22 +19,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
-        <activity android:name=".ui.activities.uploadActivity.CreateNewApartmentActivity"
+
+
+        <activity android:name=".ui.activities.view.CreateNewApartmentActivity"
             android:parentActivityName=".ui.activities.MainActivity">
 
         </activity>
->>>>>>> Stashed changes
-        <activity android:name=".ui.activities.mediacontents.view.MediaContentsActivity">
-        </activity>
-=======
-        <activity android:name=".ui.activities.uploadActivity.createApartmentActivity"></activity>
-        <activity android:name=".ui.activities.mediacontents.view.MediaContentsActivity"></activity>
->>>>>>> 837c6f0bc54a4f72befbfdc679ef336bdb1e1769
+
+        <activity android:name=".ui.activities.view.createApartmentActivity"></activity>
+        <activity android:name=".ui.activities.view.MediaContentsActivity"></activity>
+
         <activity
-            android:name=".ui.SplashActivity"
+            android:name=".ui.activities.SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -56,16 +52,16 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".ui.activities.MapViewActivity"
+            android:name=".ui.activities.view.MapViewActivity"
             android:label="@string/title_activity_map_view" />
-        <activity android:name=".ui.activities.mediacontents.view.CustomPhotoGalleryActivity" />
-        <activity android:name=".ui.activities.signUp.view.SignUpActivity" />
-        <activity android:name=".ui.activities.loginActivity.view.LoginActivity" />
+        <activity android:name=".ui.activities.view.CustomPhotoGalleryActivity" />
+        <activity android:name=".ui.activities.view.SignUpActivity" />
+        <activity android:name=".ui.activities.view.LoginActivity" />
         <activity android:name=".ui.activities.MainActivity" />
-        <activity android:name=".ui.activities.ViewPropertyActivity" />
-        <activity android:name=".ui.activities.LandLoadProfileActivity" />
-        <activity android:name=".ui.activities.ViewUploadActivity" />
-        <activity android:name=".ui.AppBaseActivity" />
+        <activity android:name=".ui.activities.view.ViewPropertyActivity" />
+        <activity android:name=".ui.activities.view.LandLoadProfileActivity" />
+        <activity android:name=".ui.activities.view.ViewUploadActivity" />
+        <activity android:name=".ui.activities.view.AppBaseActivity" />
     </application>
 
 </manifest>

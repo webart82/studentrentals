@@ -99,24 +99,13 @@
     <string name="save">save</string>
     <string name="restaurants">restaurants</string>
 
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
+
 
     <string name="bottom_sheet_option_camera">Upload new Apartment</string>
     <string name="bottom_sheet_option_gallery">Upload from Gallery</string>
     <string name="bottom_sheet_option_heading">Actions</string>
     <string name="bottom_sheet_option_remove_photo">Logout</string>
 
-=======
->>>>>>> 837c6f0bc54a4f72befbfdc679ef336bdb1e1769
-    <string-array name="my_filters">
-        <item>restaurants</item>
-        <item>churches</item>
-    </string-array>
-<<<<<<< HEAD
->>>>>>> Stashed changes
-=======
->>>>>>> 837c6f0bc54a4f72befbfdc679ef336bdb1e1769
+
 
 </resources>
