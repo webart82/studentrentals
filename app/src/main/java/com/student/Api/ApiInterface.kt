@@ -32,6 +32,9 @@ interface ApiInterface {
     @POST("apartments/{id}/rooms")
     fun postToCreateNewRoom(@Body dataRoom: DataRoom, @Path("id") apartmentId: String):Call<DataRoom>
 
+    @POST("apartments")
+    fun postToCreateNewApartment(@Body uploadApartment: UploadApartment):Call<UploadApartment>
+
     @POST("auth/")
     fun postForSignUp(@Body dataSignUp: DataSignUp):Call<DataLoginSuccess>
 

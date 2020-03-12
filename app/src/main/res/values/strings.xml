@@ -98,5 +98,18 @@
     <string name="payment_type">Payments</string>
     <string name="save">save</string>
 
+<<<<<<< Updated upstream
+=======
+
+    <string name="bottom_sheet_option_camera">Upload new Apartment</string>
+    <string name="bottom_sheet_option_gallery">Upload from Gallery</string>
+    <string name="bottom_sheet_option_heading">Actions</string>
+    <string name="bottom_sheet_option_remove_photo">Logout</string>
+
+    <string-array name="my_filters">
+        <item>restaurants</item>
+        <item>churches</item>
+    </string-array>
+>>>>>>> Stashed changes
 
 </resources>

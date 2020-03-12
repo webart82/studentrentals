@@ -19,6 +19,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+<<<<<<< Updated upstream
+=======
+        <activity android:name=".ui.activities.uploadActivity.CreateNewApartmentActivity"
+            android:parentActivityName=".ui.activities.MainActivity">
+
+        </activity>
+>>>>>>> Stashed changes
         <activity android:name=".ui.activities.mediacontents.view.MediaContentsActivity">
         </activity>
         <activity

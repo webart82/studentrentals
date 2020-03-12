@@ -1,4 +1,4 @@
-package com.student.rentals.ui.fragments.home_fragment;
+package com.student.rentals.ui.fragments.list_apartments;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -11,10 +11,9 @@ import javax.inject.Inject;
 
 import retrofit2.Call;
 import retrofit2.Callback;
-import timber.log.Timber;
 
-public class HomeViewModel extends ViewModel {
-    @Inject public HomeViewModel() { }
+public class ApartmentsViewModel extends ViewModel {
+    @Inject public ApartmentsViewModel() { }
     @Inject NetworkModule networkModule;
 
     private MutableLiveData<DataApartmentList> dataList;

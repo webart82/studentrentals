@@ -46,14 +46,17 @@ class UpdateProfileDialog : DialogFragment() {
         super.onResume()
 
         val params: ViewGroup.LayoutParams = dialog!!.window!!.attributes
-        params.width = LinearLayout.LayoutParams.WRAP_CONTENT
-        params.height = LinearLayout.LayoutParams.WRAP_CONTENT
+        params.width = LinearLayout.LayoutParams.MATCH_PARENT
+        params.height = LinearLayout.LayoutParams.MATCH_PARENT
         dialog?.window?.attributes = params as android.view.WindowManager.LayoutParams
 
         edit_cancelbtn.setOnClickListener {
             dismiss()
         }
-        edit_okbtn.setOnClickListener(){
+        btn_close.setOnClickListener {
+            dismiss()
+        }
+        edit_okbtn.setOnClickListener() {
             updateProfile()
             p_progress_bar.visibility = View.VISIBLE
             txt_alert.visibility = View.VISIBLE
@@ -71,6 +74,7 @@ class UpdateProfileDialog : DialogFragment() {
         Timber.d("DiALOG DISMISSED")
 
     }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -88,16 +92,20 @@ class UpdateProfileDialog : DialogFragment() {
             return f
         }
     }
-    private fun updateProfile(){
+
+    private fun updateProfile() {
         val username = edit_username.text.toString().trim()
         val lastname = edit_lastname.text.toString().trim()
         val firstname = edit_firstname.text.toString().trim()
         val email = edit_email.text.toString().trim()
         val about = edit_about.text.toString().trim()
-        val title= edit_title.text.toString().trim()
+        val title = edit_title.text.toString().trim()
         val jobtitle = edit_jobtitle.text.toString().trim()
-        val userdata = DataProfile(username,firstname,lastname,email,about,title,jobtitle)
-        viewModel.updateProfile(preferencesManager!!.getString(SharedPreferencesManager.Key.LOGGED_IN_USERID), userdata)!!
+        val userdata = DataProfile(username, firstname, lastname, email, about, title, jobtitle)
+        viewModel.updateProfile(
+            preferencesManager!!.getString(SharedPreferencesManager.Key.LOGGED_IN_USERID),
+            userdata
+        )!!
             .observe(viewLifecycleOwner, Observer { DUserData ->
                 Timer().schedule(3000) {
                     dismiss()

@@ -4,19 +4,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     app:cardElevation="1dp"
+
     android:layout_marginTop="@dimen/dp_4"
+    android:layout_margin="@dimen/activity_margin"
     android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="@dimen/action_padding">
+        android:background="@color/pale_white"
+        >
 
         <ImageView
             android:id="@+id/house_image"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
             android:scaleType="centerCrop"
             android:src="@drawable/photo"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -30,9 +33,9 @@
             layout="@layout/uploads_item_property_infos"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/house_image"
             app:layout_constraintStart_toEndOf="@id/house_image"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@id/house_image" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -14,6 +14,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         android:fitsSystemWindows="false"
+        app:elevation="0dp"
+
         tools:layout_editor_absoluteX="0dp">
 
         <androidx.appcompat.widget.Toolbar
@@ -53,6 +55,7 @@
 
 
         </androidx.appcompat.widget.Toolbar>
+
     </com.google.android.material.appbar.AppBarLayout>
 
     <FrameLayout
@@ -72,9 +75,10 @@
         app:itemIconTint="@drawable/bottom_navigation_colors"
         app:itemTextColor="@drawable/bottom_navigation_colors"
         app:menu="@menu/menu_bottom_navigation"
-        android:background="@android:color/white"
+        android:background="?android:attr/windowBackground"
         android:layout_alignParentBottom="true"
-        app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"/>
+        app:labelVisibilityMode="selected"
+        />
 
 
 

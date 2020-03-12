@@ -1,10 +1,9 @@
-package com.student.rentals.ui.fragments.home_fragment
+package com.student.rentals.ui.fragments.list_apartments
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,13 +12,13 @@ import com.student.models.DataApartment
 import com.student.rentals.R
 import com.student.rentals.ui.adapters.HouseListAdapter
 import com.student.rentals.ui.fragments.BaseFragment
-import kotlinx.android.synthetic.main.home_fragment.*
+import kotlinx.android.synthetic.main.list_apartments_fragment.*
 import kotlinx.android.synthetic.main.list_fragment.p_progress_bar
 
-class HomeFragment : BaseFragment() {
-    private val viewModel: HomeViewModel? by activityViewModels()
+class ApparmentsFragment : BaseFragment() {
+    private val viewModel: ApartmentsViewModel? by activityViewModels()
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.home_fragment, container, false)
+        return inflater.inflate(R.layout.list_apartments_fragment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -38,6 +37,6 @@ class HomeFragment : BaseFragment() {
     }
 
     companion object {
-        private const val TAG = "HomeFragment"
+        private const val TAG = "ApparmentsFragment"
     }
 }

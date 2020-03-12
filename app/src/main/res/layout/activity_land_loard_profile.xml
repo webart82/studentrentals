@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:bind="http://schemas.android.com/apk/res-auto">
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -30,10 +31,11 @@
 
         <RelativeLayout
             android:id="@+id/p_profile_layout"
-            android:visibility="visible"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:visibility="visible">
 
+<<<<<<< Updated upstream
             <ImageView
                 android:id="@+id/header_cover_image"
                 android:layout_width="match_parent"
@@ -57,69 +59,84 @@
 
             <RelativeLayout
                 android:visibility="gone"
+=======
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+>>>>>>> Stashed changes
                 android:id="@+id/profile_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/header_cover_image"
-                android:background="#213F41"
-                android:elevation="4dp"
+                android:background="@color/primaryColor"
+
+                android:padding="@dimen/dp_15"
                 android:paddingBottom="24dp">
+
+                <ImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:contentDescription="@string/descriptions"
+                    android:elevation="5dp"
+                    android:padding="20dp"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:targetApi="21" />
 
 
                 <ImageView
                     android:id="@+id/profile_edit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginRight="16dp"
-                    android:src="@android:drawable/ic_menu_edit" />
+                    android:background="@drawable/circular_text_bg"
+                    android:contentDescription="@string/descriptions"
+                    android:padding="@dimen/dp_4"
 
-                <ImageView
-                    android:id="@+id/profile_upload"
+                    android:src="@drawable/pencil_outline"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_below="@id/profile_edit"
-                    android:src="@android:drawable/ic_input_add" />
+                    android:orientation="vertical"
+                    android:padding="@dimen/action_padding"
+                    app:layout_constraintBottom_toBottomOf="@id/profile_image"
+                    app:layout_constraintStart_toEndOf="@id/profile_image"
+                    app:layout_constraintTop_toTopOf="@id/profile_image">
 
-                <TextView
-                    android:id="@+id/name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="70dp"
-                    android:text="@{userData.fullName, default=@string/ipsum}"
-                    android:textColor="#fff"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{userData.fullName, default=@string/ipsum}"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead.Inverse"
+                        android:textColor="#fff"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toEndOf="@id/profile_image" />
 
-                <TextView
-                    android:id="@+id/location"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/designation"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="10dp"
-                    android:text="@{userData.email, default=@string/ipsum}"
-                    android:textColor="#fff"
-                    android:textSize="16sp" />
+                    <TextView
+                        android:id="@+id/location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{userData.email, default=@string/ipsum}"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textColor="#fff"
+                        android:textSize="16sp" />
 
-                <TextView
-                    android:id="@+id/designation"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/name"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="10dp"
-                    android:text="@{userData.userName, default=@string/ipsum}"
-                    android:textColor="#fff"
-                    android:textSize="18sp" />
-            </RelativeLayout>
+                    <TextView
+                        android:id="@+id/designation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{userData.userName, default=@string/ipsum}"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textColor="#fff"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/profile_view_pager"
                 android:layout_width="match_parent"
@@ -129,27 +146,28 @@
                 <com.google.android.material.tabs.TabLayout
                     android:id="@+id/tab_layout"
                     android:layout_width="match_parent"
-                    android:background="@color/primaryColor"
                     android:layout_height="?actionBarSize"
-                    app:tabTextAppearance="@style/TextAppearance.AppCompat.Small"/>
+                    android:background="@color/primaryColor"
+                    app:tabTextAppearance="@style/TextAppearance.AppCompat.Small" />
 
             </androidx.viewpager.widget.ViewPager>
 
 
             <LinearLayout
-                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/profile_layout"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
+
                 <include
                     layout="@layout/item_property_owner_profile_address"
                     bind:userAddress="@{addressData}" />
+
                 <include
                     android:id="@+id/profile_infos"
                     layout="@layout/item_property_owner_profile_contents"
                     bind:userData="@{userData}" />
-
 
 
             </LinearLayout>

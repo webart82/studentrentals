@@ -44,6 +44,6 @@ class UploadsFragment : BaseFragment() {
     }
 
     companion object {
-        private const val TAG = "HomeFragment"
+        private const val TAG = "ApparmentsFragment"
     }
 }

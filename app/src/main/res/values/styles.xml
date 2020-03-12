@@ -37,6 +37,14 @@
         <item name="android:layout_alignParentStart">true</item>
         <item name="android:layout_alignParentTop">true</item>
     </style>
+    <style name="PopupToolBarTheme">
+        <item name="android:background">@color/primaryDarkColor</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/secondaryTextColor</item>
+        <item name="android:minHeight">?attr/actionBarSize</item>
+        <item name="android:layout_alignParentStart">true</item>
+        <item name="android:layout_alignParentTop">true</item>
+    </style>
 
     <style name="DialogTheme">
         <item name="android:windowFrame">@null</item>

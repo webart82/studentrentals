@@ -4,6 +4,7 @@ import com.student.di.scopes.ApplicationScope;
 import com.student.rentals.ui.activities.loginActivity.view.LoginActivity;
 import com.student.rentals.ui.activities.MainActivity;
 import com.student.rentals.ui.activities.signUp.view.SignUpActivity;
+import com.student.rentals.ui.activities.uploadActivity.CreateNewApartmentActivity;
 
 import javax.inject.Singleton;
 
@@ -22,5 +23,6 @@ public interface ApplicationComponent {
     void inject(SignUpActivity signUpActivity);
     void inject(MainActivity mainActivity);
     void inject(LoginActivity loginActivity);
+    void inject(CreateNewApartmentActivity createNewApartmentActivity);
 
 }

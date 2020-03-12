@@ -1,18 +1,29 @@
 package com.student.rentals.ui.activities
 
+<<<<<<< Updated upstream
 import android.opengl.Visibility
+=======
+import android.content.Intent
+>>>>>>> Stashed changes
 import android.os.Bundle
 import android.view.View
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.student.ApplicationContext
+import com.student.rentals.ui.fragments.AddPhotoBottomDialogFragment
+import com.student.Utils.BottomNavigationViewBehavior
+import com.student.Utils.Constants
 import com.student.rentals.R
 import com.student.rentals.ui.AppBaseActivity
+<<<<<<< Updated upstream
 import com.student.rentals.ui.fragments.home_fragment.HomeFragment
+=======
+import com.student.rentals.ui.activities.uploadActivity.CreateNewApartmentActivity
+import com.student.rentals.ui.fragments.HomeFragment
+>>>>>>> Stashed changes
 import com.student.rentals.ui.fragments.list_fragment.ListItemsFragment
-import com.student.rentals.ui.fragments.profile_fragment.ProfileFragment
-import com.student.rentals.ui.fragments.uploads_fragments.UploadsFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
 
@@ -29,7 +40,10 @@ class MainActivity : AppBaseActivity() {
             loadFragment(HomeFragment())
         }
         bottom_navigation.setOnNavigationItemSelectedListener (mOnNavigationItemSelectedListener)
+        val layoutParams = bottom_navigation.getLayoutParams() as CoordinatorLayout.LayoutParams
+        layoutParams.behavior = BottomNavigationViewBehavior()
     }
+
 
     override fun onStart() {
         super.onStart()
@@ -48,7 +62,14 @@ class MainActivity : AppBaseActivity() {
 
     override fun onResume() {
         super.onResume()
+<<<<<<< Updated upstream
         Timber.d(resources.getString(R.string.on_resume))
+=======
+        toobar_add.setOnClickListener{
+            startActivity(Intent(this, CreateNewApartmentActivity::class.java))
+        }
+
+>>>>>>> Stashed changes
     }
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener {
         menuItem ->
@@ -65,8 +86,8 @@ class MainActivity : AppBaseActivity() {
 
             }
             R.id.navigation_profile -> {
-                loadFragment(ProfileFragment())
-                toobar_add.visibility = View.VISIBLE
+               val fr = AddPhotoBottomDialogFragment.newInstance()
+                fr.show(supportFragmentManager,Constants.TAG)
                 return@OnNavigationItemSelectedListener true
 
             }

@@ -37,11 +37,7 @@ class ProfileFragment : BaseFragment() {
     private lateinit var profilePagerAdapter: ProfilePagerAdapter
     private lateinit var viewPager: ViewPager
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = ProfileFragmentBinding.inflate(inflater, container, false)
         ButterKnife.bind(this, binding.root)
         return binding.root
@@ -71,12 +67,13 @@ class ProfileFragment : BaseFragment() {
             nInstance.show(ft, "UPDATE_PROFILE")
         }
 
-        profile_upload.setOnClickListener() {
+        /**
+         * profile_upload.setOnClickListener() {
             val ft: FragmentTransaction =
                 (activity as AppCompatActivity?)!!.supportFragmentManager.beginTransaction()
             val nInstance = UpdateProfileDialog.newInstance()
             nInstance.show(ft, "UPDATE_PROFILE")
-        }
+        }**/
 
     }
 

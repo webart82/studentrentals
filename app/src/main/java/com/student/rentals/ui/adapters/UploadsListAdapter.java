@@ -64,7 +64,7 @@ public class UploadsListAdapter extends Adapter<UploadsListAdapter.UploadsViewHo
         holder.houseLocation.setText(apartment.getApartmentLocation());
         holder.housePrice.setText(apartment.getApartmentAmount());
         RequestOptions requestOptions = new RequestOptions();
-        requestOptions.transform(new CenterCrop(), new RoundedCorners(16));
+        requestOptions.transform(new CenterCrop(), new RoundedCorners(8));
         String url = apartment.getApartmentThumbnail();
 
 
