@@ -13,7 +13,7 @@ import androidx.lifecycle.Observer
 import com.student.Utils.SharedPreferencesManager
 import com.student.models.DataProfile
 import com.student.rentals.R
-import com.student.rentals.ui.fragments.profile_fragment.ProfileViewModel
+import com.student.rentals.ui.fragments.viewmodel.ProfileViewModel
 import kotlinx.android.synthetic.main.fragment_update_profile.*
 import timber.log.Timber
 import java.util.*

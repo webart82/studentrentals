@@ -1,14 +1,4 @@
 package com.student.rentals.ui.activities
-
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
-import android.content.Intent
->>>>>>> 837c6f0bc54a4f72befbfdc679ef336bdb1e1769
-import android.opengl.Visibility
-=======
-import android.content.Intent
->>>>>>> Stashed changes
 import android.os.Bundle
 import android.view.View
 import androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -16,22 +6,15 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.student.ApplicationContext
-import com.student.rentals.ui.fragments.AddPhotoBottomDialogFragment
+import com.student.rentals.ui.fragments.view.AddPhotoBottomDialogFragment
 import com.student.Utils.BottomNavigationViewBehavior
 import com.student.Utils.Constants
 import com.student.rentals.R
-import com.student.rentals.ui.AppBaseActivity
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
-import com.student.rentals.ui.activities.uploadActivity.createApartmentActivity
->>>>>>> 837c6f0bc54a4f72befbfdc679ef336bdb1e1769
-import com.student.rentals.ui.fragments.home_fragment.HomeFragment
-=======
-import com.student.rentals.ui.activities.uploadActivity.CreateNewApartmentActivity
-import com.student.rentals.ui.fragments.HomeFragment
->>>>>>> Stashed changes
-import com.student.rentals.ui.fragments.list_fragment.ListItemsFragment
+import com.student.rentals.ui.activities.view.AppBaseActivity
+
+import com.student.rentals.ui.fragments.view.HomeFragment
+
+import com.student.rentals.ui.fragments.view.ListItemsFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
 
@@ -70,20 +53,9 @@ class MainActivity : AppBaseActivity() {
 
     override fun onResume() {
         super.onResume()
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-        Timber.d(resources.getString(R.string.on_resume))
-=======
-        toobar_add.setOnClickListener{
-            startActivity(Intent(this, CreateNewApartmentActivity::class.java))
-        }
 
->>>>>>> Stashed changes
-=======
-        toobar_add.setOnClickListener{
-            startActivity(Intent(this, createApartmentActivity::class.java))
-        }
->>>>>>> 837c6f0bc54a4f72befbfdc679ef336bdb1e1769
+
+
     }
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener {
         menuItem ->

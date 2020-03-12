@@ -1,10 +1,10 @@
 package com.student.di;
 
 import com.student.di.scopes.ApplicationScope;
-import com.student.rentals.ui.activities.loginActivity.view.LoginActivity;
+import com.student.rentals.ui.activities.view.LoginActivity;
 import com.student.rentals.ui.activities.MainActivity;
-import com.student.rentals.ui.activities.signUp.view.SignUpActivity;
-import com.student.rentals.ui.activities.uploadActivity.CreateNewApartmentActivity;
+import com.student.rentals.ui.activities.view.SignUpActivity;
+import com.student.rentals.ui.activities.view.CreateNewApartmentActivity;
 
 import javax.inject.Singleton;
 

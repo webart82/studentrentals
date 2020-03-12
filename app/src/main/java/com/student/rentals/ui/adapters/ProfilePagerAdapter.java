@@ -5,12 +5,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.fragment.app.ListFragment;
-import androidx.viewpager.widget.PagerAdapter;
 
-import com.student.rentals.ui.fragments.list_fragment.ListItemsFragment;
 import com.student.rentals.ui.fragments.list_fragment.NotifiactionsFragment;
-import com.student.rentals.ui.fragments.uploads_fragments.UploadsFragment;
+import com.student.rentals.ui.fragments.view.UploadsFragment;
 
 public class ProfilePagerAdapter extends FragmentPagerAdapter {
     private String[] titles = {"Notifications","Uploads"};
