@@ -1,6 +1,10 @@
 package com.student.rentals.ui.activities
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
+=======
+import android.content.Intent
+>>>>>>> 837c6f0bc54a4f72befbfdc679ef336bdb1e1769
 import android.opengl.Visibility
 =======
 import android.content.Intent
@@ -17,7 +21,11 @@ import com.student.Utils.BottomNavigationViewBehavior
 import com.student.Utils.Constants
 import com.student.rentals.R
 import com.student.rentals.ui.AppBaseActivity
+<<<<<<< HEAD
 <<<<<<< Updated upstream
+=======
+import com.student.rentals.ui.activities.uploadActivity.createApartmentActivity
+>>>>>>> 837c6f0bc54a4f72befbfdc679ef336bdb1e1769
 import com.student.rentals.ui.fragments.home_fragment.HomeFragment
 =======
 import com.student.rentals.ui.activities.uploadActivity.CreateNewApartmentActivity
@@ -62,6 +70,7 @@ class MainActivity : AppBaseActivity() {
 
     override fun onResume() {
         super.onResume()
+<<<<<<< HEAD
 <<<<<<< Updated upstream
         Timber.d(resources.getString(R.string.on_resume))
 =======
@@ -70,6 +79,11 @@ class MainActivity : AppBaseActivity() {
         }
 
 >>>>>>> Stashed changes
+=======
+        toobar_add.setOnClickListener{
+            startActivity(Intent(this, createApartmentActivity::class.java))
+        }
+>>>>>>> 837c6f0bc54a4f72befbfdc679ef336bdb1e1769
     }
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener {
         menuItem ->
@@ -94,6 +108,7 @@ class MainActivity : AppBaseActivity() {
         }
         false
     }
+
 
     private fun loadFragment(fragment: Fragment) { // load fragment
         val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()

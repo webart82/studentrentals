@@ -35,6 +35,17 @@
             app:layout_constraintTop_toTopOf="parent">
 
         </ImageView>
+        <TextView
+            android:id="@+id/query_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/map_marker"
+            android:background="@drawable/circular_text_bg"
+            android:padding="@dimen/dp_12"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="@id/property_image"
+            app:layout_constraintTop_toTopOf="@id/property_image"
+            android:layout_margin="@dimen/dp_4"/>
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

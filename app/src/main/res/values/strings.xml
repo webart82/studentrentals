@@ -92,12 +92,14 @@
     <string name="apartment_terms">Payment Terms</string>
     <string name="room_name">Name</string>
     <string name="room_title">Title</string>
-    <string name="room_total" >Total</string>
+    <string name="room_total">Total</string>
     <string name="room_size">Size</string>
     <string name="room_desc">Description</string>
     <string name="payment_type">Payments</string>
     <string name="save">save</string>
+    <string name="restaurants">restaurants</string>
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
 
@@ -106,10 +108,15 @@
     <string name="bottom_sheet_option_heading">Actions</string>
     <string name="bottom_sheet_option_remove_photo">Logout</string>
 
+=======
+>>>>>>> 837c6f0bc54a4f72befbfdc679ef336bdb1e1769
     <string-array name="my_filters">
         <item>restaurants</item>
         <item>churches</item>
     </string-array>
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> 837c6f0bc54a4f72befbfdc679ef336bdb1e1769
 
 </resources>

@@ -35,16 +35,17 @@
             android:layout_height="wrap_content"
             android:visibility="visible">
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
             <ImageView
+=======
+            <View
+>>>>>>> 837c6f0bc54a4f72befbfdc679ef336bdb1e1769
                 android:id="@+id/header_cover_image"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:scaleType="centerCrop"
-
-                android:src="@drawable/nav_menu_header_bg"
-                app:srcCompat="@drawable/nav_menu_header_bg" />
+                android:background="@color/primaryColor"
+                android:scaleType="centerCrop" />
 
             <ImageView
                 android:id="@+id/profile_image"

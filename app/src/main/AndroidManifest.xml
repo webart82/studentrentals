@@ -8,8 +8,8 @@
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name="com.student.ApplicationContext"
@@ -19,6 +19,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
         <activity android:name=".ui.activities.uploadActivity.CreateNewApartmentActivity"
@@ -28,6 +29,10 @@
 >>>>>>> Stashed changes
         <activity android:name=".ui.activities.mediacontents.view.MediaContentsActivity">
         </activity>
+=======
+        <activity android:name=".ui.activities.uploadActivity.createApartmentActivity"></activity>
+        <activity android:name=".ui.activities.mediacontents.view.MediaContentsActivity"></activity>
+>>>>>>> 837c6f0bc54a4f72befbfdc679ef336bdb1e1769
         <activity
             android:name=".ui.SplashActivity"
             android:theme="@style/SplashTheme">
@@ -53,7 +58,7 @@
         <activity
             android:name=".ui.activities.MapViewActivity"
             android:label="@string/title_activity_map_view" />
-        <activity android:name=".ui.activities.mediacontents.view.CustomPhotoGalleryActivity"/>
+        <activity android:name=".ui.activities.mediacontents.view.CustomPhotoGalleryActivity" />
         <activity android:name=".ui.activities.signUp.view.SignUpActivity" />
         <activity android:name=".ui.activities.loginActivity.view.LoginActivity" />
         <activity android:name=".ui.activities.MainActivity" />
